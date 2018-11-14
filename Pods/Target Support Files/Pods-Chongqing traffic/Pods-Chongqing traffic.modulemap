@@ -1,0 +1,6 @@
+framework module Pods_Chongqing_traffic {
+  umbrella header "Pods-Chongqing traffic-umbrella.h"
+
+  export *
+  module * { export * }
+}
