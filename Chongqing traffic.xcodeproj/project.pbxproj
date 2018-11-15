@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		656A91B6219DB516005427C8 /* PeriodSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A91B5219DB516005427C8 /* PeriodSearchView.swift */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -92,6 +93,7 @@
 
 /* Begin PBXFileReference section */
 		375784E0078E200F7F1EB62D /* Pods-Chongqing traffic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chongqing traffic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chongqing traffic/Pods-Chongqing traffic.debug.xcconfig"; sourceTree = "<group>"; };
+		656A91B5219DB516005427C8 /* PeriodSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodSearchView.swift; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		656A91B4219DB4FD005427C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				656A91B5219DB516005427C8 /* PeriodSearchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		84F9730521900EF400433E65 = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +274,7 @@
 			children = (
 				84F9732E2190224900433E65 /* PeriodSearchViewController.swift */,
 				84F973EA219D7C1200433E65 /* OnePeriodViewController.swift */,
+				656A91B4219DB4FD005427C8 /* Views */,
 			);
 			path = "学时查询";
 			sourceTree = "<group>";
@@ -636,6 +647,7 @@
 				84F973452190271900433E65 /* WRCycleCell.swift in Sources */,
 				84F973422190271900433E65 /* WRCustomNavigationBar.swift in Sources */,
 				84F9731421900EF400433E65 /* ViewController.swift in Sources */,
+				656A91B6219DB516005427C8 /* PeriodSearchView.swift in Sources */,
 				84F973EB219D7C1200433E65 /* OnePeriodViewController.swift in Sources */,
 				84F9732921901B6A00433E65 /* API.swift in Sources */,
 				84F9739A219BB50700433E65 /* UIView+KLExtension.swift in Sources */,
@@ -803,7 +815,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NXJ4UY7738;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Chongqing traffic/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -823,7 +835,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NXJ4UY7738;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Chongqing traffic/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (

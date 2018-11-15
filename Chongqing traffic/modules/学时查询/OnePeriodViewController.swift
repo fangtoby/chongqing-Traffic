@@ -9,10 +9,21 @@
 import UIKit
 
 class OnePeriodViewController: BaseViewController {
-
+    
+    var periodSearchView : PeriodSearchView = {
+        let searchView = PeriodSearchView.init(frame: CGRect.zero)
+        
+        return searchView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.addSubview(periodSearchView)
+        self.periodSearchView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+//            make.bottom.equalTo(self.periodSearchView.freshAndPushButton.snp.bottom).offset(20)
+        }
         // Do any additional setup after loading the view.
     }
 }
