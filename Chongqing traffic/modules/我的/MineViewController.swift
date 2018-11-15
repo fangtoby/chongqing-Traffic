@@ -29,7 +29,6 @@ class MineViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.register(MineInfoTableViewCell.self, forCellReuseIdentifier: CellIdentifier1)
         tableView.register(MineTableViewCell.self, forCellReuseIdentifier: CellIdentifier2)
         
-        
         return tableView
     }()
     
@@ -53,12 +52,10 @@ class MineViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
     }
 
     override func viewDidLoad() {
@@ -143,6 +140,7 @@ extension MineViewController {
             cell.setDicInfo(dicInfo: dict as NSDictionary)
             return cell
         }
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

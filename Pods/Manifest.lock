@@ -22,7 +22,7 @@ PODS:
 DEPENDENCIES:
   - ESTabBarController-swift
   - FSPagerView
-  - HandyJSON (~> 4.2.0)
+  - HandyJSON
   - IQKeyboardManagerSwift
   - Kingfisher
   - MJRefresh
@@ -63,6 +63,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8721fbfcebbbcaca167ca3ff90051b8d0acfe893
+PODFILE CHECKSUM: 820810f62cd9e2457bbd23e2b849195b9b2e83e0
 
 COCOAPODS: 1.5.3

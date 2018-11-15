@@ -73,7 +73,6 @@ class LoginViewController: UIViewController {
                 let v2 = MineViewController()
                 
                 v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home"), selectedImage: UIImage(named: "home_1"), tag: 0)
-            
                 v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "me"), selectedImage: UIImage(named: "me_1"), tag: 1)
                 
                 

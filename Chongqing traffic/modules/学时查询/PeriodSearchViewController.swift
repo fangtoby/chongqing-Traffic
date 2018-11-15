@@ -20,7 +20,6 @@ class PeriodSearchViewController: UIViewController {
         titleLabel.font = KBUIFont18
         titleLabel.frame = CGRect(x: 20, y: navigationBarHeight - 25 - (44 - 25)/2.0, width: KScreenWidth - 40, height: 25)
         self.navigationItem.titleView = titleLabel
-        
         // Do any additional setup after loading the view.
     }
     

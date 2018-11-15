@@ -16,7 +16,7 @@ target 'Chongqing traffic' do
   pod 'FSPagerView'
   pod 'IQKeyboardManagerSwift'
   pod 'Moya'
-  pod 'HandyJSON', '~> 4.2.0'
+  pod 'HandyJSON'
   pod 'SwiftyJSON'
 #  pod 'SwiftMessages'
   # 分页
