@@ -34,10 +34,13 @@ let KUIFont10 = UIFont.systemFont(ofSize: 10)
 //字体颜色
 let MainTitleColor = UIColor.init(red: 65/255.0, green: 58/255.0, blue: 57/255.0, alpha: 1)
 let MainTextColor = UIColor.init(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1)
+let AssistTextColor = UIColor.init(red: 125/255.0, green: 115/255.0, blue: 113/255.0, alpha: 1)
 let AssistColor = UIColor.init(red: 178/255.0, green: 178/255.0, blue: 178/255.0, alpha: 1)
 let MainYellowColor = UIColor.init(red: 250/255/0, green: 190/255.0, blue: 0/255.0, alpha: 1)
 let MainRedColor = UIColor.init(red: 255/255.0, green: 148/255.0, blue: 148/255.0, alpha: 1)
 //视图背景颜色
+let KUIColorUnEnable = UIColor.init(red: 125/255.0, green: 115/255.0, blue: 113/255.0, alpha: 1)
+
 let KUIColorBG = UIColor.init(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
 let KUIColorLine = UIColor.init(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
 
@@ -47,19 +50,8 @@ var isIphone_X = UIApplication.shared.statusBarFrame.size.height == 44 ? true : 
 // navigationBarHeight
 let navigationBarHeight : CGFloat = isIphone_X ? 88 : 64
 // tabBarHeight
+let safeAreaBottomHeight = 34
+
 let tabBarHeight : CGFloat = isIphone_X ? 49 + 34 : 49
 
 let isLogin = "isLogin"
-
-//func isIphone() -> Bool {
-//    let inset:CGFloat = 0.0
-//    if #available(iOS 11.0, *) {
-//        if (UIApplication.shared.delegate?.window??.safeAreaInsets.bottom)! > inset {
-//            return true
-//        }else {
-//            return false
-//        }
-//    } else {
-//        return false
-//    }
-//}

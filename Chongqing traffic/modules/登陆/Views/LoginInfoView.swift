@@ -153,12 +153,12 @@ class LoginInfoView: UIView, UITextFieldDelegate {
     }()
 
     //立即登录按钮
-    lazy var loginButton : UIButton = {
-        let loginButton = UIButton()
+    lazy var loginButton : BaseButton = {
+        let loginButton = BaseButton()
         loginButton.setTitle("登录", for: UIControl.State.normal)
         loginButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         loginButton.titleLabel?.font = KUIFont16
-        loginButton.backgroundColor = UIColor.init(red: 125/255.0, green: 115/255.0, blue: 113/255.0, alpha: 1.0)
+        loginButton.backgroundColor = AssistTextColor
         loginButton.layer.masksToBounds = true
         loginButton.layer.cornerRadius = 4.0
         loginButton.addTarget(self, action: #selector(loginClicked), for: UIControl.Event.touchUpInside)

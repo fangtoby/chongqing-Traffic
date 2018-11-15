@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     private let CellIdentifier1 = "MineInfoTableViewCell"
     private let CellIdentifier2 = "MineTableViewCell"
@@ -32,8 +32,8 @@ class MineViewController: UIViewController, UITableViewDelegate, UITableViewData
         return tableView
     }()
     
-    lazy var loginOutButton: UIButton = {
-        let loginOutBtn = UIButton()
+    lazy var loginOutButton: BaseButton = {
+        let loginOutBtn = BaseButton()
         loginOutBtn.titleLabel?.font = KUIFont16
         loginOutBtn.setTitle("退出登录", for: .normal)
         loginOutBtn.setTitleColor(MainRedColor, for: .normal)
@@ -46,8 +46,8 @@ class MineViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private lazy var dataSource: Array = {
         return [[ ],
-                ["icon":"mine_accout", "title": "我的培训信息", "desc":"正在培训：第一部分"],
-                ["icon":"mine_coin", "title": "我的保障信息", "desc":"保障中"]]
+                ["icon":"icon_my_train", "title": "我的培训信息", "desc":"正在培训：第一部分"],
+                ["icon":"icon_my_train", "title": "我的保障信息", "desc":"保障中"]]
     }()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +67,6 @@ class MineViewController: UIViewController, UITableViewDelegate, UITableViewData
         titleLabel.frame = CGRect(x: 20, y: navigationBarHeight - 25 - (44 - 25)/2.0, width: KScreenWidth - 40, height: 25)
         self.navigationItem.titleView = titleLabel
         
-        self.view.backgroundColor = UIColor.init(white: 255/255.0, alpha: 1)
         self.view.addSubview(self.tableview)
         self.tableview.snp.makeConstraints { (make) in
             make.top.equalTo(navigationBarHeight)
@@ -96,7 +95,10 @@ class MineViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     ///退出登录
     @objc func loginOut() {
-        
+        UserDefaults.standard.removeObject(forKey: isLogin)
+        let loginVC = LoginViewController()
+        loginVC.isFirstLogin = false
+        self.present(loginVC, animated: true, completion: nil)
     }
 }
 
@@ -147,10 +149,8 @@ extension MineViewController {
         tableview.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
             //个人信息
-            UserDefaults.standard.removeObject(forKey: isLogin)
-            let loginVC = LoginViewController()
-            loginVC.isFirstLogin = false
-            self.present(loginVC, animated: true, completion: nil)
+            let userInfoVC = MineInfoViewController()
+            self.navigationController?.pushViewController(userInfoVC, animated: true)
         }else if indexPath.row == 1 {
             //培训信息
             

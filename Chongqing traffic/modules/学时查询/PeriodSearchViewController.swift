@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import DNSPageView
 
-class PeriodSearchViewController: UIViewController {
+class PeriodSearchViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.init(white: 255/255.0, alpha: 1)
         
         let titleLabel = UILabel()
         titleLabel.text = "培训学时"
@@ -20,7 +20,23 @@ class PeriodSearchViewController: UIViewController {
         titleLabel.font = KBUIFont18
         titleLabel.frame = CGRect(x: 20, y: navigationBarHeight - 25 - (44 - 25)/2.0, width: KScreenWidth - 40, height: 25)
         self.navigationItem.titleView = titleLabel
-        // Do any additional setup after loading the view.
+        
+        // 创建DNSPageStyle，设置样式
+        let style = DNSPageStyle()
+        
+        style.titleColor = MainTitleColor
+        style.titleSelectedColor = MainYellowColor
+        style.titleFont = KUIFont16
+        style.isShowBottomLine = true
+        style.bottomLineColor = MainYellowColor
+        
+        let titles = ["第一部分","第二部分","第三部分","第四部分"]
+        let viewControllers:[UIViewController] = [OnePeriodViewController(),OnePeriodViewController(),OnePeriodViewController(),OnePeriodViewController()]
+        for vc in viewControllers{
+            self.addChild(vc)
+        }
+        let pageView = DNSPageView(frame: CGRect(x: 0, y: navigationBarHeight, width: KScreenWidth, height: KScreenHeigth-navigationBarHeight - tabBarHeight - 44), style: style, titles: titles, childViewControllers: viewControllers)
+        view.addSubview(pageView)
     }
     
 

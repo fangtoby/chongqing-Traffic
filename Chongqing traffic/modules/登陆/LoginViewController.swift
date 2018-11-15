@@ -72,8 +72,8 @@ class LoginViewController: UIViewController {
                 let v1 = PeriodSearchViewController()
                 let v2 = MineViewController()
                 
-                v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home"), selectedImage: UIImage(named: "home_1"), tag: 0)
-                v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "me"), selectedImage: UIImage(named: "me_1"), tag: 1)
+                v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
+                v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
                 
                 
                 let nav1 = BaseNavigationViewController.init(rootViewController: v1)

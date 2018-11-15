@@ -14,6 +14,7 @@ class BasicContentView: ESTabBarItemContentView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        imageView.contentMode = .scaleAspectFit
         textColor = AssistColor
         highlightTextColor = MainYellowColor
         iconColor = AssistColor
