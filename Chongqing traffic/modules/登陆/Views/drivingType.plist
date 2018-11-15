@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>drivingType</key>
+	<array>
+		<string>A1</string>
+		<string>A2</string>
+		<string>A3</string>
+		<string>B1</string>
+		<string>B2</string>
+		<string>C1</string>
+		<string>C2</string>
+		<string>C3</string>
+		<string>C4</string>
+		<string>D</string>
+		<string>E</string>
+		<string>F</string>
+		<string>M</string>
+		<string>N</string>
+		<string>P</string>
+	</array>
+</dict>
+</plist>
