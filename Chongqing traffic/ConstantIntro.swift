@@ -14,8 +14,6 @@ import MJRefresh
 
 let KScreenWidth = UIScreen.main.bounds.size.width
 let KScreenHeigth = UIScreen.main.bounds.size.height
-let DominantColor = UIColor.init(red: 239/255.0, green: 80/255.0, blue: 88/255.0, alpha: 1)
-let FooterViewColor = UIColor.init(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
 
 //字体大小
 let KUIFont20 = UIFont.systemFont(ofSize: 20)
@@ -32,17 +30,19 @@ let KUIFont10 = UIFont.systemFont(ofSize: 10)
 
 
 //字体颜色
-let MainTitleColor = UIColor.init(red: 65/255.0, green: 58/255.0, blue: 57/255.0, alpha: 1)
-let MainTextColor = UIColor.init(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1)
-let AssistTextColor = UIColor.init(red: 125/255.0, green: 115/255.0, blue: 113/255.0, alpha: 1)
-let AssistColor = UIColor.init(red: 178/255.0, green: 178/255.0, blue: 178/255.0, alpha: 1)
-let MainYellowColor = UIColor.init(red: 250/255/0, green: 190/255.0, blue: 0/255.0, alpha: 1)
-let MainRedColor = UIColor.init(red: 255/255.0, green: 148/255.0, blue: 148/255.0, alpha: 1)
+let MainTitleColor = UIColor(r: 65, g: 58, b: 57)
+let MainTextColor = UIColor(r: 74, g: 74, b: 74)
+let AssistTextColor = UIColor(r: 125, g: 115, b: 113)
+let AssistColor = UIColor(r: 178, g: 178, b: 178)
+let MainYellowColor = UIColor(r: 250, g: 190, b: 0)
+let MainRedColor = UIColor(r: 255, g: 148, b: 148)
+let MainBlueColor = UIColor(r: 105, g: 171, b: 209)
+let Main155Color = UIColor(r: 155, g: 155, b: 155)
 //视图背景颜色
-let KUIColorUnEnable = UIColor.init(red: 125/255.0, green: 115/255.0, blue: 113/255.0, alpha: 1)
+let KUIColorUnEnable = UIColor(r: 125, g: 115, b: 113)
 
-let KUIColorBG = UIColor.init(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
-let KUIColorLine = UIColor.init(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
+let KUIColorBG = UIColor(r: 246, g: 246, b: 246)
+let KUIColorLine = UIColor(r: 238, g: 238, b: 238)
 
 // iphone X
 var isIphone_X = UIApplication.shared.statusBarFrame.size.height == 44 ? true : false

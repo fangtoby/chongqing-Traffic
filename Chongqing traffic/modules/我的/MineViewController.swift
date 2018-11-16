@@ -13,7 +13,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     private let CellIdentifier1 = "MineInfoTableViewCell"
     private let CellIdentifier2 = "MineTableViewCell"
     
-    lazy var tableview: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.separatorColor = .clear
@@ -67,8 +67,8 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         titleLabel.frame = CGRect(x: 20, y: navigationBarHeight - 25 - (44 - 25)/2.0, width: KScreenWidth - 40, height: 25)
         self.navigationItem.titleView = titleLabel
         
-        self.view.addSubview(self.tableview)
-        self.tableview.snp.makeConstraints { (make) in
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { (make) in
             make.top.equalTo(navigationBarHeight)
             make.bottom.equalTo(tabBarHeight)
             make.left.right.equalToSuperview()
@@ -123,14 +123,14 @@ extension MineViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell:MineInfoTableViewCell = tableview.dequeueReusableCell(withIdentifier: CellIdentifier1, for: indexPath) as! MineInfoTableViewCell
+            let cell:MineInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier1, for: indexPath) as! MineInfoTableViewCell
             cell.accessoryType = .none
             cell.selectionStyle = .default
             
 //            cell.textLabel?.text = "个人信息"
             return cell
         }else {
-            let cell:MineTableViewCell = tableview.dequeueReusableCell(withIdentifier: CellIdentifier2, for: indexPath) as! MineTableViewCell
+            let cell:MineTableViewCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier2, for: indexPath) as! MineTableViewCell
             cell.accessoryType = .none
             cell.selectionStyle = .default
             if indexPath.row == 1 {
@@ -146,7 +146,7 @@ extension MineViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableview.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
             //个人信息
             let userInfoVC = MineInfoViewController()

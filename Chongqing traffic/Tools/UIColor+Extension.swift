@@ -1,9 +1,9 @@
 //
-//  UIColor+KLExtension.swift
-//  KLDatePickerView
+//  UIColor+Extension.swift
+//  Chongqing traffic
 //
-//  Created by 刘小陆 on 2018/1/11.
-//  Copyright © 2018年 lxl. All rights reserved.
+//  Created by Zhu Xingle on 2018/11/16.
+//  Copyright © 2018 Beijing Guo Jiao Yun Net Technology Co., Ltd. All rights reserved.
 //
 
 import UIKit
@@ -39,9 +39,15 @@ extension UIColor {
         Scanner.init(string: gString).scanHexInt32(&g)
         Scanner.init(string: bString).scanHexInt32(&b)
         
-//        return UIColor(displayP3Red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: alpha)
         return UIColor(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: alpha)
-        
     }
-
+    
+    convenience init(r : CGFloat, g : CGFloat, b : CGFloat) {
+        self.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1.0)
+    }
+    
+    class func randomColor() -> UIColor {
+        return UIColor(r: CGFloat(arc4random_uniform(256)), g: CGFloat(arc4random_uniform(256)), b: CGFloat(arc4random_uniform(256)))
+    }
+    
 }

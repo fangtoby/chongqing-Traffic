@@ -8,7 +8,12 @@
 
 import UIKit
 
+// 创建闭包
+typealias PeriodAllBtnClick = ((Int) -> (Void))
+
 class PeriodSearchView: UIView {
+    
+    var periodAllBtnClick : PeriodAllBtnClick?
     
     lazy var progressView: UIView = {
         let progressView = UIView()
@@ -43,14 +48,14 @@ class PeriodSearchView: UIView {
     
     lazy var studyLabel: UILabel = {
         let studyLabel = UILabel()
-        studyLabel.backgroundColor = UIColor.init(red: 105/255.0, green: 171/255.0, blue: 209/255.0, alpha: 1)
+        studyLabel.backgroundColor = MainBlueColor
         return studyLabel
     }()
     
     lazy var percentLabel: UILabel = {
         let percentLabel = UILabel()
         percentLabel.font = KUIFont10
-        percentLabel.textColor = UIColor.init(red: 105/255.0, green: 171/255.0, blue: 209/255.0, alpha: 1)
+        percentLabel.textColor = MainBlueColor
         percentLabel.text = "75%"
         return percentLabel
     }()
@@ -91,7 +96,9 @@ class PeriodSearchView: UIView {
     
     lazy var validButton: UIButton = {
         let validBtn = UIButton()
+        validBtn.tag = 11
         validBtn.setBackgroundImage(UIImage.init(named: "icon_link_web"), for: .normal)
+        validBtn.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)
         return validBtn
     }()
     
@@ -115,6 +122,8 @@ class PeriodSearchView: UIView {
     lazy var trainStatusButton: UIButton = {
         let trainStatusButton = UIButton()
         trainStatusButton.setBackgroundImage(UIImage.init(named: "icon_link_web"), for: .normal)
+        trainStatusButton.tag = 12
+        trainStatusButton.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)
         return trainStatusButton
     }()
 
@@ -123,15 +132,19 @@ class PeriodSearchView: UIView {
         let button = UIButton()
         button.titleLabel?.font = KUIFont14
         button.setTitle("查看学时记录", for: .normal)
-        button.setTitleColor(UIColor.init(red: 105/255.0, green: 171/255.0, blue: 209/255.0, alpha: 1), for: .normal)
+        button.setTitleColor(MainBlueColor, for: .normal)
+        button.tag = 13
+        button.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)
         return button
     }()
     
     ///快速推送到公安系统
     lazy var pushButton: UIButton = {
         let pushButton = UIButton()
+        pushButton.tag = 101
         pushButton.setBackgroundImage(UIImage.init(named: "icon_select_no"), for: .normal)
         pushButton.setBackgroundImage(UIImage.init(named: "icon_select_yes"), for: .selected)
+        pushButton.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)
         return pushButton
     }()
     
@@ -146,8 +159,11 @@ class PeriodSearchView: UIView {
     ///购买驾考无忧险
     lazy var insuranceButton: UIButton = {
         let insuranceButton = UIButton()
+        insuranceButton.tag = 102
+        insuranceButton.isSelected = true
         insuranceButton.setBackgroundImage(UIImage.init(named: "icon_select_no"), for: .normal)
         insuranceButton.setBackgroundImage(UIImage.init(named: "icon_select_yes"), for: .selected)
+        insuranceButton.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)
         return insuranceButton
     }()
     
@@ -166,6 +182,8 @@ class PeriodSearchView: UIView {
         freshBtn.setTitle("刷新并推送", for: .normal)
         freshBtn.setTitleColor(.white, for: .normal)
         freshBtn.backgroundColor = MainTitleColor
+        freshBtn.tag = 14
+        freshBtn.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)
         return freshBtn
     }()
     
@@ -209,10 +227,12 @@ class PeriodSearchView: UIView {
             make.height.equalTo(10)
         }
         
-        self.allStudyLabel.addSubview(studyLabel)
+        self.addSubview(studyLabel)
         self.studyLabel.snp.makeConstraints { (make) in
-            make.left.top.bottom.equalToSuperview()
+            make.left.equalTo(self.progressView.snp.left).offset(19)
+            make.centerY.equalTo(self.studyProgressLabel.snp.centerY)
             make.width.equalTo(120)
+            make.height.equalTo(10)
         }
         
         self.addSubview(percentLabel)
@@ -313,7 +333,20 @@ class PeriodSearchView: UIView {
             make.left.height.equalTo(40)
             make.right.equalTo(-40)
             make.top.equalTo(self.insuranceButton.snp.bottom).offset(32)
+            make.bottom.lessThanOrEqualToSuperview().offset(-20)
         }
     }
     
+    @objc func buttonClicked(button: UIButton) {
+        if button.tag == 101 || button.tag == 102 {
+            if button.isSelected == true {
+                button.isSelected = false
+            }else {
+                button.isSelected = true
+            }
+        }else {
+            guard let periodAllBtnClick = periodAllBtnClick else { return }
+            periodAllBtnClick(button.tag)
+        }
+    }
 }
