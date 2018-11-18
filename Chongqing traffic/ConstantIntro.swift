@@ -50,8 +50,10 @@ var isIphone_X = UIApplication.shared.statusBarFrame.size.height == 44 ? true : 
 // navigationBarHeight
 let navigationBarHeight : CGFloat = isIphone_X ? 88 : 64
 // tabBarHeight
-let safeAreaBottomHeight = 34
+let safeAreaBottomHeight : CGFloat = isIphone_X ? 34 : 0
 
 let tabBarHeight : CGFloat = isIphone_X ? 49 + 34 : 49
 
 let isLogin = "isLogin"
+
+

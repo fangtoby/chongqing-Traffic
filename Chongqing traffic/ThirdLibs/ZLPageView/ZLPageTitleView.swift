@@ -23,7 +23,6 @@ class ZLPageTitleView: UIView {
     lazy var scrollView:UIScrollView = {
         let scroll = UIScrollView(frame: self.bounds)
         scroll.showsHorizontalScrollIndicator = false
-//        scroll.backgroundColor = .red
         return scroll
     }()
     

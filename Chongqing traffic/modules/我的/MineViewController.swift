@@ -15,9 +15,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.separatorColor = .clear
-        tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
         if #available(iOS 11.0, *) {
@@ -95,10 +93,15 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     ///退出登录
     @objc func loginOut() {
-        UserDefaults.standard.removeObject(forKey: isLogin)
-        let loginVC = LoginViewController()
-        loginVC.isFirstLogin = false
-        self.present(loginVC, animated: true, completion: nil)
+        let alertView = ZLAlertView()
+        alertView.messegeLabel.text = " 您是否要退出当前账号？"
+        alertView.isHidenTitle()
+        alertView.showView()
+        
+//        UserDefaults.standard.removeObject(forKey: isLogin)
+//        let loginVC = LoginViewController()
+//        loginVC.isFirstLogin = false
+//        self.present(loginVC, animated: true, completion: nil)
     }
 }
 
@@ -153,7 +156,8 @@ extension MineViewController {
             self.navigationController?.pushViewController(userInfoVC, animated: true)
         }else if indexPath.row == 1 {
             //培训信息
-            
+            let trainInfoVC = MineTrainInfoViewController()
+            self.navigationController?.pushViewController(trainInfoVC, animated: true)
         }else {
             //保障信息
             

@@ -42,15 +42,15 @@ class PeriodPartViewController: BaseViewController {
             make.left.right.equalTo(self.view)
             make.top.bottom.equalTo(self.scrollView)
         }
-        if part == 0 {
-            
-        }else if part == 1 {
-            self.periodSearchView.progressView.backgroundColor = .red
-        }else if part == 2 {
-            self.periodSearchView.progressView.backgroundColor = .blue
-        }else if part == 3 {
-            self.periodSearchView.progressView.backgroundColor = .cyan
-        }
+//        if part == 0 {
+        
+//        }else if part == 1 {
+//            self.periodSearchView.progressView.backgroundColor = .red
+//        }else if part == 2 {
+//            self.periodSearchView.progressView.backgroundColor = .blue
+//        }else if part == 3 {
+//            self.periodSearchView.progressView.backgroundColor = .cyan
+//        }
         self.periodSearchView.periodAllBtnClick = { [weak self](subject) in
             switch subject {
             case 11:

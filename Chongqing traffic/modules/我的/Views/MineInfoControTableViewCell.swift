@@ -40,7 +40,7 @@ class MineInfoControTableViewCell: UITableViewCell {
     //右边小箭头
     private var rightImageView:UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage.init(named: "icon_right_tip")
+        imageView.image = UIImage.init(named: "icon_right_tip2")
         return imageView
     }()
     

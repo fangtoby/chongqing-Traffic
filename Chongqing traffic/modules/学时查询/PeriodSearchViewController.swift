@@ -7,12 +7,17 @@
 //
 
 import UIKit
-import DNSPageView
 
 class PeriodSearchViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            automaticallyAdjustsScrollViewInsets = false;
+        }
         
         let titleLabel = UILabel()
         titleLabel.text = "培训学时"
@@ -41,6 +46,7 @@ class PeriodSearchViewController: BaseViewController {
         style.isBottomAlginLabel = false
         let pageView = ZLPageView(frame: CGRect(x: 0, y: navigationBarHeight, width: KScreenWidth, height: KScreenHeigth-navigationBarHeight - tabBarHeight), titles: titles, childControllers: childsVc, parentController: self, style: style)
         self.view.addSubview(pageView)
+        
+        pageView.currentIndex(index: 2)
     }
-    
 }

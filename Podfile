@@ -14,17 +14,15 @@ target 'Chongqing traffic' do
   pod 'ESTabBarController-swift'
   #banner滚动图片
   pod 'FSPagerView'
-  # 分页
-  pod 'DNSPageView'
-  pod 'IQKeyboardManagerSwift'
+  
+  
   pod 'Moya'
   pod 'HandyJSON'
   pod 'SwiftyJSON'
 #  pod 'SwiftMessages'
-  # 分页
-#  pod 'SwipeMenuViewController'
   pod 'MJRefresh'
   pod 'IQKeyboardManagerSwift'
-#  pod 'SkeletonView'
 
+  pod 'Charts', '~> 3.2.1'
+  pod 'KMPlaceholderTextView', '~> 1.4.0'
 end

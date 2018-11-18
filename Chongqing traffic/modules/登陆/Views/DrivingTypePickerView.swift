@@ -78,8 +78,6 @@ class DrivingTypePickerView: UIView {
     // 区域block
     var selectedDrivingTypeBlock:((_ drivingType:String)->())?
     
-    
-
     public var pickerLabelFont: UIFont?{
         willSet{
             pickerView.reloadAllComponents()

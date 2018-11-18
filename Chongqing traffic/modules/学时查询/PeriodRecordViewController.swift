@@ -68,7 +68,7 @@ class PeriodRecordViewController: BaseViewController {
         tableHeaderView.addSubview(periodRecordHeaderView)
         self.periodRecordHeaderView.snp.makeConstraints { (make) in
             make.left.equalTo(10)
-            make.right.equalTo(-10)
+            make.right.equalTo(-10).priority(.high)
             make.top.equalTo(4)
             make.bottom.equalTo(-2)
         }

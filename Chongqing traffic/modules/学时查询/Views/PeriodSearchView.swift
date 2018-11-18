@@ -8,17 +8,49 @@
 
 import UIKit
 
+import Charts
+
 // 创建闭包
 typealias PeriodAllBtnClick = ((Int) -> (Void))
 
 class PeriodSearchView: UIView {
     
     var periodAllBtnClick : PeriodAllBtnClick?
+
+    lazy var chartView: PieChartView = {
+        let chartView = PieChartView()
+        chartView.rotationEnabled = true
+        chartView.drawEntryLabelsEnabled = false
+        
+//        chartView.centerAttributedText = attributeStr
+//        chartView.centerText = "19.4%\n本月合格率"
+        chartView.holeRadiusPercent = 0.6
+        chartView.holeColor = .white
+        chartView.transparentCircleRadiusPercent = 0
+        chartView.setExtraOffsets(left: 0, top: 0, right: 0, bottom: 0)
+        chartView.legend.enabled = false
+        return chartView
+    }()
     
-    lazy var progressView: UIView = {
-        let progressView = UIView()
-        progressView.backgroundColor = .gray
-        return progressView
+    lazy var unPassPercentLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = NSTextAlignment.center
+        label.numberOfLines = 0
+        label.backgroundColor = .clear
+        let str = "19.4%"
+        let str1 = "本月合格率"
+        let attributeStr = NSMutableAttributedString.init(string: "19.4%\n本月合格率")
+        let multipleAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26),
+            NSAttributedString.Key.foregroundColor: MainYellowColor]
+        
+        let mulAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+            NSAttributedString.Key.foregroundColor: AssistColor]
+        attributeStr.addAttributes(multipleAttributes, range: NSRange.init(location: 0, length: str.count))
+        attributeStr.addAttributes(mulAttributes, range: NSRange.init(location: 6, length: str1.count))
+        label.attributedText = attributeStr
+        return label
     }()
     
     lazy var tipLabel: UILabel = {
@@ -190,6 +222,9 @@ class PeriodSearchView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpUI()
+        
+//        setDateEmpty()
+        setChartData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -197,31 +232,37 @@ class PeriodSearchView: UIView {
     }
     
     func setUpUI() {
-        self.addSubview(progressView)
-        self.progressView.snp.makeConstraints { (make) in
+        
+        self.addSubview(chartView)
+        self.chartView.snp.makeConstraints { (make) in
             make.width.height.equalTo(160)
             make.centerX.equalToSuperview()
             make.top.equalTo(22)
+        }
+        
+        self.addSubview(unPassPercentLabel)
+        self.unPassPercentLabel.snp.makeConstraints { (make) in
+            make.center.equalTo(self.chartView.snp.center)
         }
         
         self.addSubview(tipLabel)
         self.tipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(40)
             make.right.equalTo(-40)
-            make.top.equalTo(self.progressView.snp.bottom).offset(4)
+            make.top.equalTo(self.chartView.snp.bottom).offset(4)
 //            make.height.equalTo(40)
         }
         
         self.addSubview(studyProgressLabel)
         self.studyProgressLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.progressView.snp.left).offset(-45)
+            make.left.equalTo(self.chartView.snp.left).offset(-45)
             make.top.equalTo(self.tipLabel.snp.bottom).offset(10)
             make.height.equalTo(20)
         }
         
         self.addSubview(allStudyLabel)
         self.allStudyLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.progressView.snp.left).offset(19)
+            make.left.equalTo(self.chartView.snp.left).offset(19)
             make.centerY.equalTo(self.studyProgressLabel.snp.centerY)
             make.width.equalTo(160)
             make.height.equalTo(10)
@@ -229,7 +270,7 @@ class PeriodSearchView: UIView {
         
         self.addSubview(studyLabel)
         self.studyLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.progressView.snp.left).offset(19)
+            make.left.equalTo(self.chartView.snp.left).offset(19)
             make.centerY.equalTo(self.studyProgressLabel.snp.centerY)
             make.width.equalTo(120)
             make.height.equalTo(10)
@@ -348,5 +389,66 @@ class PeriodSearchView: UIView {
             guard let periodAllBtnClick = periodAllBtnClick else { return }
             periodAllBtnClick(button.tag)
         }
+    }
+}
+
+extension PeriodSearchView {
+    func setDateEmpty() {
+        var yValues:[BarChartDataEntry] = []
+        let entryValue = BarChartDataEntry.init(x: 0, yValues: [Double(1)])
+        yValues.append(entryValue)
+        
+        let dataSet = PieChartDataSet.init(values: yValues, label: "")
+        dataSet.drawValuesEnabled = false
+        dataSet.selectionShift = 0
+        dataSet.valueLineVariableLength = false
+        
+        var colors: [UIColor] = []
+        colors.append(KUIColorLine)
+        
+        dataSet.colors = colors
+        
+        let data = PieChartData.init(dataSets: [dataSet])
+//        let data = PieChartData.init(xVals: yValues, dataSet:dataSet)
+        chartView.data = data
+    }
+    
+    // 动画效果
+    func doAnimate() -> Void {
+        chartView.animate(xAxisDuration: 1, easingOption: ChartEasingOption.easeOutSine)
+    }
+    
+    func setChartData() {
+        doAnimate()
+        //此处填入展示的相应数字
+        let value1 = Double(194)
+        let value2 = Double(806)
+        
+        if value1 + value2 == 0 {
+            setDateEmpty()
+            return
+        }
+        
+        var yValues:[ChartDataEntry] = []
+        let entryValue1 = BarChartDataEntry.init(x: 1, yValues: [value1])
+        let entryValue2 = BarChartDataEntry.init(x: 2, yValues: [value2] )
+        
+        yValues.append(entryValue1)
+        yValues.append(entryValue2)
+        
+        let dataSet = PieChartDataSet.init(values: yValues, label: "")
+        dataSet.drawValuesEnabled = false
+        dataSet.selectionShift = 0
+        dataSet.valueLineVariableLength = false
+        dataSet.sliceSpace = 5
+        
+        var colors: [UIColor] = []
+        colors.append(MainYellowColor)
+        colors.append(KUIColorLine)
+        
+        dataSet.colors = colors
+        let data = PieChartData.init(dataSets: [dataSet])
+        
+        chartView.data = data
     }
 }

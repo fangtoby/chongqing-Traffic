@@ -7,7 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650BBCFD219FE09D00D7046D /* PeriodRecordDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650BBCFC219FE09D00D7046D /* PeriodRecordDetailInfoView.swift */; };
+		650BBCFF219FE0B200D7046D /* PeriodRecordDetailImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650BBCFE219FE0B200D7046D /* PeriodRecordDetailImagesView.swift */; };
+		650BBD01219FFA8200D7046D /* ComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650BBD00219FFA8200D7046D /* ComplaintViewController.swift */; };
+		650BBD0521A05B4500D7046D /* ComplaintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650BBD0421A05B4500D7046D /* ComplaintView.swift */; };
 		656A91B6219DB516005427C8 /* PeriodSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A91B5219DB516005427C8 /* PeriodSearchView.swift */; };
+		65854ECC21A146D4004F72CC /* ComplaintSelectObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */; };
+		65854ED321A165AC004F72CC /* icon_right_tip1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ECD21A165AC004F72CC /* icon_right_tip1.png */; };
+		65854ED421A165AC004F72CC /* icon_right_tip2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ECE21A165AC004F72CC /* icon_right_tip2.png */; };
+		65854ED521A165AC004F72CC /* icon_right_tip2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ECF21A165AC004F72CC /* icon_right_tip2@3x.png */; };
+		65854ED621A165AC004F72CC /* icon_right_tip2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ED021A165AC004F72CC /* icon_right_tip2@2x.png */; };
+		65854ED721A165AC004F72CC /* icon_right_tip1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ED121A165AC004F72CC /* icon_right_tip1@3x.png */; };
+		65854ED821A165AC004F72CC /* icon_right_tip1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ED221A165AC004F72CC /* icon_right_tip1@2x.png */; };
+		65854EDC21A16633004F72CC /* icon_sex_man.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ED921A16633004F72CC /* icon_sex_man.png */; };
+		65854EDD21A16633004F72CC /* icon_sex_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854EDA21A16633004F72CC /* icon_sex_man@2x.png */; };
+		65854EDE21A16633004F72CC /* icon_sex_man@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854EDB21A16633004F72CC /* icon_sex_man@3x.png */; };
+		65854EE021A16660004F72CC /* MineTrainInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854EDF21A16660004F72CC /* MineTrainInfoViewController.swift */; };
+		65854EE221A166A7004F72CC /* MineInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854EE121A166A7004F72CC /* MineInfoView.swift */; };
+		65854EE421A168F0004F72CC /* MineTrainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854EE321A168F0004F72CC /* MineTrainInfoView.swift */; };
+		65854EE721A1A7D5004F72CC /* ZLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854EE621A1A7D5004F72CC /* ZLAlertView.swift */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -109,7 +127,25 @@
 
 /* Begin PBXFileReference section */
 		375784E0078E200F7F1EB62D /* Pods-Chongqing traffic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chongqing traffic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chongqing traffic/Pods-Chongqing traffic.debug.xcconfig"; sourceTree = "<group>"; };
+		650BBCFC219FE09D00D7046D /* PeriodRecordDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodRecordDetailInfoView.swift; sourceTree = "<group>"; };
+		650BBCFE219FE0B200D7046D /* PeriodRecordDetailImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodRecordDetailImagesView.swift; sourceTree = "<group>"; };
+		650BBD00219FFA8200D7046D /* ComplaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintViewController.swift; sourceTree = "<group>"; };
+		650BBD0421A05B4500D7046D /* ComplaintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintView.swift; sourceTree = "<group>"; };
 		656A91B5219DB516005427C8 /* PeriodSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodSearchView.swift; sourceTree = "<group>"; };
+		65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintSelectObjectView.swift; sourceTree = "<group>"; };
+		65854ECD21A165AC004F72CC /* icon_right_tip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_right_tip1.png; sourceTree = "<group>"; };
+		65854ECE21A165AC004F72CC /* icon_right_tip2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_right_tip2.png; sourceTree = "<group>"; };
+		65854ECF21A165AC004F72CC /* icon_right_tip2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_right_tip2@3x.png"; sourceTree = "<group>"; };
+		65854ED021A165AC004F72CC /* icon_right_tip2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_right_tip2@2x.png"; sourceTree = "<group>"; };
+		65854ED121A165AC004F72CC /* icon_right_tip1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_right_tip1@3x.png"; sourceTree = "<group>"; };
+		65854ED221A165AC004F72CC /* icon_right_tip1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_right_tip1@2x.png"; sourceTree = "<group>"; };
+		65854ED921A16633004F72CC /* icon_sex_man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_sex_man.png; sourceTree = "<group>"; };
+		65854EDA21A16633004F72CC /* icon_sex_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_sex_man@2x.png"; sourceTree = "<group>"; };
+		65854EDB21A16633004F72CC /* icon_sex_man@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_sex_man@3x.png"; sourceTree = "<group>"; };
+		65854EDF21A16660004F72CC /* MineTrainInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTrainInfoViewController.swift; sourceTree = "<group>"; };
+		65854EE121A166A7004F72CC /* MineInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineInfoView.swift; sourceTree = "<group>"; };
+		65854EE321A168F0004F72CC /* MineTrainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTrainInfoView.swift; sourceTree = "<group>"; };
+		65854EE621A1A7D5004F72CC /* ZLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLAlertView.swift; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -230,8 +266,20 @@
 				656A91B5219DB516005427C8 /* PeriodSearchView.swift */,
 				84F973FD219E9CE100433E65 /* PeriodRecordHeaderView.swift */,
 				84F973FB219E97D000433E65 /* PeriodRecordTableViewCell.swift */,
+				650BBCFC219FE09D00D7046D /* PeriodRecordDetailInfoView.swift */,
+				650BBCFE219FE0B200D7046D /* PeriodRecordDetailImagesView.swift */,
+				650BBD0421A05B4500D7046D /* ComplaintView.swift */,
+				65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		65854EE521A1A704004F72CC /* ZLAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				65854EE621A1A7D5004F72CC /* ZLAlertView.swift */,
+			);
+			path = ZLAlertView;
 			sourceTree = "<group>";
 		};
 		84F9730521900EF400433E65 = {
@@ -310,6 +358,7 @@
 				84F973F7219E904500433E65 /* PeriodPartViewController.swift */,
 				84F973F9219E963600433E65 /* PeriodRecordViewController.swift */,
 				84F97411219EADF000433E65 /* PeriodRecordDetailViewController.swift */,
+				650BBD00219FFA8200D7046D /* ComplaintViewController.swift */,
 				656A91B4219DB4FD005427C8 /* Views */,
 			);
 			path = "学时查询";
@@ -322,6 +371,7 @@
 				84F973A0219D1B6600433E65 /* MineInfoViewController.swift */,
 				84F973B0219D43E100433E65 /* MineChanceNickNameAndSignViewController.swift */,
 				84F973AE219D43A100433E65 /* MineChancePhoneNumberViewController.swift */,
+				65854EDF21A16660004F72CC /* MineTrainInfoViewController.swift */,
 				84F97346219035AF00433E65 /* Views */,
 			);
 			path = "我的";
@@ -342,6 +392,7 @@
 		84F973392190271900433E65 /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
+				65854EE521A1A704004F72CC /* ZLAlertView */,
 				84F973F0219E817E00433E65 /* ZLPageView */,
 				84F9733A2190271900433E65 /* WRNavigationBar */,
 			);
@@ -375,6 +426,8 @@
 				84F97347219035BF00433E65 /* MineTableViewCell.swift */,
 				84F973A2219D1BB600433E65 /* MineInfoControTableViewCell.swift */,
 				84F973B2219D450F00433E65 /* MineChancePhoneNumberView.swift */,
+				65854EE121A166A7004F72CC /* MineInfoView.swift */,
+				65854EE321A168F0004F72CC /* MineTrainInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +435,15 @@
 		84F9734D21903AB700433E65 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				65854ED921A16633004F72CC /* icon_sex_man.png */,
+				65854EDA21A16633004F72CC /* icon_sex_man@2x.png */,
+				65854EDB21A16633004F72CC /* icon_sex_man@3x.png */,
+				65854ECD21A165AC004F72CC /* icon_right_tip1.png */,
+				65854ED221A165AC004F72CC /* icon_right_tip1@2x.png */,
+				65854ED121A165AC004F72CC /* icon_right_tip1@3x.png */,
+				65854ECE21A165AC004F72CC /* icon_right_tip2.png */,
+				65854ED021A165AC004F72CC /* icon_right_tip2@2x.png */,
+				65854ECF21A165AC004F72CC /* icon_right_tip2@3x.png */,
 				84F97403219EAC6900433E65 /* icon_back.png */,
 				84F97400219EAC6900433E65 /* icon_back@2x.png */,
 				84F97401219EAC6900433E65 /* icon_back@3x.png */,
@@ -561,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F973DF219D5F5000433E65 /* icon_link_web@2x.png in Resources */,
+				65854EDD21A16633004F72CC /* icon_sex_man@2x.png in Resources */,
 				84F9738F219AAF0D00433E65 /* icon_login_drivingType@3x.png in Resources */,
 				84F973E9219D5F5000433E65 /* home_usercenter_nomal.png in Resources */,
 				84F9740D219EAC6900433E65 /* icon_train_time@2x.png in Resources */,
@@ -571,6 +634,7 @@
 				84F973E5219D5F5000433E65 /* home_search_normal@3x.png in Resources */,
 				84F973DE219D5F5000433E65 /* home_search_select@2x.png in Resources */,
 				84F97389219AA7F100433E65 /* icon_login_code@2x.png in Resources */,
+				65854ED721A165AC004F72CC /* icon_right_tip1@3x.png in Resources */,
 				84F973CF219D5F5000433E65 /* icon_sex_woman@3x.png in Resources */,
 				84F97386219AA7F100433E65 /* icon_login_code@3x.png in Resources */,
 				84F973D2219D5F5000433E65 /* home_search_select@3x.png in Resources */,
@@ -585,30 +649,37 @@
 				84F973DC219D5F5000433E65 /* icon_sex_woman@2x.png in Resources */,
 				84F9735221903AB700433E65 /* pic3.jpeg in Resources */,
 				84F9740F219EAC6900433E65 /* icon_train_time@3x.png in Resources */,
+				65854EDC21A16633004F72CC /* icon_sex_man.png in Resources */,
 				84F97390219AAF0D00433E65 /* icon_login_drivingType.png in Resources */,
 				84F973E4219D5F5000433E65 /* icon_select_yes@2x.png in Resources */,
 				84F97391219AAF0D00433E65 /* icon_login_drivingType@2x.png in Resources */,
 				84F973E2219D5F5000433E65 /* icon_link_web@3x.png in Resources */,
+				65854ED421A165AC004F72CC /* icon_right_tip2.png in Resources */,
 				84F973E8219D5F5000433E65 /* home_usercenter_select@3x.png in Resources */,
 				84F97410219EAC6900433E65 /* icon_train_date.png in Resources */,
 				84F9731721900EF400433E65 /* Main.storyboard in Resources */,
+				65854EDE21A16633004F72CC /* icon_sex_man@3x.png in Resources */,
 				84F973D1219D5F5000433E65 /* home_usercenter_select.png in Resources */,
 				84F9740C219EAC6900433E65 /* icon_back.png in Resources */,
 				84F973D6219D5F5000433E65 /* icon_my_train.png in Resources */,
 				84F973D5219D5F5000433E65 /* icon_my_train@3x.png in Resources */,
 				84F9738B219AA7F100433E65 /* icon_login_phone.png in Resources */,
+				65854ED821A165AC004F72CC /* icon_right_tip1@2x.png in Resources */,
 				84F9740A219EAC6900433E65 /* icon_back@3x.png in Resources */,
 				84F973E1219D5F5000433E65 /* icon_select_yes@3x.png in Resources */,
+				65854ED621A165AC004F72CC /* icon_right_tip2@2x.png in Resources */,
 				84F973DD219D5F5000433E65 /* icon_select_no@3x.png in Resources */,
 				84F9740B219EAC6900433E65 /* icon_train_time.png in Resources */,
 				84F97396219BB4F900433E65 /* drivingType.plist in Resources */,
 				84F973E7219D5F5000433E65 /* home_usercenter_select@2x.png in Resources */,
+				65854ED521A165AC004F72CC /* icon_right_tip2@3x.png in Resources */,
 				84F97387219AA7F100433E65 /* icon_login_number@2x.png in Resources */,
 				84F97409219EAC6900433E65 /* icon_back@2x.png in Resources */,
 				84F973DA219D5F5000433E65 /* icon_link_web.png in Resources */,
 				84F97383219AA7F100433E65 /* icon_login_code.png in Resources */,
 				84F973D7219D5F5000433E65 /* home_usercenter_nomal@2x.png in Resources */,
 				84F97384219AA7F100433E65 /* icon_login_phone@2x.png in Resources */,
+				65854ED321A165AC004F72CC /* icon_right_tip1.png in Resources */,
 				84F973D0219D5F5000433E65 /* icon_select_no@2x.png in Resources */,
 				84F9735321903AB700433E65 /* pic2.jpeg in Resources */,
 				84F9740E219EAC6900433E65 /* icon_train_date@3x.png in Resources */,
@@ -653,11 +724,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Chongqing traffic/Pods-Chongqing traffic-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/DNSPageView/DNSPageView.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/KMPlaceholderTextView/KMPlaceholderTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -672,11 +744,12 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DNSPageView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPlaceholderTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -700,8 +773,10 @@
 			files = (
 				84F97372219984C500433E65 /* NetworkManager.swift in Sources */,
 				84F973F8219E904500433E65 /* PeriodPartViewController.swift in Sources */,
+				65854EE221A166A7004F72CC /* MineInfoView.swift in Sources */,
 				84F9735D21918D5800433E65 /* LoginViewController.swift in Sources */,
 				84F9732F2190224900433E65 /* PeriodSearchViewController.swift in Sources */,
+				650BBD01219FFA8200D7046D /* ComplaintViewController.swift in Sources */,
 				84F973FA219E963600433E65 /* PeriodRecordViewController.swift in Sources */,
 				84F973EF219E803900433E65 /* UIColor+Extension.swift in Sources */,
 				84F973A5219D31E600433E65 /* BaseViewController.swift in Sources */,
@@ -714,6 +789,7 @@
 				84F973622191A30F00433E65 /* LoginInfoView.swift in Sources */,
 				84F973452190271900433E65 /* WRCycleCell.swift in Sources */,
 				84F973422190271900433E65 /* WRCustomNavigationBar.swift in Sources */,
+				65854EE421A168F0004F72CC /* MineTrainInfoView.swift in Sources */,
 				84F9731421900EF400433E65 /* ViewController.swift in Sources */,
 				656A91B6219DB516005427C8 /* PeriodSearchView.swift in Sources */,
 				84F973F4219E844300433E65 /* ZLPageTitleView.swift in Sources */,
@@ -725,6 +801,9 @@
 				84F973432190271900433E65 /* WRProxy.swift in Sources */,
 				84F973A1219D1B6600433E65 /* MineInfoViewController.swift in Sources */,
 				84F973A3219D1BB600433E65 /* MineInfoControTableViewCell.swift in Sources */,
+				65854ECC21A146D4004F72CC /* ComplaintSelectObjectView.swift in Sources */,
+				650BBCFF219FE0B200D7046D /* PeriodRecordDetailImagesView.swift in Sources */,
+				65854EE721A1A7D5004F72CC /* ZLAlertView.swift in Sources */,
 				84F97397219BB4F900433E65 /* DrivingTypePickerView.swift in Sources */,
 				84F973F6219E845900433E65 /* ZLPageView.swift in Sources */,
 				84F9732D2190220700433E65 /* MineViewController.swift in Sources */,
@@ -736,6 +815,9 @@
 				84F97379219A88F800433E65 /* StringToDictionary.swift in Sources */,
 				84F973442190271900433E65 /* WRCycleScrollView.swift in Sources */,
 				84F97348219035BF00433E65 /* MineTableViewCell.swift in Sources */,
+				650BBD0521A05B4500D7046D /* ComplaintView.swift in Sources */,
+				65854EE021A16660004F72CC /* MineTrainInfoViewController.swift in Sources */,
+				650BBCFD219FE09D00D7046D /* PeriodRecordDetailInfoView.swift in Sources */,
 				84F973AD219D3FDA00433E65 /* BaseButton.swift in Sources */,
 				84F973B1219D43E100433E65 /* MineChanceNickNameAndSignViewController.swift in Sources */,
 				84F97375219A767B00433E65 /* Md5String.swift in Sources */,
