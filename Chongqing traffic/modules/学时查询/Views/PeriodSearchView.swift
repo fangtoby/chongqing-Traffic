@@ -19,7 +19,7 @@ class PeriodSearchView: UIView {
 
     lazy var chartView: PieChartView = {
         let chartView = PieChartView()
-        chartView.rotationEnabled = true
+        chartView.rotationEnabled = false
         chartView.drawEntryLabelsEnabled = false
         
 //        chartView.centerAttributedText = attributeStr

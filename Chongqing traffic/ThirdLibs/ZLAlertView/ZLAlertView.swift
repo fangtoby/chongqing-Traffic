@@ -8,7 +8,15 @@
 
 import UIKit
 
+// 创建闭包
+typealias SureBtnClick = () -> (Void)
+// 创建闭包
+typealias CancleBtnClick = () -> (Void)
+
 class ZLAlertView: UIView {
+    
+    var sureBtnClick : SureBtnClick?
+    var cancleBtnClick : CancleBtnClick?
 
     lazy var alertView: UIView = {
         let view = UIView()
@@ -91,10 +99,14 @@ class ZLAlertView: UIView {
     
     @objc func sureBtnClicked() {
         hideView()
+        guard let sureBtnClick = sureBtnClick  else {return}
+        sureBtnClick()
     }
     
     @objc func cancleBtnClicked() {
         hideView()
+        guard let cancleBtnClick = cancleBtnClick  else {return}
+        cancleBtnClick()
     }
 }
 

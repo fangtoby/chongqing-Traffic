@@ -97,11 +97,15 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         alertView.messegeLabel.text = " 您是否要退出当前账号？"
         alertView.isHidenTitle()
         alertView.showView()
-        
-//        UserDefaults.standard.removeObject(forKey: isLogin)
-//        let loginVC = LoginViewController()
-//        loginVC.isFirstLogin = false
-//        self.present(loginVC, animated: true, completion: nil)
+        alertView.sureBtnClick = { [weak self] in
+            UserDefaults.standard.removeObject(forKey: isLogin)
+            let loginVC = LoginViewController()
+            loginVC.isFirstLogin = false
+            self?.present(loginVC, animated: true, completion: nil)
+        }
+//        alertView.cancleBtnClick = { [weak self] in
+//
+//        }
     }
 }
 

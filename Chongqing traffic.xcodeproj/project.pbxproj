@@ -26,6 +26,8 @@
 		65854EE221A166A7004F72CC /* MineInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854EE121A166A7004F72CC /* MineInfoView.swift */; };
 		65854EE421A168F0004F72CC /* MineTrainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854EE321A168F0004F72CC /* MineTrainInfoView.swift */; };
 		65854EE721A1A7D5004F72CC /* ZLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854EE621A1A7D5004F72CC /* ZLAlertView.swift */; };
+		8467053521A2A7E000D55432 /* PeriodRecordNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467053421A2A7E000D55432 /* PeriodRecordNoDataView.swift */; };
+		8467053721A2AE3000D55432 /* UItableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467053621A2AE3000D55432 /* UItableView+Extension.swift */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -146,6 +148,8 @@
 		65854EE121A166A7004F72CC /* MineInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineInfoView.swift; sourceTree = "<group>"; };
 		65854EE321A168F0004F72CC /* MineTrainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTrainInfoView.swift; sourceTree = "<group>"; };
 		65854EE621A1A7D5004F72CC /* ZLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLAlertView.swift; sourceTree = "<group>"; };
+		8467053421A2A7E000D55432 /* PeriodRecordNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodRecordNoDataView.swift; sourceTree = "<group>"; };
+		8467053621A2AE3000D55432 /* UItableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UItableView+Extension.swift"; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 				650BBCFE219FE0B200D7046D /* PeriodRecordDetailImagesView.swift */,
 				650BBD0421A05B4500D7046D /* ComplaintView.swift */,
 				65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */,
+				8467053421A2A7E000D55432 /* PeriodRecordNoDataView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				84F97378219A88F800433E65 /* StringToDictionary.swift */,
 				84F973EE219E803900433E65 /* UIColor+Extension.swift */,
 				84F97398219BB50700433E65 /* UIView+KLExtension.swift */,
+				8467053621A2AE3000D55432 /* UItableView+Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -782,6 +788,7 @@
 				84F973A5219D31E600433E65 /* BaseViewController.swift in Sources */,
 				84F9736021919C7E00433E65 /* LoginHeaderView.swift in Sources */,
 				84F9739F219C023100433E65 /* MineInfoTableViewCell.swift in Sources */,
+				8467053521A2A7E000D55432 /* PeriodRecordNoDataView.swift in Sources */,
 				84F9736C2192E20900433E65 /* UserDefaults.swift in Sources */,
 				84F973F2219E819C00433E65 /* ZLPageStyle.swift in Sources */,
 				84F9734C2190394C00433E65 /* ConstantIntro.swift in Sources */,
@@ -811,6 +818,7 @@
 				84F973412190271900433E65 /* WRNavigationBar.swift in Sources */,
 				84F9735A2190499D00433E65 /* DIYMJRefresh.swift in Sources */,
 				84F97336219023F600433E65 /* BaseContentView.swift in Sources */,
+				8467053721A2AE3000D55432 /* UItableView+Extension.swift in Sources */,
 				84F973B3219D450F00433E65 /* MineChancePhoneNumberView.swift in Sources */,
 				84F97379219A88F800433E65 /* StringToDictionary.swift in Sources */,
 				84F973442190271900433E65 /* WRCycleScrollView.swift in Sources */,
