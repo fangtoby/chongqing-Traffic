@@ -41,13 +41,12 @@ class LoginHeaderView: UIView {
         }
         
         self.addSubview(titleLabel)
-        self.titleLabel.text = "重庆交通"
+        self.titleLabel.text = "山城交通"
         self.titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.logoImageView.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
             make.height.equalTo(28)
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -24,6 +24,7 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
+  - Alamofire
   - Charts (~> 3.2.1)
   - ESTabBarController-swift
   - FSPagerView
@@ -32,7 +33,7 @@ DEPENDENCIES:
   - Kingfisher
   - KMPlaceholderTextView (~> 1.4.0)
   - MJRefresh
-  - Moya
+  - Moya (~> 11.0.2)
   - SnapKit
   - SVProgressHUD
   - SwiftyJSON
@@ -73,6 +74,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 2942536c3d40560b26f5540f655c23add1cffd2a
+PODFILE CHECKSUM: 908ce235a47403ed8d7300f688d3719895206c2c
 
 COCOAPODS: 1.5.3

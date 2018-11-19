@@ -983,6 +983,7 @@ class NothingToSeeHere
         UINavigationBar.wrAwake()
         UIViewController.wrAwake()
         UINavigationController.fatherAwake()
+        UITableView.initializeMethod()
     }
 }
 

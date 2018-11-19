@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F531AFE21AF30596B680E8F4837F04DB"
-               BlueprintName = "DNSPageView"
+               BlueprintIdentifier = "EBFD1DA8DB9C5E9C282BBCAD1778A64A"
+               BlueprintName = "Charts"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "DNSPageView.framework">
+               BuildableName = "Charts.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
