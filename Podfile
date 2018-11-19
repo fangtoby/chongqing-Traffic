@@ -15,8 +15,8 @@ target 'Chongqing traffic' do
   #banner滚动图片
   pod 'FSPagerView'
   
-  
-  pod 'Moya'
+  pod 'Alamofire'
+  pod 'Moya', '~> 11.0.2'
   pod 'HandyJSON'
   pod 'SwiftyJSON'
 #  pod 'SwiftMessages'
