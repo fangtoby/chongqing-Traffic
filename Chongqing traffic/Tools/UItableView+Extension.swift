@@ -9,8 +9,8 @@
 import UIKit
 import Foundation
 
-protocol placeHolderTableViewDelegate {
-    func makePlaceHolderView() -> UIView
+@objc protocol ZLTableViewDataSource: class, UITableViewDataSource {
+    @objc optional func makePlaceHolderView(tableView: UITableView) -> UIView
 }
 
 extension UITableView:placeHolderProtocol {
@@ -19,7 +19,7 @@ extension UITableView:placeHolderProtocol {
     static var placeHolderView = "placeHolderView"
     var isShowPlaceHolderView: Bool {
         set {
-            objc_setAssociatedObject(self, &UITableView.showPlaceHolderView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
+            objc_setAssociatedObject(self, &UITableView.showPlaceHolderView, newValue,.OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
         
         get {
@@ -32,7 +32,7 @@ extension UITableView:placeHolderProtocol {
     
     var placeHolderView:UIView? {
         set {
-            objc_setAssociatedObject(self, &UITableView.placeHolderView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
+            objc_setAssociatedObject(self, &UITableView.placeHolderView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
         
         get {
@@ -71,74 +71,51 @@ extension UITableView:placeHolderProtocol {
     }
     
     func zl_checkEmpty() {
-//        var isEmpty:Bool = true
-//
-//        let src:UITableViewDataSource? = self.dataSource
-//        var sections = 1
-//        if src?.responds(to: #selector(getter: numberOfSections)) != nil {
-//            sections = (src?.numberOfSections!(in: self))!
-//        }
-//
-//        for i in sections {
-//            let rows = src?.tableView(self, numberOfRowsInSection: i)
-//            if let rows = rows {
-//                isEmpty = NO
-//            }
-//        }
-//
-//        for (int i = 0; i<sections; ++i) {
-//            let rows = [src tableView:self numberOfRowsInSection:i];
-//            if (rows) {
-//                isEmpty = NO;
-//            }
-//        }
-//
-//        if (self.placeHolderView) {
-//            self.scrollEnabled = self.scrollWasEnabled;
-//            [self.placeHolderView removeFromSuperview];
-//            self.placeHolderView = nil;
-//        }
-//
-//        if (isEmpty) {
-//            self.scrollWasEnabled = self.scrollEnabled;
-//            BOOL scrollEnabled = NO;
-//            if ([self respondsToSelector:@selector(enableScrollWhenPlaceHolderViewShowing)]) {
-//                scrollEnabled = [self performSelector:@selector(enableScrollWhenPlaceHolderViewShowing)];
-//                if (!scrollEnabled) {
-//                    NSString *reason = @"There is no need to return  NO for `-enableScrollWhenPlaceHolderViewShowing`, it will be NO by default";
-//                    @throw [NSException exceptionWithName:NSGenericException
-//                        reason:reason
-//                        userInfo:nil];
-//                }
-//            } else if ([self.delegate respondsToSelector:@selector(enableScrollWhenPlaceHolderViewShowing)]) {
-//                scrollEnabled = [self.delegate performSelector:@selector(enableScrollWhenPlaceHolderViewShowing)];
-//                if (!scrollEnabled) {
-//                    NSString *reason = @"There is no need to return  NO for `-enableScrollWhenPlaceHolderViewShowing`, it will be NO by default";
-//                    @throw [NSException exceptionWithName:NSGenericException
-//                        reason:reason
-//                        userInfo:nil];
-//                }
-//            }
-//            self.scrollEnabled = scrollEnabled;
-//            if ([self respondsToSelector:@selector(makePlaceHolderView)]) {
-//                self.placeHolderView = [self performSelector:@selector(makePlaceHolderView)];
-//            } else if ( [self.delegate respondsToSelector:@selector(makePlaceHolderView)]) {
-//                self.placeHolderView = [self.delegate performSelector:@selector(makePlaceHolderView)];
-//            } else {
-//                NSString *selectorName = NSStringFromSelector(_cmd);
-//                NSString *reason = [NSString stringWithFormat:@"You must implement makePlaceHolderView method in your custom tableView or its delegate class if you want to use %@", selectorName];
-//                @throw [NSException exceptionWithName:NSGenericException
-//                    reason:reason
-//                    userInfo:nil];
-//            }
-//            //        self.placeHolderView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-//            self.placeHolderView.frame = CGRectMake(0, self.tableHeaderView.frame.size.height, self.frame.size.width, self.frame.size.height - self.tableHeaderView.frame.size.height);
-//            [self addSubview:self.placeHolderView];
-//        } else {
-//            self.scrollEnabled = self.scrollWasEnabled;
-//            [self.placeHolderView removeFromSuperview];
-//            self.placeHolderView = nil;
-//        }
+        guard dataSource != nil else {
+            return
+        }
+
+        guard dataSource is ZLTableViewDataSource else {
+            return
+        }
+        
+        var isEmpty:Bool = true
+
+        let src:ZLTableViewDataSource? = self.dataSource as? ZLTableViewDataSource
+        var sections = 1
+        if src?.responds(to: #selector(getter: numberOfSections)) != nil {
+            sections = (src?.numberOfSections!(in: self))!
+        }
+
+        for i in 0..<sections {
+            let rows = src?.tableView(self, numberOfRowsInSection: i)
+            if rows != nil, rows! > 0 {
+                isEmpty = false
+                break
+            }
+        }
+
+        if (self.placeHolderView) != nil {
+            self.placeHolderView?.removeFromSuperview()
+            self.placeHolderView = nil
+        }
+
+        if (isEmpty) {
+            if (src?.responds(to: #selector(src?.makePlaceHolderView(tableView:))))! {
+                self.placeHolderView = src?.makePlaceHolderView!(tableView: self)
+            }
+            
+            var headerViewHeight:CGFloat = 0
+            if self.tableHeaderView != nil {
+                headerViewHeight = self.tableHeaderView?.frame.size.height ?? 0
+            }
+            
+            self.placeHolderView?.frame = CGRect.init(x: 0, y: headerViewHeight, width: self.frame.size.width, height: self.frame.size.height - headerViewHeight)
+            self.addSubview(self.placeHolderView!)
+        } else {
+            self.placeHolderView?.removeFromSuperview()
+            self.placeHolderView = nil
+        }
     }
 }
 

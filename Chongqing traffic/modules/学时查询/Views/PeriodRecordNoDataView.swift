@@ -9,14 +9,20 @@
 import UIKit
 
 // 创建闭包
-typealias FreshBtnClick = () -> (Void)
+//typealias FreshBtnClick = () -> (Void)
+protocol ZLPlaceHolderDelegate: class {
+    func emptyOverlayClicked()
+}
 
 class PeriodRecordNoDataView: UIView {
     
-    var freshBtnClick : FreshBtnClick?
+    weak var delegate : ZLPlaceHolderDelegate?
+    
+//    var freshBtnClick : FreshBtnClick?
     
     lazy var bgView: UIView = {
         let view = UIView()
+//        view.backgroundColor = .cyan
         return view
     }()
 
@@ -39,6 +45,7 @@ class PeriodRecordNoDataView: UIView {
     lazy var freshButton: UIButton = {
         let button = UIButton()
         button.setTitle("刷新", for: .normal)
+        button.titleLabel?.font = KUIFont12
         button.setTitleColor(MainBlueColor, for: .normal)
         button.setTitleColor(AssistColor, for: .highlighted)
         button.addTarget(self, action: #selector(freshButtonClicked), for: .touchUpInside)
@@ -56,8 +63,7 @@ class PeriodRecordNoDataView: UIView {
     }
     
     @objc func freshButtonClicked() {
-        guard let freshBtnClick = freshBtnClick else {return}
-        freshBtnClick()
+        delegate?.emptyOverlayClicked()
     }
 }
 
@@ -65,7 +71,7 @@ extension PeriodRecordNoDataView {
     func setUpUI() {
         self.addSubview(bgView)
         self.bgView.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-80)
             make.left.right.equalToSuperview()
         }
         
@@ -88,6 +94,7 @@ extension PeriodRecordNoDataView {
             make.centerX.equalToSuperview()
             make.width.equalTo(60)
             make.height.equalTo(37)
+            make.bottom.equalToSuperview()
         }
     }
 }

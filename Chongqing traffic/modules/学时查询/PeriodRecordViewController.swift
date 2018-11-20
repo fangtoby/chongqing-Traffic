@@ -10,6 +10,8 @@ import UIKit
 
 class PeriodRecordViewController: BaseViewController {
     var part : Int = 0
+    var dataSource = [String]()
+    var isFresh = false
     
     lazy var periodRecordHeaderView: PeriodRecordHeaderView = {
         let headerView = PeriodRecordHeaderView.init(frame: CGRect.zero)
@@ -32,7 +34,7 @@ class PeriodRecordViewController: BaseViewController {
     
     let CellIdentifier = "periodRecordTableViewCell"
     lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView.init(frame: CGRect.init(x: 0, y: navigationBarHeight, width: KScreenWidth, height: KScreenHeigth - navigationBarHeight))
         tableView.tableHeaderView = tableHeaderView
         tableView.separatorColor = .clear
         tableView.backgroundColor = .clear
@@ -61,7 +63,7 @@ class PeriodRecordViewController: BaseViewController {
         }
         
         setUpUI()
-        
+        loadData()
     }
     
     func setUpUI() {
@@ -74,20 +76,26 @@ class PeriodRecordViewController: BaseViewController {
         }
         
         self.view.addSubview(tableView)
-        self.tableView.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(navigationBarHeight)
-        }
+        tableView.isShowPlaceHolderView = true
     }
+    
+    func loadData() {
+        if isFresh == true {
+            dataSource = ["","","","","","","","",""]
+        }
+        
+        self.tableView.reloadData()
+    }
+    
 }
 
-extension PeriodRecordViewController: UITableViewDelegate, UITableViewDataSource {
+extension PeriodRecordViewController: UITableViewDelegate, ZLTableViewDataSource, ZLPlaceHolderDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -113,5 +121,18 @@ extension PeriodRecordViewController: UITableViewDelegate, UITableViewDataSource
         let periodRecordDetailVC = PeriodRecordDetailViewController()
         
         self.navigationController?.pushViewController(periodRecordDetailVC, animated: true)
+    }
+    
+    func makePlaceHolderView(tableView: UITableView) -> UIView {
+        let view = PeriodRecordNoDataView()
+        view.delegate = self
+        return view
+    }
+    
+    ///ZLPlaceHolderDelegate
+    func emptyOverlayClicked() {
+        //刷新数据
+        self.isFresh = true
+        loadData()
     }
 }
