@@ -31,6 +31,42 @@
 		8467053D21A3C32A00D55432 /* icon_no_data@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467053A21A3C32A00D55432 /* icon_no_data@2x.png */; };
 		8467053E21A3C32A00D55432 /* icon_no_data.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467053B21A3C32A00D55432 /* icon_no_data.png */; };
 		8467053F21A3C32A00D55432 /* icon_no_data@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467053C21A3C32A00D55432 /* icon_no_data@3x.png */; };
+		8467054121A3EA5000D55432 /* MineEnsureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467054021A3EA5000D55432 /* MineEnsureViewController.swift */; };
+		8467054321A3EAA900D55432 /* MineEnsureOrderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467054221A3EAA900D55432 /* MineEnsureOrderInfoView.swift */; };
+		8467054521A3EABB00D55432 /* MineEnsureOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467054421A3EABB00D55432 /* MineEnsureOrderTableViewCell.swift */; };
+		8467054721A4052E00D55432 /* MineEnsureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467054621A4052E00D55432 /* MineEnsureDetailViewController.swift */; };
+		8467054921A406BC00D55432 /* MineEnsureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467054821A406BC00D55432 /* MineEnsureDetailView.swift */; };
+		8467054B21A410F100D55432 /* MineApplyPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467054A21A410F100D55432 /* MineApplyPaymentViewController.swift */; };
+		8467054D21A4114300D55432 /* MineApplyPaymentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467054C21A4114300D55432 /* MineApplyPaymentInfoView.swift */; };
+		8467054F21A4F7DF00D55432 /* MineApplyPaymentProveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467054E21A4F7DF00D55432 /* MineApplyPaymentProveView.swift */; };
+		8467055221A503B700D55432 /* icon_add_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467055021A503B700D55432 /* icon_add_image@3x.png */; };
+		8467055321A503B700D55432 /* icon_add_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467055121A503B700D55432 /* icon_add_image@2x.png */; };
+		8467055721A51F2D00D55432 /* btn_image_delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467055421A51F2D00D55432 /* btn_image_delete@3x.png */; };
+		8467055821A51F2D00D55432 /* btn_image_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467055521A51F2D00D55432 /* btn_image_delete@2x.png */; };
+		8467055921A51F2D00D55432 /* btn_image_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467055621A51F2D00D55432 /* btn_image_delete.png */; };
+		8467056221A52C8300D55432 /* InsuranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056121A52C8300D55432 /* InsuranceViewController.swift */; };
+		8467056421A52C8C00D55432 /* InsurancePayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056321A52C8C00D55432 /* InsurancePayViewController.swift */; };
+		8467056721A52D0700D55432 /* InsuranceUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056621A52D0700D55432 /* InsuranceUserInfoView.swift */; };
+		8467056921A52D8E00D55432 /* InsuranceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056821A52D8E00D55432 /* InsuranceInfoView.swift */; };
+		8467056B21A5362500D55432 /* InsuranceBuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056A21A5362500D55432 /* InsuranceBuyView.swift */; };
+		8467056F21A53F8300D55432 /* PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056E21A53F8300D55432 /* PayButton.swift */; };
+		8467057121A5463D00D55432 /* InsurancePayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467057021A5463D00D55432 /* InsurancePayInfoView.swift */; };
+		8467057F21A5481500D55432 /* icon_add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057221A5481500D55432 /* icon_add_image.png */; };
+		8467058021A5481500D55432 /* pay_wechat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057321A5481500D55432 /* pay_wechat@3x.png */; };
+		8467058121A5481500D55432 /* btn_pay_select_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057421A5481500D55432 /* btn_pay_select_yes.png */; };
+		8467058221A5481500D55432 /* btn_pay_select_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057521A5481500D55432 /* btn_pay_select_no@2x.png */; };
+		8467058321A5481600D55432 /* pay_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057621A5481500D55432 /* pay_wechat@2x.png */; };
+		8467058421A5481600D55432 /* btn_pay_select_no.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057721A5481500D55432 /* btn_pay_select_no.png */; };
+		8467058521A5481600D55432 /* pay_ali@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057821A5481500D55432 /* pay_ali@2x.png */; };
+		8467058621A5481600D55432 /* btn_pay_select_no@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057921A5481500D55432 /* btn_pay_select_no@3x.png */; };
+		8467058721A5481600D55432 /* pay_wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057A21A5481500D55432 /* pay_wechat.png */; };
+		8467058821A5481600D55432 /* btn_pay_select_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057B21A5481500D55432 /* btn_pay_select_yes@2x.png */; };
+		8467058921A5481600D55432 /* btn_pay_select_yes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057C21A5481500D55432 /* btn_pay_select_yes@3x.png */; };
+		8467058A21A5481600D55432 /* pay_ali.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057D21A5481500D55432 /* pay_ali.png */; };
+		8467058B21A5481600D55432 /* pay_ali@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057E21A5481500D55432 /* pay_ali@3x.png */; };
+		8467058F21A55C9600D55432 /* InsuranceOrderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467058E21A55C9600D55432 /* InsuranceOrderInfoView.swift */; };
+		8467059121A55CAF00D55432 /* InsuranceOrderUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467059021A55CAF00D55432 /* InsuranceOrderUserInfoView.swift */; };
+		8467059321A5601F00D55432 /* PartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467059221A5601F00D55432 /* PartButton.swift */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -156,6 +192,42 @@
 		8467053A21A3C32A00D55432 /* icon_no_data@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_no_data@2x.png"; sourceTree = "<group>"; };
 		8467053B21A3C32A00D55432 /* icon_no_data.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_no_data.png; sourceTree = "<group>"; };
 		8467053C21A3C32A00D55432 /* icon_no_data@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_no_data@3x.png"; sourceTree = "<group>"; };
+		8467054021A3EA5000D55432 /* MineEnsureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEnsureViewController.swift; sourceTree = "<group>"; };
+		8467054221A3EAA900D55432 /* MineEnsureOrderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEnsureOrderInfoView.swift; sourceTree = "<group>"; };
+		8467054421A3EABB00D55432 /* MineEnsureOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEnsureOrderTableViewCell.swift; sourceTree = "<group>"; };
+		8467054621A4052E00D55432 /* MineEnsureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEnsureDetailViewController.swift; sourceTree = "<group>"; };
+		8467054821A406BC00D55432 /* MineEnsureDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEnsureDetailView.swift; sourceTree = "<group>"; };
+		8467054A21A410F100D55432 /* MineApplyPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineApplyPaymentViewController.swift; sourceTree = "<group>"; };
+		8467054C21A4114300D55432 /* MineApplyPaymentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineApplyPaymentInfoView.swift; sourceTree = "<group>"; };
+		8467054E21A4F7DF00D55432 /* MineApplyPaymentProveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineApplyPaymentProveView.swift; sourceTree = "<group>"; };
+		8467055021A503B700D55432 /* icon_add_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add_image@3x.png"; sourceTree = "<group>"; };
+		8467055121A503B700D55432 /* icon_add_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add_image@2x.png"; sourceTree = "<group>"; };
+		8467055421A51F2D00D55432 /* btn_image_delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_image_delete@3x.png"; sourceTree = "<group>"; };
+		8467055521A51F2D00D55432 /* btn_image_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_image_delete@2x.png"; sourceTree = "<group>"; };
+		8467055621A51F2D00D55432 /* btn_image_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_image_delete.png; sourceTree = "<group>"; };
+		8467056121A52C8300D55432 /* InsuranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceViewController.swift; sourceTree = "<group>"; };
+		8467056321A52C8C00D55432 /* InsurancePayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurancePayViewController.swift; sourceTree = "<group>"; };
+		8467056621A52D0700D55432 /* InsuranceUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceUserInfoView.swift; sourceTree = "<group>"; };
+		8467056821A52D8E00D55432 /* InsuranceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceInfoView.swift; sourceTree = "<group>"; };
+		8467056A21A5362500D55432 /* InsuranceBuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceBuyView.swift; sourceTree = "<group>"; };
+		8467056E21A53F8300D55432 /* PayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButton.swift; sourceTree = "<group>"; };
+		8467057021A5463D00D55432 /* InsurancePayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurancePayInfoView.swift; sourceTree = "<group>"; };
+		8467057221A5481500D55432 /* icon_add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add_image.png; sourceTree = "<group>"; };
+		8467057321A5481500D55432 /* pay_wechat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_wechat@3x.png"; sourceTree = "<group>"; };
+		8467057421A5481500D55432 /* btn_pay_select_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_pay_select_yes.png; sourceTree = "<group>"; };
+		8467057521A5481500D55432 /* btn_pay_select_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pay_select_no@2x.png"; sourceTree = "<group>"; };
+		8467057621A5481500D55432 /* pay_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_wechat@2x.png"; sourceTree = "<group>"; };
+		8467057721A5481500D55432 /* btn_pay_select_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_pay_select_no.png; sourceTree = "<group>"; };
+		8467057821A5481500D55432 /* pay_ali@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_ali@2x.png"; sourceTree = "<group>"; };
+		8467057921A5481500D55432 /* btn_pay_select_no@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pay_select_no@3x.png"; sourceTree = "<group>"; };
+		8467057A21A5481500D55432 /* pay_wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_wechat.png; sourceTree = "<group>"; };
+		8467057B21A5481500D55432 /* btn_pay_select_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pay_select_yes@2x.png"; sourceTree = "<group>"; };
+		8467057C21A5481500D55432 /* btn_pay_select_yes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pay_select_yes@3x.png"; sourceTree = "<group>"; };
+		8467057D21A5481500D55432 /* pay_ali.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_ali.png; sourceTree = "<group>"; };
+		8467057E21A5481500D55432 /* pay_ali@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_ali@3x.png"; sourceTree = "<group>"; };
+		8467058E21A55C9600D55432 /* InsuranceOrderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOrderInfoView.swift; sourceTree = "<group>"; };
+		8467059021A55CAF00D55432 /* InsuranceOrderUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOrderUserInfoView.swift; sourceTree = "<group>"; };
+		8467059221A5601F00D55432 /* PartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartButton.swift; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +365,31 @@
 			path = ZLAlertView;
 			sourceTree = "<group>";
 		};
+		8467055A21A52B5600D55432 /* 保险 */ = {
+			isa = PBXGroup;
+			children = (
+				8467056121A52C8300D55432 /* InsuranceViewController.swift */,
+				8467056321A52C8C00D55432 /* InsurancePayViewController.swift */,
+				8467056521A52CBD00D55432 /* Views */,
+			);
+			path = "保险";
+			sourceTree = "<group>";
+		};
+		8467056521A52CBD00D55432 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8467056621A52D0700D55432 /* InsuranceUserInfoView.swift */,
+				8467056821A52D8E00D55432 /* InsuranceInfoView.swift */,
+				8467056A21A5362500D55432 /* InsuranceBuyView.swift */,
+				8467058E21A55C9600D55432 /* InsuranceOrderInfoView.swift */,
+				8467059021A55CAF00D55432 /* InsuranceOrderUserInfoView.swift */,
+				8467059221A5601F00D55432 /* PartButton.swift */,
+				8467057021A5463D00D55432 /* InsurancePayInfoView.swift */,
+				8467056E21A53F8300D55432 /* PayButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		84F9730521900EF400433E65 = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +443,7 @@
 				84F9735B21918C7D00433E65 /* 登陆 */,
 				84F9732B219021E800433E65 /* 我的 */,
 				84F9732A219021E800433E65 /* 学时查询 */,
+				8467055A21A52B5600D55432 /* 保险 */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -384,6 +482,9 @@
 				84F973B0219D43E100433E65 /* MineChanceNickNameAndSignViewController.swift */,
 				84F973AE219D43A100433E65 /* MineChancePhoneNumberViewController.swift */,
 				65854EDF21A16660004F72CC /* MineTrainInfoViewController.swift */,
+				8467054021A3EA5000D55432 /* MineEnsureViewController.swift */,
+				8467054621A4052E00D55432 /* MineEnsureDetailViewController.swift */,
+				8467054A21A410F100D55432 /* MineApplyPaymentViewController.swift */,
 				84F97346219035AF00433E65 /* Views */,
 			);
 			path = "我的";
@@ -440,6 +541,11 @@
 				84F973B2219D450F00433E65 /* MineChancePhoneNumberView.swift */,
 				65854EE121A166A7004F72CC /* MineInfoView.swift */,
 				65854EE321A168F0004F72CC /* MineTrainInfoView.swift */,
+				8467054221A3EAA900D55432 /* MineEnsureOrderInfoView.swift */,
+				8467054421A3EABB00D55432 /* MineEnsureOrderTableViewCell.swift */,
+				8467054821A406BC00D55432 /* MineEnsureDetailView.swift */,
+				8467054C21A4114300D55432 /* MineApplyPaymentInfoView.swift */,
+				8467054E21A4F7DF00D55432 /* MineApplyPaymentProveView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -447,6 +553,24 @@
 		84F9734D21903AB700433E65 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8467057721A5481500D55432 /* btn_pay_select_no.png */,
+				8467057521A5481500D55432 /* btn_pay_select_no@2x.png */,
+				8467057921A5481500D55432 /* btn_pay_select_no@3x.png */,
+				8467057421A5481500D55432 /* btn_pay_select_yes.png */,
+				8467057B21A5481500D55432 /* btn_pay_select_yes@2x.png */,
+				8467057C21A5481500D55432 /* btn_pay_select_yes@3x.png */,
+				8467057221A5481500D55432 /* icon_add_image.png */,
+				8467057D21A5481500D55432 /* pay_ali.png */,
+				8467057821A5481500D55432 /* pay_ali@2x.png */,
+				8467057E21A5481500D55432 /* pay_ali@3x.png */,
+				8467057A21A5481500D55432 /* pay_wechat.png */,
+				8467057621A5481500D55432 /* pay_wechat@2x.png */,
+				8467057321A5481500D55432 /* pay_wechat@3x.png */,
+				8467055621A51F2D00D55432 /* btn_image_delete.png */,
+				8467055521A51F2D00D55432 /* btn_image_delete@2x.png */,
+				8467055421A51F2D00D55432 /* btn_image_delete@3x.png */,
+				8467055121A503B700D55432 /* icon_add_image@2x.png */,
+				8467055021A503B700D55432 /* icon_add_image@3x.png */,
 				8467053B21A3C32A00D55432 /* icon_no_data.png */,
 				8467053A21A3C32A00D55432 /* icon_no_data@2x.png */,
 				8467053C21A3C32A00D55432 /* icon_no_data@3x.png */,
@@ -640,21 +764,30 @@
 				84F973DF219D5F5000433E65 /* icon_link_web@2x.png in Resources */,
 				65854EDD21A16633004F72CC /* icon_sex_man@2x.png in Resources */,
 				84F9738F219AAF0D00433E65 /* icon_login_drivingType@3x.png in Resources */,
+				8467058321A5481600D55432 /* pay_wechat@2x.png in Resources */,
 				84F973E9219D5F5000433E65 /* home_usercenter_nomal.png in Resources */,
 				84F9740D219EAC6900433E65 /* icon_train_time@2x.png in Resources */,
+				8467058221A5481500D55432 /* btn_pay_select_no@2x.png in Resources */,
 				84F9731C21900EF600433E65 /* LaunchScreen.storyboard in Resources */,
+				8467058021A5481500D55432 /* pay_wechat@3x.png in Resources */,
 				84F973E0219D5F5000433E65 /* home_search_normal@2x.png in Resources */,
+				8467055921A51F2D00D55432 /* btn_image_delete.png in Resources */,
 				84F97388219AA7F100433E65 /* icon_login_number.png in Resources */,
 				84F97408219EAC6900433E65 /* icon_train_date@2x.png in Resources */,
 				84F973E5219D5F5000433E65 /* home_search_normal@3x.png in Resources */,
 				84F973DE219D5F5000433E65 /* home_search_select@2x.png in Resources */,
+				8467058721A5481600D55432 /* pay_wechat.png in Resources */,
 				84F97389219AA7F100433E65 /* icon_login_code@2x.png in Resources */,
 				65854ED721A165AC004F72CC /* icon_right_tip1@3x.png in Resources */,
+				8467058821A5481600D55432 /* btn_pay_select_yes@2x.png in Resources */,
 				84F973CF219D5F5000433E65 /* icon_sex_woman@3x.png in Resources */,
 				84F97386219AA7F100433E65 /* icon_login_code@3x.png in Resources */,
+				8467058921A5481600D55432 /* btn_pay_select_yes@3x.png in Resources */,
 				84F973D2219D5F5000433E65 /* home_search_select@3x.png in Resources */,
 				84F973D9219D5F5000433E65 /* icon_select_no.png in Resources */,
 				84F9731921900EF600433E65 /* Assets.xcassets in Resources */,
+				8467055221A503B700D55432 /* icon_add_image@3x.png in Resources */,
+				8467055721A51F2D00D55432 /* btn_image_delete@3x.png in Resources */,
 				84F973D8219D5F5000433E65 /* icon_my_train@2x.png in Resources */,
 				84F973D3219D5F5000433E65 /* home_usercenter_nomal@3x.png in Resources */,
 				84F9735121903AB700433E65 /* pic1.jpeg in Resources */,
@@ -673,12 +806,15 @@
 				84F973E8219D5F5000433E65 /* home_usercenter_select@3x.png in Resources */,
 				84F97410219EAC6900433E65 /* icon_train_date.png in Resources */,
 				84F9731721900EF400433E65 /* Main.storyboard in Resources */,
+				8467055321A503B700D55432 /* icon_add_image@2x.png in Resources */,
 				65854EDE21A16633004F72CC /* icon_sex_man@3x.png in Resources */,
 				84F973D1219D5F5000433E65 /* home_usercenter_select.png in Resources */,
 				84F9740C219EAC6900433E65 /* icon_back.png in Resources */,
+				8467058B21A5481600D55432 /* pay_ali@3x.png in Resources */,
 				8467053F21A3C32A00D55432 /* icon_no_data@3x.png in Resources */,
 				84F973D6219D5F5000433E65 /* icon_my_train.png in Resources */,
 				84F973D5219D5F5000433E65 /* icon_my_train@3x.png in Resources */,
+				8467058521A5481600D55432 /* pay_ali@2x.png in Resources */,
 				84F9738B219AA7F100433E65 /* icon_login_phone.png in Resources */,
 				65854ED821A165AC004F72CC /* icon_right_tip1@2x.png in Resources */,
 				84F9740A219EAC6900433E65 /* icon_back@3x.png in Resources */,
@@ -688,6 +824,7 @@
 				84F9740B219EAC6900433E65 /* icon_train_time.png in Resources */,
 				84F97396219BB4F900433E65 /* drivingType.plist in Resources */,
 				84F973E7219D5F5000433E65 /* home_usercenter_select@2x.png in Resources */,
+				8467058421A5481600D55432 /* btn_pay_select_no.png in Resources */,
 				65854ED521A165AC004F72CC /* icon_right_tip2@3x.png in Resources */,
 				84F97387219AA7F100433E65 /* icon_login_number@2x.png in Resources */,
 				84F97409219EAC6900433E65 /* icon_back@2x.png in Resources */,
@@ -698,11 +835,16 @@
 				8467053D21A3C32A00D55432 /* icon_no_data@2x.png in Resources */,
 				65854ED321A165AC004F72CC /* icon_right_tip1.png in Resources */,
 				84F973D0219D5F5000433E65 /* icon_select_no@2x.png in Resources */,
+				8467058A21A5481600D55432 /* pay_ali.png in Resources */,
 				84F9735321903AB700433E65 /* pic2.jpeg in Resources */,
 				84F9740E219EAC6900433E65 /* icon_train_date@3x.png in Resources */,
 				84F973DB219D5F5000433E65 /* icon_sex_woman.png in Resources */,
+				8467055821A51F2D00D55432 /* btn_image_delete@2x.png in Resources */,
+				8467058121A5481500D55432 /* btn_pay_select_yes.png in Resources */,
+				8467057F21A5481500D55432 /* icon_add_image.png in Resources */,
 				8467053E21A3C32A00D55432 /* icon_no_data.png in Resources */,
 				84F973E3219D5F5000433E65 /* home_search_select.png in Resources */,
+				8467058621A5481600D55432 /* btn_pay_select_no@3x.png in Resources */,
 				84F973D4219D5F5000433E65 /* home_search_normal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,10 +937,15 @@
 				84F9735D21918D5800433E65 /* LoginViewController.swift in Sources */,
 				84F9732F2190224900433E65 /* PeriodSearchViewController.swift in Sources */,
 				650BBD01219FFA8200D7046D /* ComplaintViewController.swift in Sources */,
+				8467056921A52D8E00D55432 /* InsuranceInfoView.swift in Sources */,
 				84F973FA219E963600433E65 /* PeriodRecordViewController.swift in Sources */,
+				8467056F21A53F8300D55432 /* PayButton.swift in Sources */,
 				84F973EF219E803900433E65 /* UIColor+Extension.swift in Sources */,
+				8467054921A406BC00D55432 /* MineEnsureDetailView.swift in Sources */,
+				8467054D21A4114300D55432 /* MineApplyPaymentInfoView.swift in Sources */,
 				84F973A5219D31E600433E65 /* BaseViewController.swift in Sources */,
 				84F9736021919C7E00433E65 /* LoginHeaderView.swift in Sources */,
+				8467057121A5463D00D55432 /* InsurancePayInfoView.swift in Sources */,
 				84F9739F219C023100433E65 /* MineInfoTableViewCell.swift in Sources */,
 				8467053521A2A7E000D55432 /* PeriodRecordNoDataView.swift in Sources */,
 				84F9736C2192E20900433E65 /* UserDefaults.swift in Sources */,
@@ -808,23 +955,35 @@
 				84F973622191A30F00433E65 /* LoginInfoView.swift in Sources */,
 				84F973452190271900433E65 /* WRCycleCell.swift in Sources */,
 				84F973422190271900433E65 /* WRCustomNavigationBar.swift in Sources */,
+				8467054521A3EABB00D55432 /* MineEnsureOrderTableViewCell.swift in Sources */,
 				65854EE421A168F0004F72CC /* MineTrainInfoView.swift in Sources */,
+				8467058F21A55C9600D55432 /* InsuranceOrderInfoView.swift in Sources */,
 				84F9731421900EF400433E65 /* ViewController.swift in Sources */,
+				8467054721A4052E00D55432 /* MineEnsureDetailViewController.swift in Sources */,
 				656A91B6219DB516005427C8 /* PeriodSearchView.swift in Sources */,
 				84F973F4219E844300433E65 /* ZLPageTitleView.swift in Sources */,
+				8467054B21A410F100D55432 /* MineApplyPaymentViewController.swift in Sources */,
 				84F973FE219E9CE100433E65 /* PeriodRecordHeaderView.swift in Sources */,
 				84F9732921901B6A00433E65 /* API.swift in Sources */,
+				8467059321A5601F00D55432 /* PartButton.swift in Sources */,
+				8467056421A52C8C00D55432 /* InsurancePayViewController.swift in Sources */,
+				8467054121A3EA5000D55432 /* MineEnsureViewController.swift in Sources */,
 				84F97412219EADF000433E65 /* PeriodRecordDetailViewController.swift in Sources */,
 				84F9739A219BB50700433E65 /* UIView+KLExtension.swift in Sources */,
 				84F9731221900EF400433E65 /* AppDelegate.swift in Sources */,
 				84F973432190271900433E65 /* WRProxy.swift in Sources */,
+				8467056721A52D0700D55432 /* InsuranceUserInfoView.swift in Sources */,
 				84F973A1219D1B6600433E65 /* MineInfoViewController.swift in Sources */,
 				84F973A3219D1BB600433E65 /* MineInfoControTableViewCell.swift in Sources */,
+				8467056221A52C8300D55432 /* InsuranceViewController.swift in Sources */,
 				65854ECC21A146D4004F72CC /* ComplaintSelectObjectView.swift in Sources */,
 				650BBCFF219FE0B200D7046D /* PeriodRecordDetailImagesView.swift in Sources */,
 				65854EE721A1A7D5004F72CC /* ZLAlertView.swift in Sources */,
 				84F97397219BB4F900433E65 /* DrivingTypePickerView.swift in Sources */,
+				8467059121A55CAF00D55432 /* InsuranceOrderUserInfoView.swift in Sources */,
 				84F973F6219E845900433E65 /* ZLPageView.swift in Sources */,
+				8467056B21A5362500D55432 /* InsuranceBuyView.swift in Sources */,
+				8467054321A3EAA900D55432 /* MineEnsureOrderInfoView.swift in Sources */,
 				84F9732D2190220700433E65 /* MineViewController.swift in Sources */,
 				84F97338219025D200433E65 /* BaseNavigationViewController.swift in Sources */,
 				84F973412190271900433E65 /* WRNavigationBar.swift in Sources */,
@@ -835,6 +994,7 @@
 				84F97379219A88F800433E65 /* StringToDictionary.swift in Sources */,
 				84F973442190271900433E65 /* WRCycleScrollView.swift in Sources */,
 				84F97348219035BF00433E65 /* MineTableViewCell.swift in Sources */,
+				8467054F21A4F7DF00D55432 /* MineApplyPaymentProveView.swift in Sources */,
 				650BBD0521A05B4500D7046D /* ComplaintView.swift in Sources */,
 				65854EE021A16660004F72CC /* MineTrainInfoViewController.swift in Sources */,
 				650BBCFD219FE09D00D7046D /* PeriodRecordDetailInfoView.swift in Sources */,

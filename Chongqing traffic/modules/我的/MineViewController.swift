@@ -103,9 +103,6 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             loginVC.isFirstLogin = false
             self?.present(loginVC, animated: true, completion: nil)
         }
-//        alertView.cancleBtnClick = { [weak self] in
-//
-//        }
     }
 }
 
@@ -164,7 +161,8 @@ extension MineViewController {
             self.navigationController?.pushViewController(trainInfoVC, animated: true)
         }else {
             //保障信息
-            
+            let ensureVC = MineEnsureViewController()
+            self.navigationController?.pushViewController(ensureVC, animated: true)
         }
     }
 }

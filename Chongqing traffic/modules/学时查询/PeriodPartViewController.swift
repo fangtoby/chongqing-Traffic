@@ -76,9 +76,23 @@ class PeriodPartViewController: BaseViewController {
             case 14:
                 //刷新并推送
                 print("刷新并推送")
+                self?.deviceRegist()
             default:
                 print("Error: not found")
             }
+        }
+    }
+    
+    func deviceRegist() {
+        var registParams = [String:Any]()
+        registParams["deviceType"] = "IOS"
+        registParams["deviceToken"] = UIDevice.current.identifierForVendor?.uuidString
+        registParams["clientVersion"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+        
+        NetWorkRequest(.deviceRegist(params: registParams)) { (res) -> (Void) in
+            let infoDic = getDictionaryFromJSONString(jsonString: res)
+            UserDefaults.standard.set(infoDic["token"], forKey: "token")
+            
         }
     }
 }

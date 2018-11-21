@@ -39,7 +39,7 @@ enum API {
 
 extension API: TargetType {
     
-    var baseURL: URL { return URL(string: "https://gears.ggxueche.com/")! }
+    var baseURL: URL { return URL(string: "http://59.110.155.214:10088/")! }
     
     var path: String {
         switch self {
@@ -61,7 +61,7 @@ extension API: TargetType {
             parmeters["type"] = type
             parmeters["columnId"] = clumId
         }
-        return .requestParameters(parameters: parmeters, encoding: URLEncoding.default)
+        return .requestParameters(parameters: parmeters, encoding: JSONEncoding.default)
     }
     
     var sampleData: Data {
@@ -70,20 +70,20 @@ extension API: TargetType {
     var headers: [String : String]? {
         var header: [String:String] = [:]
         var token = "0"
-        
+
         if UserDefaults.standard.string(forKey: "token") != nil {
             token = UserDefaults.standard.string(forKey: "token")!
         }
         header["token"] = token
-        
+
         let timestamp = String(Int((Date().timeIntervalSince1970)*1000))
-        
+
         header["timestamp"] = timestamp
-        
+
         var sig = token.appending(timestamp)
         sig = sig.appending("{driving}")
         let sign = sig.md5()
-        
+
         header["sign"] = sign
         
         return header

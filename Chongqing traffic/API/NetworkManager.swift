@@ -27,28 +27,6 @@ private let myEndpointClosure = { (target: API) -> Endpoint in
     let url = target.baseURL.absoluteString + target.path
     var task = target.task
     
-    /*
-     如果需要在每个请求中都添加类似token参数的参数请取消注释下面代码
-     👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇
-     */
-    //    let additionalParameters = ["token":"888888"]
-    //    let defaultEncoding = URLEncoding.default
-    //    switch target.task {
-    //        ///在你需要添加的请求方式中做修改就行，不用的case 可以删掉。。
-    //    case .requestPlain:
-    //        task = .requestParameters(parameters: additionalParameters, encoding: defaultEncoding)
-    //    case .requestParameters(var parameters, let encoding):
-    //        additionalParameters.forEach { parameters[$0.key] = $0.value }
-    //        task = .requestParameters(parameters: parameters, encoding: encoding)
-    //    default:
-    //        break
-    //    }
-    /*
-     👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆
-     如果需要在每个请求中都添加类似token参数的参数请取消注释上面代码
-     */
-    
-    
     var endpoint = Endpoint(
         url: url,
         sampleResponseClosure: { .networkResponse(200, target.sampleData) },
@@ -115,7 +93,6 @@ private let requestClosure = { (endpoint: Endpoint, done: MoyaProvider.RequestRe
 ///但这里我没怎么用这个。。。 loading的逻辑直接放在网络处理里面了
 private let networkPlugin = NetworkActivityPlugin.init { (changeType, targetType) in
     
-//    print("networkPlugin \(changeType)")
     //targetType 是当前请求的基本信息
     switch(changeType){
     case .began:
@@ -176,14 +153,13 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
         //隐藏hud
         switch result {
         case let .success(response):
-            print(response)
-//            do {
-                let jsonString = String.init(data: response.data, encoding: .utf8)
-                
-                let dic = getDictionaryFromJSONString(jsonString: jsonString!)
-                print(dic)
+            
+            let jsonString = String.init(data: response.data, encoding: .utf8)
+            
+            let dic = getDictionaryFromJSONString(jsonString: jsonString!)
+            print(dic)
             print(jsonString!)
-            switch dic["code"] as! Int {
+            switch dic["code"] as? Int {
             case StatusCode.API_CODE_REQUEST_OK.rawValue:
                 completion(jsonString!)
                 
@@ -196,6 +172,8 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
             
             case StatusCode.API_CODE_FORCE_UPGRADE.rawValue:
                 print("强制升级")
+            case StatusCode.API_CODE_SERVER_ERROR.rawValue:
+                print("服务器忙,请稍后再试")
                 
             default:
                 print("aaaaaa")
@@ -243,24 +221,24 @@ var isNetworkConnect: Bool {
 }
 
 /// Demo中并未使用，以后如果有数组转json可以用这个。
-struct JSONArrayEncoding: ParameterEncoding {
-    static let `default` = JSONArrayEncoding()
-    
-    func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
-        var request = try urlRequest.asURLRequest()
-        
-        guard let json = parameters?["jsonArray"] else {
-            return request
-        }
-        
-        let data = try JSONSerialization.data(withJSONObject: json, options: [])
-        
-        if request.value(forHTTPHeaderField: "Content-Type") == nil {
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        }
-        
-        request.httpBody = data
-        
-        return request
-    }
-}
+//struct JSONArrayEncoding: ParameterEncoding {
+//    static let `default` = JSONArrayEncoding()
+//
+//    func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+//        var request = try urlRequest.asURLRequest()
+//
+//        guard let json = parameters?["jsonArray"] else {
+//            return request
+//        }
+//
+//        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+//
+//        if request.value(forHTTPHeaderField: "Content-Type") == nil {
+//            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+//        }
+//
+//        request.httpBody = data
+//
+//        return request
+//    }
+//}

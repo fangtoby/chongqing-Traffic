@@ -289,7 +289,6 @@ class LoginInfoView: UIView, UITextFieldDelegate {
     
     
     @objc func touchSelectDriving(){
-//        print("选择车型")
         guard let selectDriving = selectDriving else {
             return
         }

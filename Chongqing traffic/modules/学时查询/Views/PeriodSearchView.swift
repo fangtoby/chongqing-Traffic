@@ -347,7 +347,7 @@ class PeriodSearchView: UIView {
         self.pushButton.snp.makeConstraints { (make) in
             make.left.equalTo(40)
             make.top.equalTo(self.checkButton.snp.bottom).offset(21)
-            make.width.height.equalTo(12)
+            make.width.height.equalTo(14)
         }
         
         self.addSubview(pushLabel)
@@ -360,7 +360,7 @@ class PeriodSearchView: UIView {
         self.insuranceButton.snp.makeConstraints { (make) in
             make.left.equalTo(40)
             make.top.equalTo(self.pushButton.snp.bottom).offset(15)
-            make.width.height.equalTo(12)
+            make.width.height.equalTo(14)
         }
         
         self.addSubview(insuranceLabel)
