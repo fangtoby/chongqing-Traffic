@@ -54,6 +54,9 @@ let navigationBarHeight : CGFloat = isIphone_X ? 88 : 64
 // tabBarHeight
 let safeAreaBottomHeight : CGFloat = isIphone_X ? 34 : 0
 
+let statusHeight : CGFloat = isIphone_X ? 44 : 20
+
+
 let tabBarHeight : CGFloat = isIphone_X ? 49 + 34 : 49
 
 let isLogin = "isLogin"

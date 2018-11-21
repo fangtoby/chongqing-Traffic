@@ -8,7 +8,13 @@
 
 import UIKit
 
+// 创建闭包
+typealias SureOrderBtnClick = () -> (Void)
+
 class InsuranceBuyView: UIView {
+    
+    var sureOrderBtnClick : SureOrderBtnClick?
+    
     
     lazy var orderInfoView: InsuranceOrderInfoView = {
         let view = InsuranceOrderInfoView()
@@ -40,12 +46,22 @@ class InsuranceBuyView: UIView {
     }
     
     @objc func sureButtonClicked() {
-        
+        guard let sureOrderBtnClick = sureOrderBtnClick else { return }
+        sureOrderBtnClick()
     }
 }
 
 extension InsuranceBuyView {
     func setUpUI() {
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 4
+        //添加阴影
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        //zero表示不偏移
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = 10
+        
         self.addSubview(orderInfoView)
         self.orderInfoView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
@@ -60,8 +76,9 @@ extension InsuranceBuyView {
         self.addSubview(sureBtn)
         self.sureBtn.snp.makeConstraints { (make) in
             make.left.height.equalTo(40)
-            make.right.bottom.equalTo(-40)
+            make.right.equalTo(-40)
             make.top.equalTo(self.fillInfoView.snp.bottom).offset(22)
+            make.bottom.equalTo(-(40+safeAreaBottomHeight))
         }
     }
 }

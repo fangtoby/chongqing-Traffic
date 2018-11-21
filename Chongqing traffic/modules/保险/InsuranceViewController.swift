@@ -69,7 +69,14 @@ class InsuranceViewController: BaseViewController {
             make.left.right.bottom.equalToSuperview()
         }
         
-//        let insurancePayVC = InsurancePayViewController()
-//        self.navigationController?.pushViewController(insurancePayVC, animated: true)
+        insuranceBuyView.orderInfoView.closeBtnClick = {
+            insuranceBuyView.removeFromSuperview()
+        }
+        
+        insuranceBuyView.sureOrderBtnClick = { [weak self] in
+            insuranceBuyView.removeFromSuperview()
+            let insurancePayVC = InsurancePayViewController()
+            self?.navigationController?.pushViewController(insurancePayVC, animated: true)
+        }
     }
 }

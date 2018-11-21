@@ -13,20 +13,17 @@ class PayButton: UIButton {
     lazy var bgview: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
-        view.isUserInteractionEnabled = true
         return view
     }()
     
     lazy var selectImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.init(named: "btn_pay_select_no")
-        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
     lazy var payTypeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
