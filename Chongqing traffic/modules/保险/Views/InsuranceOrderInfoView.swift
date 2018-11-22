@@ -8,11 +8,17 @@
 
 import UIKit
 
+// 创建闭包
+typealias CloseBtnClick = () -> (Void)
+
 class InsuranceOrderInfoView: UIView {
 
+    var closeBtnClick : CloseBtnClick?
+    
     lazy var closeBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage.init(named: "btn_close"), for: .normal)
+        button.addTarget(self, action: #selector(closeBtnClicked), for: .touchUpInside)
         return button
     }()
     
@@ -89,6 +95,11 @@ class InsuranceOrderInfoView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    @objc func closeBtnClicked () {
+        guard let closeBtnClick = closeBtnClick else { return }
+        closeBtnClick()
+    }
 }
 
 extension InsuranceOrderInfoView {
@@ -122,8 +133,8 @@ extension InsuranceOrderInfoView {
         }
         
         ///有效期
-        self.addSubview(validDateLabel)
-        self.validDateLabel.snp.makeConstraints { (make) in
+        self.addSubview(validDateTipLabel)
+        self.validDateTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.nameLabel.snp.left)
             make.top.equalTo(self.ensureImageView.snp.centerY).offset(-2)
         }

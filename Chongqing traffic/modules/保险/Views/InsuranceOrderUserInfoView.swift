@@ -20,34 +20,43 @@ class InsuranceOrderUserInfoView: UIView {
     
     lazy var oneBtn: PartButton = {
         let button = PartButton()
+        button.tag = 101
         button.isSelected = true
         button.setTitle("科目一", for: .normal)
-        button.layer.borderWidth = 1
         button.layer.borderColor = MainYellowColor.cgColor
+        button.addTarget(self, action: #selector(partButtonClicked(button:)), for: .touchUpInside)
         return button
     }()
     
     lazy var twoBtn: PartButton = {
         let button = PartButton()
+        button.tag = 102
         button.setTitle("科目二", for: .normal)
+        button.addTarget(self, action: #selector(partButtonClicked(button:)), for: .touchUpInside)
         return button
     }()
     
     lazy var threeBtn: PartButton = {
         let button = PartButton()
+        button.tag = 103
         button.setTitle("科目三", for: .normal)
+        button.addTarget(self, action: #selector(partButtonClicked(button:)), for: .touchUpInside)
         return button
     }()
     
     lazy var fourBtn: PartButton = {
         let button = PartButton()
+        button.tag = 104
         button.setTitle("科目四", for: .normal)
+        button.addTarget(self, action: #selector(partButtonClicked(button:)), for: .touchUpInside)
         return button
     }()
     
     lazy var fiveBtn: PartButton = {
         let button = PartButton()
+        button.tag = 105
         button.setTitle("全科目套餐", for: .normal)
+        button.addTarget(self, action: #selector(partButtonClicked(button:)), for: .touchUpInside)
         return button
     }()
 
@@ -102,6 +111,73 @@ class InsuranceOrderUserInfoView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    @objc func partButtonClicked(button:UIButton) {
+        switch button.tag {
+        case 101:
+            self.oneBtn.isSelected = true
+            self.twoBtn.isSelected = false
+            self.threeBtn.isSelected = false
+            self.fourBtn.isSelected = false
+            self.fiveBtn.isSelected = false
+            
+            self.oneBtn.layer.borderColor = MainYellowColor.cgColor
+            self.twoBtn.layer.borderColor = KUIColorLine.cgColor
+            self.threeBtn.layer.borderColor = KUIColorLine.cgColor
+            self.fourBtn.layer.borderColor = KUIColorLine.cgColor
+            self.fiveBtn.layer.borderColor = KUIColorLine.cgColor
+        case 102:
+            self.oneBtn.isSelected = false
+            self.twoBtn.isSelected = true
+            self.threeBtn.isSelected = false
+            self.fourBtn.isSelected = false
+            self.fiveBtn.isSelected = false
+            
+            self.oneBtn.layer.borderColor = KUIColorLine.cgColor
+            self.twoBtn.layer.borderColor = MainYellowColor.cgColor
+            self.threeBtn.layer.borderColor = KUIColorLine.cgColor
+            self.fourBtn.layer.borderColor = KUIColorLine.cgColor
+            self.fiveBtn.layer.borderColor = KUIColorLine.cgColor
+        case 103:
+            self.oneBtn.isSelected = false
+            self.twoBtn.isSelected = false
+            self.threeBtn.isSelected = true
+            self.fourBtn.isSelected = false
+            self.fiveBtn.isSelected = false
+            
+            self.oneBtn.layer.borderColor = KUIColorLine.cgColor
+            self.twoBtn.layer.borderColor = KUIColorLine.cgColor
+            self.threeBtn.layer.borderColor = MainYellowColor.cgColor
+            self.fourBtn.layer.borderColor = KUIColorLine.cgColor
+            self.fiveBtn.layer.borderColor = KUIColorLine.cgColor
+        case 104:
+            self.oneBtn.isSelected = false
+            self.twoBtn.isSelected = false
+            self.threeBtn.isSelected = false
+            self.fourBtn.isSelected = true
+            self.fiveBtn.isSelected = false
+            
+            self.oneBtn.layer.borderColor = KUIColorLine.cgColor
+            self.twoBtn.layer.borderColor = KUIColorLine.cgColor
+            self.threeBtn.layer.borderColor = KUIColorLine.cgColor
+            self.fourBtn.layer.borderColor = MainYellowColor.cgColor
+            self.fiveBtn.layer.borderColor = KUIColorLine.cgColor
+        case 105:
+            self.oneBtn.isSelected = false
+            self.twoBtn.isSelected = false
+            self.threeBtn.isSelected = false
+            self.fourBtn.isSelected = false
+            self.fiveBtn.isSelected = true
+            
+            self.oneBtn.layer.borderColor = KUIColorLine.cgColor
+            self.twoBtn.layer.borderColor = KUIColorLine.cgColor
+            self.threeBtn.layer.borderColor = KUIColorLine.cgColor
+            self.fourBtn.layer.borderColor = KUIColorLine.cgColor
+            self.fiveBtn.layer.borderColor = MainYellowColor.cgColor
+        default: break
+            
+        }
+    }
 }
 
 extension InsuranceOrderUserInfoView {
@@ -146,7 +222,7 @@ extension InsuranceOrderUserInfoView {
         
         self.addSubview(fiveBtn)
         self.fiveBtn.snp.makeConstraints { (make) in
-            make.width.equalTo(56)
+            make.width.equalTo(80)
             make.height.equalTo(24)
             //56是科目一到科目四的宽，10是每个的间隔，140:(80+40+20):80是全科目的宽，40是左边距离，20是右边距离
             let allWidth:CGFloat = (56+10)*4 + 140

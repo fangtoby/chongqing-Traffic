@@ -27,6 +27,8 @@ class PartButton: UIButton {
         self.setBackgroundImage(imageFromColor(color: UIColor(r: 255, g: 251, b: 237)), for: .selected)
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 4
+        self.layer.borderWidth = 1
+        self.layer.borderColor = KUIColorLine.cgColor
     }
     
     //color转image

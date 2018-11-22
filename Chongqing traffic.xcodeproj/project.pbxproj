@@ -11,6 +11,14 @@
 		650BBCFF219FE0B200D7046D /* PeriodRecordDetailImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650BBCFE219FE0B200D7046D /* PeriodRecordDetailImagesView.swift */; };
 		650BBD01219FFA8200D7046D /* ComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650BBD00219FFA8200D7046D /* ComplaintViewController.swift */; };
 		650BBD0521A05B4500D7046D /* ComplaintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650BBD0421A05B4500D7046D /* ComplaintView.swift */; };
+		65411A2921A587DE00C4C34F /* btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65411A2621A587DE00C4C34F /* btn_close@3x.png */; };
+		65411A2A21A587DE00C4C34F /* btn_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 65411A2721A587DE00C4C34F /* btn_close.png */; };
+		65411A2B21A587DE00C4C34F /* btn_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65411A2821A587DE00C4C34F /* btn_close@2x.png */; };
+		65411A2F21A5913300C4C34F /* TrainningStatusIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65411A2E21A5913300C4C34F /* TrainningStatusIViewController.swift */; };
+		65411A3121A591CB00C4C34F /* TrainingStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65411A3021A591CB00C4C34F /* TrainingStatusTableViewCell.swift */; };
+		65411A3521A5974E00C4C34F /* btn_right_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65411A3221A5974E00C4C34F /* btn_right_close@3x.png */; };
+		65411A3621A5974E00C4C34F /* btn_right_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 65411A3321A5974E00C4C34F /* btn_right_close.png */; };
+		65411A3721A5974E00C4C34F /* btn_right_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65411A3421A5974E00C4C34F /* btn_right_close@2x.png */; };
 		656A91B6219DB516005427C8 /* PeriodSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A91B5219DB516005427C8 /* PeriodSearchView.swift */; };
 		65854ECC21A146D4004F72CC /* ComplaintSelectObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */; };
 		65854ED321A165AC004F72CC /* icon_right_tip1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ECD21A165AC004F72CC /* icon_right_tip1.png */; };
@@ -172,6 +180,14 @@
 		650BBCFE219FE0B200D7046D /* PeriodRecordDetailImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodRecordDetailImagesView.swift; sourceTree = "<group>"; };
 		650BBD00219FFA8200D7046D /* ComplaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintViewController.swift; sourceTree = "<group>"; };
 		650BBD0421A05B4500D7046D /* ComplaintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintView.swift; sourceTree = "<group>"; };
+		65411A2621A587DE00C4C34F /* btn_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close@3x.png"; sourceTree = "<group>"; };
+		65411A2721A587DE00C4C34F /* btn_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close.png; sourceTree = "<group>"; };
+		65411A2821A587DE00C4C34F /* btn_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close@2x.png"; sourceTree = "<group>"; };
+		65411A2E21A5913300C4C34F /* TrainningStatusIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainningStatusIViewController.swift; sourceTree = "<group>"; };
+		65411A3021A591CB00C4C34F /* TrainingStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingStatusTableViewCell.swift; sourceTree = "<group>"; };
+		65411A3221A5974E00C4C34F /* btn_right_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_right_close@3x.png"; sourceTree = "<group>"; };
+		65411A3321A5974E00C4C34F /* btn_right_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_right_close.png; sourceTree = "<group>"; };
+		65411A3421A5974E00C4C34F /* btn_right_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_right_close@2x.png"; sourceTree = "<group>"; };
 		656A91B5219DB516005427C8 /* PeriodSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodSearchView.swift; sourceTree = "<group>"; };
 		65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintSelectObjectView.swift; sourceTree = "<group>"; };
 		65854ECD21A165AC004F72CC /* icon_right_tip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_right_tip1.png; sourceTree = "<group>"; };
@@ -353,6 +369,7 @@
 				650BBD0421A05B4500D7046D /* ComplaintView.swift */,
 				65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */,
 				8467053421A2A7E000D55432 /* PeriodRecordNoDataView.swift */,
+				65411A3021A591CB00C4C34F /* TrainingStatusTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -469,6 +486,7 @@
 				84F973F9219E963600433E65 /* PeriodRecordViewController.swift */,
 				84F97411219EADF000433E65 /* PeriodRecordDetailViewController.swift */,
 				650BBD00219FFA8200D7046D /* ComplaintViewController.swift */,
+				65411A2E21A5913300C4C34F /* TrainningStatusIViewController.swift */,
 				656A91B4219DB4FD005427C8 /* Views */,
 			);
 			path = "学时查询";
@@ -553,6 +571,12 @@
 		84F9734D21903AB700433E65 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				65411A3321A5974E00C4C34F /* btn_right_close.png */,
+				65411A3421A5974E00C4C34F /* btn_right_close@2x.png */,
+				65411A3221A5974E00C4C34F /* btn_right_close@3x.png */,
+				65411A2721A587DE00C4C34F /* btn_close.png */,
+				65411A2821A587DE00C4C34F /* btn_close@2x.png */,
+				65411A2621A587DE00C4C34F /* btn_close@3x.png */,
 				8467057721A5481500D55432 /* btn_pay_select_no.png */,
 				8467057521A5481500D55432 /* btn_pay_select_no@2x.png */,
 				8467057921A5481500D55432 /* btn_pay_select_no@3x.png */,
@@ -787,14 +811,17 @@
 				84F973D9219D5F5000433E65 /* icon_select_no.png in Resources */,
 				84F9731921900EF600433E65 /* Assets.xcassets in Resources */,
 				8467055221A503B700D55432 /* icon_add_image@3x.png in Resources */,
+				65411A3721A5974E00C4C34F /* btn_right_close@2x.png in Resources */,
 				8467055721A51F2D00D55432 /* btn_image_delete@3x.png in Resources */,
 				84F973D8219D5F5000433E65 /* icon_my_train@2x.png in Resources */,
 				84F973D3219D5F5000433E65 /* home_usercenter_nomal@3x.png in Resources */,
+				65411A2921A587DE00C4C34F /* btn_close@3x.png in Resources */,
 				84F9735121903AB700433E65 /* pic1.jpeg in Resources */,
 				84F97385219AA7F100433E65 /* icon_login_number@3x.png in Resources */,
 				84F9738A219AA7F100433E65 /* icon_login_phone@3x.png in Resources */,
 				84F973E6219D5F5000433E65 /* icon_select_yes.png in Resources */,
 				84F973DC219D5F5000433E65 /* icon_sex_woman@2x.png in Resources */,
+				65411A2A21A587DE00C4C34F /* btn_close.png in Resources */,
 				84F9735221903AB700433E65 /* pic3.jpeg in Resources */,
 				84F9740F219EAC6900433E65 /* icon_train_time@3x.png in Resources */,
 				65854EDC21A16633004F72CC /* icon_sex_man.png in Resources */,
@@ -805,6 +832,7 @@
 				65854ED421A165AC004F72CC /* icon_right_tip2.png in Resources */,
 				84F973E8219D5F5000433E65 /* home_usercenter_select@3x.png in Resources */,
 				84F97410219EAC6900433E65 /* icon_train_date.png in Resources */,
+				65411A3621A5974E00C4C34F /* btn_right_close.png in Resources */,
 				84F9731721900EF400433E65 /* Main.storyboard in Resources */,
 				8467055321A503B700D55432 /* icon_add_image@2x.png in Resources */,
 				65854EDE21A16633004F72CC /* icon_sex_man@3x.png in Resources */,
@@ -813,6 +841,7 @@
 				8467058B21A5481600D55432 /* pay_ali@3x.png in Resources */,
 				8467053F21A3C32A00D55432 /* icon_no_data@3x.png in Resources */,
 				84F973D6219D5F5000433E65 /* icon_my_train.png in Resources */,
+				65411A2B21A587DE00C4C34F /* btn_close@2x.png in Resources */,
 				84F973D5219D5F5000433E65 /* icon_my_train@3x.png in Resources */,
 				8467058521A5481600D55432 /* pay_ali@2x.png in Resources */,
 				84F9738B219AA7F100433E65 /* icon_login_phone.png in Resources */,
@@ -845,6 +874,7 @@
 				8467053E21A3C32A00D55432 /* icon_no_data.png in Resources */,
 				84F973E3219D5F5000433E65 /* home_search_select.png in Resources */,
 				8467058621A5481600D55432 /* btn_pay_select_no@3x.png in Resources */,
+				65411A3521A5974E00C4C34F /* btn_right_close@3x.png in Resources */,
 				84F973D4219D5F5000433E65 /* home_search_normal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -944,6 +974,7 @@
 				8467054921A406BC00D55432 /* MineEnsureDetailView.swift in Sources */,
 				8467054D21A4114300D55432 /* MineApplyPaymentInfoView.swift in Sources */,
 				84F973A5219D31E600433E65 /* BaseViewController.swift in Sources */,
+				65411A2F21A5913300C4C34F /* TrainningStatusIViewController.swift in Sources */,
 				84F9736021919C7E00433E65 /* LoginHeaderView.swift in Sources */,
 				8467057121A5463D00D55432 /* InsurancePayInfoView.swift in Sources */,
 				84F9739F219C023100433E65 /* MineInfoTableViewCell.swift in Sources */,
@@ -995,6 +1026,7 @@
 				84F973442190271900433E65 /* WRCycleScrollView.swift in Sources */,
 				84F97348219035BF00433E65 /* MineTableViewCell.swift in Sources */,
 				8467054F21A4F7DF00D55432 /* MineApplyPaymentProveView.swift in Sources */,
+				65411A3121A591CB00C4C34F /* TrainingStatusTableViewCell.swift in Sources */,
 				650BBD0521A05B4500D7046D /* ComplaintView.swift in Sources */,
 				65854EE021A16660004F72CC /* MineTrainInfoViewController.swift in Sources */,
 				650BBCFD219FE09D00D7046D /* PeriodRecordDetailInfoView.swift in Sources */,

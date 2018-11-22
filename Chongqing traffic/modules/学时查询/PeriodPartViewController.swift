@@ -66,7 +66,8 @@ class PeriodPartViewController: BaseViewController {
                 print("有效时长")
             case 12:
                 //未推送考试系统
-                print("未推送考试系统")
+                let trainingStatusVC = TrainningStatusIViewController()
+                self?.present(trainingStatusVC, animated: true, completion: nil)
             case 13:
                 //查看学时记录
                 print("查看学时记录")

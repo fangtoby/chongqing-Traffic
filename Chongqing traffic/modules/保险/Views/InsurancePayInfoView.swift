@@ -55,7 +55,6 @@ class InsurancePayInfoView: UIView {
         view.layer.cornerRadius = 4
         view.layer.borderColor = KUIColorLine.cgColor
         view.layer.borderWidth = 1
-        view.isUserInteractionEnabled = true
         return view
     }()
     
