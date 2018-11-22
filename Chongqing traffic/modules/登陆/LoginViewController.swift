@@ -103,7 +103,7 @@ extension LoginViewController {
                     print(userInfoDic)
                     UserDefaults.standard.set(userInfoDic, forKey: userInfo)
                     
-                    if self?.isFirstLogin == false{
+                    if self?.isFirstLogin == true{
                         let newUser:Bool? = loginInfoDic.object(forKey: "newUser") as? Bool
                         if newUser == true {
                             let alertView = ZLAlertView()
