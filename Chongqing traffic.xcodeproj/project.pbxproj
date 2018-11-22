@@ -75,6 +75,9 @@
 		8467058F21A55C9600D55432 /* InsuranceOrderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467058E21A55C9600D55432 /* InsuranceOrderInfoView.swift */; };
 		8467059121A55CAF00D55432 /* InsuranceOrderUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467059021A55CAF00D55432 /* InsuranceOrderUserInfoView.swift */; };
 		8467059321A5601F00D55432 /* PartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467059221A5601F00D55432 /* PartButton.swift */; };
+		848613E721A67156005A663B /* icon_my_ensure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613E421A67156005A663B /* icon_my_ensure@3x.png */; };
+		848613E821A67156005A663B /* icon_my_ensure.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613E521A67156005A663B /* icon_my_ensure.png */; };
+		848613E921A67156005A663B /* icon_my_ensure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613E621A67156005A663B /* icon_my_ensure@2x.png */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -244,6 +247,9 @@
 		8467058E21A55C9600D55432 /* InsuranceOrderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOrderInfoView.swift; sourceTree = "<group>"; };
 		8467059021A55CAF00D55432 /* InsuranceOrderUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOrderUserInfoView.swift; sourceTree = "<group>"; };
 		8467059221A5601F00D55432 /* PartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartButton.swift; sourceTree = "<group>"; };
+		848613E421A67156005A663B /* icon_my_ensure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_my_ensure@3x.png"; sourceTree = "<group>"; };
+		848613E521A67156005A663B /* icon_my_ensure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_my_ensure.png; sourceTree = "<group>"; };
+		848613E621A67156005A663B /* icon_my_ensure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_my_ensure@2x.png"; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -571,6 +577,9 @@
 		84F9734D21903AB700433E65 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				848613E521A67156005A663B /* icon_my_ensure.png */,
+				848613E621A67156005A663B /* icon_my_ensure@2x.png */,
+				848613E421A67156005A663B /* icon_my_ensure@3x.png */,
 				65411A3321A5974E00C4C34F /* btn_right_close.png */,
 				65411A3421A5974E00C4C34F /* btn_right_close@2x.png */,
 				65411A3221A5974E00C4C34F /* btn_right_close@3x.png */,
@@ -821,6 +830,7 @@
 				84F9738A219AA7F100433E65 /* icon_login_phone@3x.png in Resources */,
 				84F973E6219D5F5000433E65 /* icon_select_yes.png in Resources */,
 				84F973DC219D5F5000433E65 /* icon_sex_woman@2x.png in Resources */,
+				848613E821A67156005A663B /* icon_my_ensure.png in Resources */,
 				65411A2A21A587DE00C4C34F /* btn_close.png in Resources */,
 				84F9735221903AB700433E65 /* pic3.jpeg in Resources */,
 				84F9740F219EAC6900433E65 /* icon_train_time@3x.png in Resources */,
@@ -843,6 +853,7 @@
 				84F973D6219D5F5000433E65 /* icon_my_train.png in Resources */,
 				65411A2B21A587DE00C4C34F /* btn_close@2x.png in Resources */,
 				84F973D5219D5F5000433E65 /* icon_my_train@3x.png in Resources */,
+				848613E921A67156005A663B /* icon_my_ensure@2x.png in Resources */,
 				8467058521A5481600D55432 /* pay_ali@2x.png in Resources */,
 				84F9738B219AA7F100433E65 /* icon_login_phone.png in Resources */,
 				65854ED821A165AC004F72CC /* icon_right_tip1@2x.png in Resources */,
@@ -855,6 +866,7 @@
 				84F973E7219D5F5000433E65 /* home_usercenter_select@2x.png in Resources */,
 				8467058421A5481600D55432 /* btn_pay_select_no.png in Resources */,
 				65854ED521A165AC004F72CC /* icon_right_tip2@3x.png in Resources */,
+				848613E721A67156005A663B /* icon_my_ensure@3x.png in Resources */,
 				84F97387219AA7F100433E65 /* icon_login_number@2x.png in Resources */,
 				84F97409219EAC6900433E65 /* icon_back@2x.png in Resources */,
 				84F973DA219D5F5000433E65 /* icon_link_web.png in Resources */,
@@ -914,6 +926,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Chongqing traffic/Pods-Chongqing traffic-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CLImagePickerTool/CLImagePickerTool.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
@@ -934,6 +947,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CLImagePickerTool.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",

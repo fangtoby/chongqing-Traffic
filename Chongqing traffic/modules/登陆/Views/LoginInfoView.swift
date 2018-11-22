@@ -9,13 +9,15 @@
 import UIKit
 
 // 创建闭包
-typealias LoginBtnClick = () -> Void
-typealias SelectDriving = () -> Void
+typealias LoginBtnClick = () -> Void  //登陆
+typealias SelectDriving = () -> Void  //选择培训车型
+typealias GetLoginCode = () -> Void   //获取验证码
 
 class LoginInfoView: UIView, UITextFieldDelegate {
     
     var loginBtnClick : LoginBtnClick?
     var selectDriving : SelectDriving?
+    var getLoginCode : GetLoginCode?
     
     
     lazy var loginTitleLabel : UILabel = {
@@ -32,6 +34,10 @@ class LoginInfoView: UIView, UITextFieldDelegate {
         loginPhoneTextFeild.textColor = MainTextColor
         loginPhoneTextFeild.font = KUIFont16
         loginPhoneTextFeild.placeholder = "请输入手机号"
+        let phone = UserDefaults.standard.string(forKey: "loginPhone")
+        if phone != nil {
+            loginPhoneTextFeild.text = phone
+        }
         loginPhoneTextFeild.backgroundColor = KUIColorBG
         loginPhoneTextFeild.layer.cornerRadius = 4;
         loginPhoneTextFeild.layer.shadowColor = UIColor.init(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.21).cgColor
@@ -40,7 +46,7 @@ class LoginInfoView: UIView, UITextFieldDelegate {
         loginPhoneTextFeild.layer.shadowRadius = 3;
         loginPhoneTextFeild.keyboardType = UIKeyboardType.numberPad
         loginPhoneTextFeild.leftViewMode = UITextField.ViewMode.always
-        loginPhoneTextFeild.clearButtonMode = UITextField.ViewMode.whileEditing
+        loginPhoneTextFeild.clearButtonMode = UITextField.ViewMode.always
         return loginPhoneTextFeild
     }()
     
@@ -70,7 +76,7 @@ class LoginInfoView: UIView, UITextFieldDelegate {
         loginNumberTextField.layer.shadowRadius = 3;
         loginNumberTextField.keyboardType = UIKeyboardType.numberPad
         loginNumberTextField.leftViewMode = UITextField.ViewMode.always
-        loginNumberTextField.clearButtonMode = UITextField.ViewMode.whileEditing
+        loginNumberTextField.clearButtonMode = UITextField.ViewMode.always
         return loginNumberTextField
     }()
     
@@ -130,7 +136,7 @@ class LoginInfoView: UIView, UITextFieldDelegate {
         loginCodeTextField.layer.shadowRadius = 3;
         loginCodeTextField.keyboardType = UIKeyboardType.numberPad
         loginCodeTextField.leftViewMode = UITextField.ViewMode.always
-        loginCodeTextField.clearButtonMode = UITextField.ViewMode.whileEditing
+        loginCodeTextField.clearButtonMode = UITextField.ViewMode.always
         return loginCodeTextField
     }()
     
@@ -146,10 +152,13 @@ class LoginInfoView: UIView, UITextFieldDelegate {
         return loginCodeImage
     }()
     
-    lazy var loginCodeImageView:UIImageView = {
-       let loginCodeImageView = UIImageView()
-        loginCodeImageView.backgroundColor = KUIColorBG
-        return loginCodeImageView
+    lazy var loginCodeButton:UIButton = {
+       let loginCodeButton = UIButton()
+        loginCodeButton.backgroundColor = KUIColorBG
+        loginCodeButton.layer.masksToBounds = true
+        loginCodeButton.layer.cornerRadius = 4
+        loginCodeButton.addTarget(self, action: #selector(getLoginCodeClicked), for: .touchUpInside)
+        return loginCodeButton
     }()
 
     //立即登录按钮
@@ -240,8 +249,8 @@ class LoginInfoView: UIView, UITextFieldDelegate {
             make.top.equalTo(self.loginNumberTextField.snp.bottom).offset(20)
         }
         
-        self.addSubview(loginCodeImageView)
-        self.loginCodeImageView.snp.makeConstraints { (make) in
+        self.addSubview(loginCodeButton)
+        self.loginCodeButton.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize.init(width: 80, height: 40))
             make.right.equalTo(-40)
             make.top.equalTo(self.loginDrivingTypeView.snp.bottom).offset(20)
@@ -258,8 +267,8 @@ class LoginInfoView: UIView, UITextFieldDelegate {
         self.addSubview(loginCodeTextField)
         self.loginCodeTextField.snp.makeConstraints { (make) in
             make.left.height.equalTo(40)
-            make.right.equalTo(self.loginCodeImageView.snp.left).offset(-5)
-            make.top.equalTo(self.loginCodeImageView.snp.top)
+            make.right.equalTo(self.loginCodeButton.snp.left).offset(-5)
+            make.top.equalTo(self.loginCodeButton.snp.top)
         }
         
         self.addSubview(loginButton)
@@ -289,11 +298,13 @@ class LoginInfoView: UIView, UITextFieldDelegate {
     
     
     @objc func touchSelectDriving(){
-        guard let selectDriving = selectDriving else {
-            return
-        }
+        guard let selectDriving = selectDriving else { return }
         selectDriving()
     }
     
+    @objc func getLoginCodeClicked () {
+        guard let getLoginCode = getLoginCode else { return }
+        getLoginCode()
+    }
 }
 

@@ -9,8 +9,11 @@
 import UIKit
 
 // 创建闭包
+//添加照片
 typealias AddImageButtonClick = () -> Void
+//删除
 typealias DeleteImageButtonClick = ((Int) -> Void)
+//重选
 typealias ReselecteImageButtonClick = ((Int) -> Void)
 
 class MineApplyPaymentProveView: UIView {
@@ -85,69 +88,74 @@ class MineApplyPaymentProveView: UIView {
         addImageButtonClick()
     }
     
-    func setImagesView(images:[UIImage]) {
-        for view in self.imagesBgView.subviews {
-            view.removeFromSuperview()
-        }
-        
-        var currenImageView = UIImageView()
-        for i in 0..<images.count {
-            let imageView = UIImageView()
-            imageView.image = images[i]
-            imageView.clipsToBounds = true
-            imageView.contentMode = UIView.ContentMode.scaleAspectFill
-            imageView.isUserInteractionEnabled = true
-            self.imagesBgView.addSubview(imageView)
-            imageView.snp.makeConstraints { (make) in
-                if i == 0{
-                    make.top.left.equalToSuperview()
-                }else {
-                    if i == 3 {
+    /// 设置图片数组
+    @objc var images = [UIImage]() {
+        didSet{
+            for view in self.imagesBgView.subviews {
+                view.removeFromSuperview()
+            }
+            if images.count == 0{
+                return
+            }
+            var currenImageView = UIImageView()
+            for i in 0..<images.count {
+                let imageView = UIImageView()
+                imageView.image = images[i]
+                imageView.clipsToBounds = true
+                imageView.contentMode = UIView.ContentMode.scaleAspectFill
+                imageView.isUserInteractionEnabled = true
+                self.imagesBgView.addSubview(imageView)
+                imageView.snp.makeConstraints { (make) in
+                    if i == 0{
+                        make.top.left.equalToSuperview()
+                    }else {
+                        if i == 3 {
+                            make.left.equalToSuperview()
+                            make.top.equalTo(currenImageView.snp.bottom).offset(12)
+                        }else {
+                            make.left.equalTo(currenImageView.snp.right).offset(12)
+                            make.top.equalTo(currenImageView.snp.top)
+                        }
+                    }
+                    make.width.height.equalTo(imageWidth)
+                }
+                
+                let deleteBtn = UIButton()
+                deleteBtn.tag = 100 + i
+                deleteBtn.setBackgroundImage(UIImage.init(named: "btn_image_delete"), for: .normal)
+                deleteBtn.addTarget(self, action: #selector(deleteImage(button:)), for: .touchUpInside)
+                imageView.addSubview(deleteBtn)
+                deleteBtn.snp.makeConstraints { (make) in
+                    make.top.right.equalToSuperview()
+                    make.width.height.equalTo(18)
+                }
+                
+                let reSelectBtn = UIButton()
+                reSelectBtn.tag = 1000 + i
+                reSelectBtn.titleLabel?.font = KUIFont12
+                reSelectBtn.setTitle("重新选择", for: .normal)
+                reSelectBtn.setTitleColor(.white, for: .normal)
+                reSelectBtn.backgroundColor = UIColor.init(white: 0, alpha: 0.4)
+                reSelectBtn.addTarget(self, action: #selector(reSelectImage(button:)), for: .touchUpInside)
+                imageView.addSubview(reSelectBtn)
+                reSelectBtn.snp.makeConstraints { (make) in
+                    make.left.right.bottom.equalToSuperview()
+                    make.height.equalTo(20)
+                }
+                currenImageView = imageView
+            }
+            
+            if images.count < 6 {
+                self.imagesBgView.addSubview(addImageButton)
+                self.addImageButton.snp.makeConstraints { (make) in
+                    make.width.height.equalTo(imageWidth)
+                    if images.count == 3 {
                         make.left.equalToSuperview()
                         make.top.equalTo(currenImageView.snp.bottom).offset(12)
                     }else {
                         make.left.equalTo(currenImageView.snp.right).offset(12)
                         make.top.equalTo(currenImageView.snp.top)
                     }
-                }
-                make.width.height.equalTo(imageWidth)
-            }
-            
-            let deleteBtn = UIButton()
-            deleteBtn.tag = 100 + i
-            deleteBtn.setBackgroundImage(UIImage.init(named: "btn_image_delete"), for: .normal)
-            deleteBtn.addTarget(self, action: #selector(deleteImage(button:)), for: .touchUpInside)
-            imageView.addSubview(deleteBtn)
-            deleteBtn.snp.makeConstraints { (make) in
-                make.top.right.equalToSuperview()
-                make.width.height.equalTo(18)
-            }
-            
-            let reSelectBtn = UIButton()
-            reSelectBtn.tag = 1000 + i
-            reSelectBtn.titleLabel?.font = KUIFont12
-            reSelectBtn.setTitle("重新选择", for: .normal)
-            reSelectBtn.setTitleColor(.white, for: .normal)
-            reSelectBtn.backgroundColor = UIColor.init(white: 0, alpha: 0.4)
-            reSelectBtn.addTarget(self, action: #selector(reSelectImage(button:)), for: .touchUpInside)
-            imageView.addSubview(reSelectBtn)
-            reSelectBtn.snp.makeConstraints { (make) in
-                make.left.right.bottom.equalToSuperview()
-                make.height.equalTo(20)
-            }
-            currenImageView = imageView
-        }
-        
-        if images.count < 6 {
-            self.imagesBgView.addSubview(addImageButton)
-            self.addImageButton.snp.makeConstraints { (make) in
-                make.width.height.equalTo(imageWidth)
-                if images.count == 3 {
-                    make.left.equalToSuperview()
-                    make.top.equalTo(currenImageView.snp.bottom).offset(12)
-                }else {
-                    make.left.equalTo(currenImageView.snp.right).offset(12)
-                    make.top.equalTo(currenImageView.snp.top)
                 }
             }
         }

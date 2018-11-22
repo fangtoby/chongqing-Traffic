@@ -59,6 +59,8 @@ let statusHeight : CGFloat = isIphone_X ? 44 : 20
 
 let tabBarHeight : CGFloat = isIphone_X ? 49 + 34 : 49
 
-let isLogin = "isLogin"
-
+///本地化存储字段
+let isLogin = "isLogin" //是否登陆
+let loginInfo = "loginInfo"//登录信息
+let userInfo = "userInfo" //用户信息
 

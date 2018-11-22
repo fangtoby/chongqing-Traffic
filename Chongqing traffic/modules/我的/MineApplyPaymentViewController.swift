@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import Photos
+import CLImagePickerTool
 
 class MineApplyPaymentViewController: BaseViewController {
+    
+    var assets:Array<PHAsset> = []
+    var images:Array<UIImage> = []
+    
+    
+    // 如果是单独访问相机，一定要声明为全局变量
+    let imagePickTool = CLImagePickerTool()
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView.init(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: KScreenHeigth))
@@ -83,32 +92,64 @@ class MineApplyPaymentViewController: BaseViewController {
             make.top.equalTo(self.applyPayInfoView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-
-        let image1 = UIImage.init(named: "pic1.jpeg")
-        let image2 = UIImage.init(named: "pic2.jpeg")
-        let image3 = UIImage.init(named: "pic3.jpeg")
-        let image4 = UIImage.init(named: "pic1.jpeg")
-        let image5 = UIImage.init(named: "pic2.jpeg")
-        let image6 = UIImage.init(named: "pic3.jpeg")
         
-        var images:[UIImage] = [image1!,image2!,image3!,image4!,image5!]
-        
-        self.applyPaymentProveView.setImagesView(images: images)
-        
+        //添加照片
         self.applyPaymentProveView.addImageButtonClick = { [weak self] in
-            images.append(image6!)
-            self?.applyPaymentProveView.setImagesView(images: images)
+            self?.imagePickTool.cameraOut = true
+            if (self?.assets.count)! < 6 {
+                self?.imagePickTool.setupImagePickerWith(MaxImagesCount: (6 - (self?.assets.count)!), superVC: self!) { (selectAssets,cutImage) in
+                    print("返回的asset数组是\(selectAssets)")
+                    
+                    for asset in selectAssets {
+                        self?.assets.append(asset)
+                    }
+                    
+                    // 获取原图，异步
+                    // scale 指定压缩比
+                    // 内部提供的方法可以异步获取图片，同步获取的话时间比较长，不建议！，如果是iCloud中的照片就直接从icloud中下载，下载完成后返回图片,同时也提供了下载失败的方法
+                    CLImagePickerTool.convertAssetArrToOriginImage(assetArr: selectAssets, scale: 0.1, successClouse: {[weak self] (image,assetItem) in
+                        
+                        self?.images.append(image)
+                        
+                        }, failedClouse: { () in
+                            
+                    })
+                    self?.applyPaymentProveView.images = (self?.images)!
+                }
+            }
         }
-        
+        //删除照片
         self.applyPaymentProveView.deleteImageButtonClick = { [weak self] (index) in
-            images.remove(at: index)
-            self?.applyPaymentProveView.setImagesView(images: images)
+            self?.images.remove(at: index)
+            self?.assets.remove(at: index)
+            self?.applyPaymentProveView.images = (self?.images)!
+        }
+        //重选照片
+        self.applyPaymentProveView.reselecteImageButtonClick = {[weak self] (index) in
+            self?.imagePickTool.singleImageChooseType = .singlePicture
+            self?.imagePickTool.cameraOut = true
+            self?.imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self!) { (selectAssets,editorImage) in
+                print("返回的asset是\(selectAssets)")
+                
+                self?.assets.remove(at: index)
+                for asset in selectAssets {
+                    self?.assets.insert(asset, at: index)
+                }
+                CLImagePickerTool.convertAssetArrToOriginImage(assetArr: selectAssets, scale: 0.1, successClouse: {[weak self] (image,assetItem) in
+                    self?.images.remove(at: index)
+                    self?.images.insert(image, at: index)
+                    
+                    }, failedClouse: { () in
+                        
+                })
+                self?.applyPaymentProveView.images = (self?.images)!
+            }
         }
     }
     
     @objc func commitButtonClicked() {
-        //申请理赔
-        let applyPaymentVC = MineApplyPaymentViewController()
-        self.navigationController?.pushViewController(applyPaymentVC, animated: true)
+        //提交申请
+//        let applyPaymentVC = MineApplyPaymentViewController()
+//        self.navigationController?.pushViewController(applyPaymentVC, animated: true)
     }
 }

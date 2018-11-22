@@ -33,8 +33,19 @@ enum StatusCode:Int {
 }
 
 enum API {
-    case deviceRegist(params:[String:Any])
-    case newFeeds(type: Int, clumId: String) //最新帖子
+    case deviceRegist(params:[String:Any])//设备注册
+    case code(params:[String:Any])//获取验证码图片
+    case login(params:[String:Any]) //登陆
+    case studentInfo(params:[String:Any]) //学员信息
+    case logout(params:[String:Any]) //退出
+    case currentPart(params:[String:Any]) //当前培训部分接口
+    case periodStatus(params:[String:Any]) //学员当前部分学时详情接口（包括保险文案）
+    case periodList(params:[String:Any]) //获取教学日志列表
+    case periodDetail(params:[String:Any]) //获取教学日志详情
+    case periodHistoryList(params:[String:Any]) //获取归档的教学日志列表
+    case periodHistoryDetail(params:[String:Any]) //获取归档的教学日志详情
+    case push(params:[String:Any]) //推送接口
+    case complaint(params:[String:Any]) //投诉接口
 }
 
 extension API: TargetType {
@@ -44,7 +55,18 @@ extension API: TargetType {
     var path: String {
         switch self {
         case .deviceRegist: return "deviceRegist"
-            case .newFeeds: return "bbs/newPosts"
+        case .code: return "image"
+        case .login: return "login"
+        case .studentInfo: return "student/stuDetail"
+        case .logout: return "logout"
+        case .currentPart: return "student/now"
+        case .periodStatus: return "studentPeriod/periodStatus"
+        case .periodList: return "studentPeriod/periodList"
+        case .periodDetail: return "studentPeriod/periodDetail"
+        case .periodHistoryList: return "studentPeriod/periodHistoryList"
+        case .periodHistoryDetail: return "studentPeriod/periodHistoryDetail"
+        case .push: return "push"
+        case .complaint: return "complaint"
         }
     }
     
@@ -57,9 +79,30 @@ extension API: TargetType {
         switch self {
         case .deviceRegist(let params):
             parmeters = params
-        case .newFeeds(let type, let clumId):
-            parmeters["type"] = type
-            parmeters["columnId"] = clumId
+        case .code(let params):
+            parmeters = params
+        case .login(let params):
+            parmeters = params
+        case .studentInfo(let params):
+            parmeters = params
+        case .logout(let params):
+            parmeters = params
+        case .currentPart(let params):
+            parmeters = params
+        case .periodStatus(let params):
+            parmeters = params
+        case .periodList(let params):
+            parmeters = params
+        case .periodDetail(let params):
+            parmeters = params
+        case .periodHistoryList(let params):
+            parmeters = params
+        case .periodHistoryDetail(let params):
+            parmeters = params
+        case .push(let params):
+            parmeters = params
+        case .complaint(let params):
+            parmeters = params
         }
         return .requestParameters(parameters: parmeters, encoding: JSONEncoding.default)
     }

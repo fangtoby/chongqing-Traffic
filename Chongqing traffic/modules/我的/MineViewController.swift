@@ -45,7 +45,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     private lazy var dataSource: Array = {
         return [[ ],
                 ["icon":"icon_my_train", "title": "我的培训信息", "desc":"正在培训：第一部分"],
-                ["icon":"icon_my_train", "title": "我的保障信息", "desc":"保障中"]]
+                ["icon":"icon_my_ensure", "title": "我的保障信息", "desc":"保障中"]]
     }()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,14 +81,14 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func loadData(){
-        NetWorkRequest(.newFeeds(type: 2, clumId: "SUBJECT_SIX"), completion: { (res) -> (Void) in
-            print(res)
-//            print("网络成功的数据")
-        }, failed: { (str) -> (Void) in
-            print("网络请求失败的数据(resultCode不为正确时)")
-        }) { () -> (Void) in
-            print("网络错误了")
-        }
+//        NetWorkRequest(.newFeeds(type: 2, clumId: "SUBJECT_SIX"), completion: { (res) -> (Void) in
+//            print(res)
+////            print("网络成功的数据")
+//        }, failed: { (str) -> (Void) in
+//            print("网络请求失败的数据(resultCode不为正确时)")
+//        }) { () -> (Void) in
+//            print("网络错误了")
+//        }
     }
     
     ///退出登录
@@ -98,10 +98,22 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         alertView.isHidenTitle()
         alertView.showView()
         alertView.sureBtnClick = { [weak self] in
-            UserDefaults.standard.removeObject(forKey: isLogin)
-            let loginVC = LoginViewController()
-            loginVC.isFirstLogin = false
-            self?.present(loginVC, animated: true, completion: nil)
+            var logoutParams = [String:Any]()
+            logoutParams["token"] = UIDevice.current.identifierForVendor?.uuidString
+            NetWorkRequest(.logout(params: logoutParams), completion: { (result) -> (Void) in
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                let loginVC = LoginViewController()
+                loginVC.isFirstLogin = true
+                self?.present(loginVC, animated: true, completion: nil)
+            }, failed: { (error) -> (Void) in
+                let code:Int? = error.object(forKey: "code") as? Int
+                if code == 402 {
+                    UserDefaults.standard.removeObject(forKey: isLogin)
+                    let loginVC = LoginViewController()
+                    loginVC.isFirstLogin = false
+                    self?.present(loginVC, animated: true, completion: nil)
+                }
+            })
         }
     }
 }

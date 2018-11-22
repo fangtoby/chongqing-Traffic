@@ -15,9 +15,11 @@ import SVProgressHUD
 /// 超时时长
 private var requestTimeOut:Double = 20
 ///成功数据的回调
-typealias successCallback = ((String) -> (Void))
+typealias successCallback = ((NSDictionary) -> (Void))
+///验证码接口成功专用****************
+typealias successCodeCallback = ((Data) -> (Void))
 ///失败的回调
-typealias failedCallback = ((String) -> (Void))
+typealias failedCallback = ((NSDictionary) -> (Void))
 ///网络错误的回调
 typealias errorCallback = (() -> (Void))
 
@@ -35,12 +37,8 @@ private let myEndpointClosure = { (target: API) -> Endpoint in
         httpHeaderFields: target.headers
     )
     requestTimeOut = 20//每次请求都会调用endpointClosure 到这里设置超时时长 也可单独每个接口设置
-    switch target {
-    case .newFeeds:
-        return endpoint
-    default:
-        return endpoint
-    }
+    
+    return endpoint
 }
 
 ///网络请求的设置
@@ -61,34 +59,6 @@ private let requestClosure = { (endpoint: Endpoint, done: MoyaProvider.RequestRe
     }
 }
 
-/*   设置ssl
- let policies: [String: ServerTrustPolicy] = [
- "example.com": .pinPublicKeys(
- publicKeys: ServerTrustPolicy.publicKeysInBundle(),
- validateCertificateChain: true,
- validateHost: true
- )
- ]
- */
-
-// 用Moya默认的Manager还是Alamofire的Manager看实际需求。HTTPS就要手动实现Manager了
-//private public func defaultAlamofireManager() -> Manager {
-//
-//    let configuration = URLSessionConfiguration.default
-//
-//    configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-//
-//    let policies: [String: ServerTrustPolicy] = [
-//        "ap.grtstar.cn": .disableEvaluation
-//    ]
-//    let manager = Alamofire.SessionManager(configuration: configuration,serverTrustPolicyManager: ServerTrustPolicyManager(policies: policies))
-//
-//    manager.startRequestsImmediately = false
-//
-//    return manager
-//}
-
-
 /// NetworkActivityPlugin插件用来监听网络请求，界面上做相应的展示
 ///但这里我没怎么用这个。。。 loading的逻辑直接放在网络处理里面了
 private let networkPlugin = NetworkActivityPlugin.init { (changeType, targetType) in
@@ -97,10 +67,10 @@ private let networkPlugin = NetworkActivityPlugin.init { (changeType, targetType
     switch(changeType){
     case .began:
         print("开始请求网络")
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
     case .ended:
         print("结束")
-        SVProgressHUD.dismiss()
+//        SVProgressHUD.dismiss()
     }
 }
 
@@ -122,6 +92,75 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback ){
     NetWorkRequest(target, completion: completion, failed: nil, errorResult: nil)
 }
 
+///****************************************************************************************
+///获取验证码图片接口专用
+func NetWorkRequest (_ target: API, codeCompletion: @escaping successCodeCallback ) {
+    NetWorkRequest(target, codeCompletion: codeCompletion, failed: nil, errorResult: nil)
+}
+
+func NetWorkRequest(_ target: API, codeCompletion: @escaping successCodeCallback , failed:failedCallback?, errorResult:errorCallback?) {
+    //先判断网络是否有链接 没有的话直接返回--代码略
+    if !isNetworkConnect{
+        print("提示用户网络似乎出现了问题")
+        SVProgressHUD.showProgress(3, status: "网络似乎出现了问题")
+        SVProgressHUD.dismiss(withDelay: 2.0)
+        return
+    }
+    
+    //这里显示loading图
+    Provider.request(target) { (result) in
+        
+        switch result {
+            
+        case let .success(response):
+            print(response)
+            
+            let jsonString = String.init(data: response.data, encoding: .utf8)
+            if jsonString == nil {
+                codeCompletion(response.data)
+                return
+            }
+            let dic = getDictionaryFromJSONString(jsonString: jsonString!)
+            print(dic)
+            
+            switch dic["code"] as? Int {
+            case StatusCode.API_CODE_REGISTER_DEVICE_NO.rawValue:
+                print("注册设备")
+                deviceRegistCode(target: target, completion: codeCompletion)
+                
+            case StatusCode.API_CODE_FORCE_UPGRADE.rawValue:
+                print("强制升级")
+            case StatusCode.API_CODE_SERVER_ERROR.rawValue:
+                print("服务器忙,请稍后再试")
+            case StatusCode.API_CODE_LOGIN_NO.rawValue:
+                print("未登录")
+                
+            default:
+                print("aaaaaa")
+            }
+        case let .failure(error):
+            print("错误原因：\(error.errorDescription ?? "")")
+        }
+    }
+}
+
+func deviceRegistCode(target: API?, completion: @escaping successCodeCallback) {
+    var registParams = [String:Any]()
+    registParams["deviceType"] = "IOS"
+    registParams["deviceToken"] = UIDevice.current.identifierForVendor?.uuidString
+    registParams["clientVersion"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+    
+    NetWorkRequest(.deviceRegist(params: registParams), completion: { (result) -> (Void) in
+        let dataInfo:NSDictionary = result.object(forKey: "data") as! NSDictionary
+        print(dataInfo)
+        UserDefaults.standard.set(dataInfo["token"], forKey: "token")
+        if target != nil {
+            NetWorkRequest(target!, codeCompletion: completion)
+        }
+    })
+}
+
+///**************************************************************************************************************
 
 /// 需要知道成功或者失败的网络请求， 要知道code码为其他情况时候用这个
 ///
@@ -148,67 +187,62 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
         SVProgressHUD.dismiss(withDelay: 2.0)
         return
     }
+    
     //这里显示loading图
     Provider.request(target) { (result) in
         //隐藏hud
         switch result {
+
         case let .success(response):
+            print(response)
             
             let jsonString = String.init(data: response.data, encoding: .utf8)
-            
+            if jsonString == nil {
+                return
+            }
             let dic = getDictionaryFromJSONString(jsonString: jsonString!)
             print(dic)
-            print(jsonString!)
+            
             switch dic["code"] as? Int {
             case StatusCode.API_CODE_REQUEST_OK.rawValue:
-                completion(jsonString!)
-                
+                completion(dic)
+
             case StatusCode.API_CODE_LOGIN_NO.rawValue:
                 print("去登陆")
-                
+                failed!(dic)
             case StatusCode.API_CODE_REGISTER_DEVICE_NO.rawValue:
                 print("注册设备")
-                deviceRegist(target: target)
-            
+                deviceRegist(target: target, completion: completion)
+
             case StatusCode.API_CODE_FORCE_UPGRADE.rawValue:
                 print("强制升级")
             case StatusCode.API_CODE_SERVER_ERROR.rawValue:
                 print("服务器忙,请稍后再试")
-                
+
             default:
                 print("aaaaaa")
             }
-//            } catch {
-//
-//            }
         case let .failure(error):
-            guard let error = error as? CustomStringConvertible else {
-                //网络连接失败，提示用户
-                print("网络连接失败")
-                break
-            }
-            if errorResult != nil {
-                errorResult!()
-            }
+            print("错误原因：\(error.errorDescription ?? "")")
         }
     }
 }
 
-func deviceRegist(target: API) {
+func deviceRegist(target: API?, completion: @escaping successCallback) {
     var registParams = [String:Any]()
     registParams["deviceType"] = "IOS"
-    registParams["requestVersion"] = "1"
     registParams["deviceToken"] = UIDevice.current.identifierForVendor?.uuidString
     registParams["clientVersion"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
-    registParams["clientType"] = "STUDENT"
+
     
-    NetWorkRequest(.deviceRegist(params: registParams)) { (res) -> (Void) in
-        let infoDic = getDictionaryFromJSONString(jsonString: res)
-        UserDefaults.standard.set(infoDic["token"], forKey: "token")
-        NetWorkRequest(target, completion: { (res) -> (Void) in
-            
-        })
-    }
+    NetWorkRequest(.deviceRegist(params: registParams), completion: { (result) -> (Void) in
+        let dataInfo:NSDictionary = result.object(forKey: "data") as! NSDictionary
+        print(dataInfo)
+        UserDefaults.standard.set(dataInfo["token"], forKey: "token")
+        if target != nil {
+            NetWorkRequest(target!, completion: completion)
+        }
+    })
 }
 
 /// 基于Alamofire,网络是否连接，，这个方法不建议放到这个类中,可以放在全局的工具类中判断网络链接情况
@@ -219,26 +253,3 @@ var isNetworkConnect: Bool {
         return network?.isReachable ?? true //无返回就默认网络已连接
     }
 }
-
-/// Demo中并未使用，以后如果有数组转json可以用这个。
-//struct JSONArrayEncoding: ParameterEncoding {
-//    static let `default` = JSONArrayEncoding()
-//
-//    func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
-//        var request = try urlRequest.asURLRequest()
-//
-//        guard let json = parameters?["jsonArray"] else {
-//            return request
-//        }
-//
-//        let data = try JSONSerialization.data(withJSONObject: json, options: [])
-//
-//        if request.value(forHTTPHeaderField: "Content-Type") == nil {
-//            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//        }
-//
-//        request.httpBody = data
-//
-//        return request
-//    }
-//}

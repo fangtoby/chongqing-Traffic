@@ -25,4 +25,8 @@ target 'Chongqing traffic' do
 
   pod 'Charts', '~> 3.2.1'
   pod 'KMPlaceholderTextView', '~> 1.4.0'
+  #照片选择
+  pod 'CLImagePickerTool'
+#  pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePickerTool.git'
+
 end

@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        UserDefaults["hahha"]
-//        [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+        
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.enable = true;
+        
         let isLoginStatus = UserDefaults.standard.object(forKey: isLogin)
         if (isLoginStatus != nil) {
             let tabbarController = ESTabBarController()
@@ -47,8 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window?.makeKeyAndVisible()
         
-        
-        
         return true
     }
 
@@ -73,7 +71,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
