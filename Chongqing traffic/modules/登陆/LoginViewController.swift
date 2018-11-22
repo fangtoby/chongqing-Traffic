@@ -92,15 +92,25 @@ extension LoginViewController {
 
                 //登陆成功的信息
                 let loginInfoDic:NSDictionary = result.object(forKey: "data") as! NSDictionary
-                print(loginInfoDic)
-//                UserDefaults.standard.set(loginInfoDic, forKey: loginInfo)
+//                print(loginInfoDic)
+                for key in loginInfoDic.allKeys {
+                    if loginInfoDic[key] is NSNull {
+                        loginInfoDic.setValue("", forKey: key as! String)
+                    }
+                }
+                UserDefaults.standard.set(loginInfoDic, forKey: loginInfo)
                 
                 let userInfoParams = [String:Any]()
                 NetWorkRequest(.studentInfo(params: userInfoParams), completion: { [weak self](result) -> (Void) in
                     UserDefaults.standard.set(true, forKey: isLogin)
                     //用户信息
                     let userInfoDic:NSDictionary = result.object(forKey: "data") as! NSDictionary
-                    print(userInfoDic)
+//                    print(userInfoDic)
+                    for key in userInfoDic.allKeys {
+                        if userInfoDic[key] is NSNull {
+                            userInfoDic.setValue("", forKey: key as! String)
+                        }
+                    }
                     UserDefaults.standard.set(userInfoDic, forKey: userInfo)
                     
                     if self?.isFirstLogin == true{

@@ -209,7 +209,8 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
 
             case StatusCode.API_CODE_LOGIN_NO.rawValue:
                 print("去登陆")
-                failed!(dic)
+                completion(dic)
+//                failed!(dic)
             case StatusCode.API_CODE_REGISTER_DEVICE_NO.rawValue:
                 print("注册设备")
                 deviceRegist(target: target, completion: completion)

@@ -13,7 +13,7 @@ class MineInfoView: UIView {
     //用户图像
     lazy var userLogoImageView:UIImageView = {
         let iconImageView = UIImageView()
-        iconImageView.image = UIImage.init(named: "pic1.jpeg")
+//        iconImageView.image = UIImage.init(named: "pic1.jpeg")
         iconImageView.layer.masksToBounds = true
         iconImageView.layer.cornerRadius = 30
         return iconImageView

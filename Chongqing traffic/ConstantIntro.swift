@@ -61,6 +61,6 @@ let tabBarHeight : CGFloat = isIphone_X ? 49 + 34 : 49
 
 ///本地化存储字段
 let isLogin = "isLogin" //是否登陆
-let loginInfo = "loginInfo"//登录信息
+let loginInfo = "loginInfo"// 驾校id
 let userInfo = "userInfo" //用户信息
 

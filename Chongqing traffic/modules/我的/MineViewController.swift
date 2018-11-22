@@ -48,6 +48,8 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 ["icon":"icon_my_ensure", "title": "我的保障信息", "desc":"保障中"]]
     }()
     
+    var userInfoDic:NSDictionary?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
@@ -65,6 +67,12 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         titleLabel.frame = CGRect(x: 20, y: navigationBarHeight - 25 - (44 - 25)/2.0, width: KScreenWidth - 40, height: 25)
         self.navigationItem.titleView = titleLabel
         
+        userInfoDic = UserDefaults.standard.object(forKey: userInfo) as? NSDictionary
+        
+        setUpUI()
+    }
+    
+    func setUpUI() {
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
             make.top.equalTo(navigationBarHeight)
@@ -106,13 +114,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 loginVC.isFirstLogin = true
                 self?.present(loginVC, animated: true, completion: nil)
             }, failed: { (error) -> (Void) in
-                let code:Int? = error.object(forKey: "code") as? Int
-                if code == 402 {
-                    UserDefaults.standard.removeObject(forKey: isLogin)
-                    let loginVC = LoginViewController()
-                    loginVC.isFirstLogin = false
-                    self?.present(loginVC, animated: true, completion: nil)
-                }
+                
             })
         }
     }
@@ -142,8 +144,18 @@ extension MineViewController {
             let cell:MineInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier1, for: indexPath) as! MineInfoTableViewCell
             cell.accessoryType = .none
             cell.selectionStyle = .default
+            let logoImageUrl = userInfoDic?.object(forKey: "photourl") as? String
+            let logoUrl = URL(string: logoImageUrl ?? "")
             
-//            cell.textLabel?.text = "个人信息"
+//            cell.mineInfoView.userLogoImageView.kf.setImage(with: logoUrl)
+            cell.mineInfoView.userLogoImageView.kf.setImage(with: logoUrl, placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
+            cell.mineInfoView.nameLabel.text = userInfoDic?.object(forKey: "name") as? String
+            let sex:Int = userInfoDic?.object(forKey: "sex") as! Int
+            if sex == 2{
+                cell.mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_woman")
+            }else {
+                cell.mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_man")
+            }
             return cell
         }else {
             let cell:MineTableViewCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier2, for: indexPath) as! MineTableViewCell
