@@ -27,7 +27,7 @@ class PeriodRecordTableViewCell: UITableViewCell {
         let dateLabel = UILabel()
         dateLabel.font = KUIFont14
         dateLabel.textColor = .black
-        dateLabel.text = "2018-08-17"
+//        dateLabel.text = "2018-08-17"
         return dateLabel
     }()
     
@@ -42,13 +42,13 @@ class PeriodRecordTableViewCell: UITableViewCell {
         let timeLabel = UILabel()
         timeLabel.font = KUIFont14
         timeLabel.textColor = .black
-        timeLabel.text = "08:42:23～09:31:56"
+//        timeLabel.text = "08:42:23～09:31:56"
         return timeLabel
     }()
     
     //培训信息
     //时长
-    private lazy var traiTimeTipLabel: UILabel = {
+    private lazy var trainTimeTipLabel: UILabel = {
         let label = UILabel ()
         label.font = KUIFont12
         label.textColor = Main155Color
@@ -59,7 +59,7 @@ class PeriodRecordTableViewCell: UITableViewCell {
         let label = UILabel ()
         label.font = KUIFont12
         label.textColor = .black
-        label.text = "1学时04分"
+//        label.text = "1学时04分"
         return label
     }()
     
@@ -75,7 +75,7 @@ class PeriodRecordTableViewCell: UITableViewCell {
         let label = UILabel ()
         label.font = KUIFont12
         label.textColor = .black
-        label.text = "1学时04分"
+//        label.text = "1学时04分"
         return label
     }()
     
@@ -91,7 +91,7 @@ class PeriodRecordTableViewCell: UITableViewCell {
         let label = UILabel ()
         label.font = KUIFont12
         label.textColor = .black
-        label.text = "实操"
+//        label.text = "实操"
         return label
     }()
     
@@ -100,19 +100,19 @@ class PeriodRecordTableViewCell: UITableViewCell {
         let label = UILabel ()
         label.font = KUIFont12
         label.textColor = Main155Color
-        label.text = "学时类型"
+        label.text = "教练车牌号"
         return label
     }()
     lazy var numberLabel: UILabel = {
         let label = UILabel ()
         label.font = KUIFont12
         label.textColor = .black
-        label.text = "冀E3733学"
+//        label.text = "冀E3733学"
         return label
     }()
     
     //教练员
-    lazy var coachTipLabel: UILabel = {
+    private lazy var coachTipLabel: UILabel = {
         let label = UILabel ()
         label.font = KUIFont12
         label.textColor = Main155Color
@@ -123,7 +123,24 @@ class PeriodRecordTableViewCell: UITableViewCell {
         let label = UILabel ()
         label.font = KUIFont12
         label.textColor = .black
-        label.text = "张书军"
+//        label.text = "张书军"
+        return label
+    }()
+    
+    //培训学时不合格原因
+    private lazy var trainFailTipLabel: UILabel = {
+        let tipLabel = UILabel()
+        tipLabel.font = KUIFont12
+        tipLabel.textColor = Main155Color
+        tipLabel.text = "培训学时不合格原因"
+        return tipLabel
+    }()
+    lazy var trainFailLabel: UILabel = {
+        let label = UILabel()
+        label.font = KUIFont12
+        label.textColor = .black
+        label.numberOfLines = 0
+//        label.text = "10：找不到对应的分钟学时\n11：找不到对应的学时"
         return label
     }()
     
@@ -168,22 +185,22 @@ class PeriodRecordTableViewCell: UITableViewCell {
             make.width.height.equalTo(14)
         }
         
-        self.contentView.addSubview(traiTimeTipLabel)
-        self.traiTimeTipLabel.snp.makeConstraints { (make) in
+        self.contentView.addSubview(trainTimeTipLabel)
+        self.trainTimeTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.dateLabel.snp.left)
             make.top.equalTo(self.dateLabel.snp.bottom).offset(20)
         }
         
         self.contentView.addSubview(trainTimeLabel)
         self.trainTimeLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self.traiTimeTipLabel.snp.centerY)
-            make.left.equalTo(self.traiTimeTipLabel.snp.right).offset(8)
+            make.centerY.equalTo(self.trainTimeTipLabel.snp.centerY)
+            make.left.equalTo(self.trainTimeTipLabel.snp.right).offset(8)
         }
         
         self.contentView.addSubview(validTipLabel)
         self.validTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.dateLabel.snp.left)
-            make.top.equalTo(self.traiTimeTipLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.trainTimeTipLabel.snp.bottom).offset(10)
         }
         
         self.contentView.addSubview(validLabel)
@@ -207,7 +224,7 @@ class PeriodRecordTableViewCell: UITableViewCell {
         self.contentView.addSubview(numberTipLabel)
         self.numberTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.timeLabel.snp.left)
-            make.top.equalTo(self.traiTimeTipLabel.snp.top)
+            make.top.equalTo(self.trainTimeTipLabel.snp.top)
         }
         
         self.contentView.addSubview(numberLabel)
@@ -227,6 +244,20 @@ class PeriodRecordTableViewCell: UITableViewCell {
             make.centerY.equalTo(self.coachTipLabel.snp.centerY)
             make.left.equalTo(self.numberLabel.snp.left)
         }
+        
+        self.contentView.addSubview(trainFailTipLabel)
+        self.trainFailTipLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.trainTimeTipLabel.snp.left)
+            make.top.equalTo(self.typeTipLabel.snp.bottom).offset(10)
+        }
+        
+        self.contentView.addSubview(trainFailLabel)
+        self.trainFailLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.trainFailTipLabel.snp.right).offset(8)
+            make.top.equalTo(self.trainFailTipLabel.snp.top)
+            make.right.equalTo(-20)
+            make.bottom.equalTo(-20)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -243,5 +274,94 @@ class PeriodRecordTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+}
 
+extension PeriodRecordTableViewCell {
+    func setDicInfo(dicInfo:NSDictionary?) {
+        dateLabel.text = dicInfo?.object(forKey: "trainingdate") as? String
+        
+        let starTime = dicInfo?.object(forKey: "starttime") as? Double
+        let endTime = dicInfo?.object(forKey: "endtime") as? Double
+        let starDate = Date.getNowDateFromatAnDate(Date(timeIntervalSince1970: (starTime ?? 0)/1000))
+        let endDate = Date.getNowDateFromatAnDate(Date(timeIntervalSince1970: (endTime ?? 0)/1000))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        let starDateStr = formatter.string(from: starDate)
+        let endDateStr = formatter.string(from: endDate)
+        timeLabel.text = "\(starDateStr)~\(endDateStr)"
+        
+        var trainTime = dicInfo?.object(forKey: "duration") as? Int
+        if trainTime == nil {
+            trainTime = 0
+        }
+        trainTimeLabel.text = "\(trainTime!/45)学时\(trainTime!%45)分"
+        
+        var validTime = dicInfo?.object(forKey: "lastinstancetime") as? Int
+        if validTime == nil {
+            validTime = 0
+        }
+        validLabel.text = "\(validTime!/45)学时\(validTime!%45)分"
+        
+        let type = dicInfo?.object(forKey: "subjcode") as? String
+        if type == "1" {
+            typeLabel.text = "实操"
+        }else if type == "2" {
+            typeLabel.text = "课堂教学"
+        }else if type == "3" {
+            typeLabel.text = "模拟器教学"
+        }else if type == "4" {
+            typeLabel.text = "远程教学"
+        }
+        
+        numberLabel.text = dicInfo?.object(forKey: "carName") as? String
+        coachLabel.text = dicInfo?.object(forKey: "coachName") as? String
+        
+        let failReason = dicInfo?.object(forKey: "recheckreason") as? String
+        if failReason == nil || failReason == "" {
+            trainFailTipLabel.isHidden = true
+            trainFailLabel.isHidden = true
+            self.typeLabel.snp.remakeConstraints { (make) in
+                make.centerY.equalTo(self.typeTipLabel.snp.centerY)
+                make.left.equalTo(self.typeTipLabel.snp.right).offset(8)
+                make.bottom.equalTo(-20)
+            }
+            self.trainFailLabel.snp.remakeConstraints { (make) in
+                make.left.equalTo(self.trainFailTipLabel.snp.right).offset(8)
+                make.top.equalTo(self.trainFailTipLabel.snp.top)
+                make.right.equalTo(-20)
+            }
+        }else {
+            var faildStr : String = ""
+            var faildArray =  failReason?.components(separatedBy: ",")
+            faildArray?.removeLast()
+            if faildArray != nil {
+                for index in 0..<faildArray!.count {
+                    let str = faildArray?[index]
+                    let reason = faildReason(index: str!)
+                    
+                    if index == 0 {
+                        faildStr = faildStr + reason
+                    }else {
+                        faildStr = faildStr + "\n" + reason
+                    }
+                }
+            }
+            
+            trainFailLabel.text = faildStr
+            
+            trainFailTipLabel.isHidden = false
+            trainFailLabel.isHidden = false
+            self.typeLabel.snp.remakeConstraints { (make) in
+                make.centerY.equalTo(self.typeTipLabel.snp.centerY)
+                make.left.equalTo(self.typeTipLabel.snp.right).offset(8)
+            }
+            self.trainFailLabel.snp.remakeConstraints { (make) in
+                make.left.equalTo(self.trainFailTipLabel.snp.right).offset(8)
+                make.top.equalTo(self.trainFailTipLabel.snp.top)
+                make.right.equalTo(-20)
+                make.bottom.equalTo(-20)
+            }
+        }
+        
+    }
 }

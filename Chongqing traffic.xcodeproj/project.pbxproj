@@ -78,6 +78,9 @@
 		848613E721A67156005A663B /* icon_my_ensure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613E421A67156005A663B /* icon_my_ensure@3x.png */; };
 		848613E821A67156005A663B /* icon_my_ensure.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613E521A67156005A663B /* icon_my_ensure.png */; };
 		848613E921A67156005A663B /* icon_my_ensure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613E621A67156005A663B /* icon_my_ensure@2x.png */; };
+		848613EB21A79453005A663B /* NSDictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848613EA21A79453005A663B /* NSDictionary+Extension.swift */; };
+		848613ED21A7E6F9005A663B /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848613EC21A7E6F9005A663B /* NSDate+Extension.swift */; };
+		848613EF21A80A3F005A663B /* PeriodFailReson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848613EE21A80A3F005A663B /* PeriodFailReson.swift */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -250,6 +253,9 @@
 		848613E421A67156005A663B /* icon_my_ensure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_my_ensure@3x.png"; sourceTree = "<group>"; };
 		848613E521A67156005A663B /* icon_my_ensure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_my_ensure.png; sourceTree = "<group>"; };
 		848613E621A67156005A663B /* icon_my_ensure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_my_ensure@2x.png"; sourceTree = "<group>"; };
+		848613EA21A79453005A663B /* NSDictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Extension.swift"; sourceTree = "<group>"; };
+		848613EC21A7E6F9005A663B /* NSDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
+		848613EE21A80A3F005A663B /* PeriodFailReson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodFailReson.swift; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -376,6 +382,7 @@
 				65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */,
 				8467053421A2A7E000D55432 /* PeriodRecordNoDataView.swift */,
 				65411A3021A591CB00C4C34F /* TrainingStatusTableViewCell.swift */,
+				848613EE21A80A3F005A663B /* PeriodFailReson.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -480,6 +487,8 @@
 				84F973EE219E803900433E65 /* UIColor+Extension.swift */,
 				84F97398219BB50700433E65 /* UIView+KLExtension.swift */,
 				8467053821A3B44300D55432 /* UItableView+Extension.swift */,
+				848613EA21A79453005A663B /* NSDictionary+Extension.swift */,
+				848613EC21A7E6F9005A663B /* NSDate+Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1005,6 +1014,7 @@
 				8467058F21A55C9600D55432 /* InsuranceOrderInfoView.swift in Sources */,
 				84F9731421900EF400433E65 /* ViewController.swift in Sources */,
 				8467054721A4052E00D55432 /* MineEnsureDetailViewController.swift in Sources */,
+				848613EF21A80A3F005A663B /* PeriodFailReson.swift in Sources */,
 				656A91B6219DB516005427C8 /* PeriodSearchView.swift in Sources */,
 				84F973F4219E844300433E65 /* ZLPageTitleView.swift in Sources */,
 				8467054B21A410F100D55432 /* MineApplyPaymentViewController.swift in Sources */,
@@ -1017,6 +1027,7 @@
 				84F9739A219BB50700433E65 /* UIView+KLExtension.swift in Sources */,
 				84F9731221900EF400433E65 /* AppDelegate.swift in Sources */,
 				84F973432190271900433E65 /* WRProxy.swift in Sources */,
+				848613EB21A79453005A663B /* NSDictionary+Extension.swift in Sources */,
 				8467056721A52D0700D55432 /* InsuranceUserInfoView.swift in Sources */,
 				84F973A1219D1B6600433E65 /* MineInfoViewController.swift in Sources */,
 				84F973A3219D1BB600433E65 /* MineInfoControTableViewCell.swift in Sources */,
@@ -1028,6 +1039,7 @@
 				8467059121A55CAF00D55432 /* InsuranceOrderUserInfoView.swift in Sources */,
 				84F973F6219E845900433E65 /* ZLPageView.swift in Sources */,
 				8467056B21A5362500D55432 /* InsuranceBuyView.swift in Sources */,
+				848613ED21A7E6F9005A663B /* NSDate+Extension.swift in Sources */,
 				8467054321A3EAA900D55432 /* MineEnsureOrderInfoView.swift in Sources */,
 				84F9732D2190220700433E65 /* MineViewController.swift in Sources */,
 				84F97338219025D200433E65 /* BaseNavigationViewController.swift in Sources */,

@@ -109,9 +109,8 @@ func NetWorkRequest(_ target: API, codeCompletion: @escaping successCodeCallback
     
     //这里显示loading图
     Provider.request(target) { (result) in
-        
+        SVProgressHUD.dismiss()
         switch result {
-            
         case let .success(response):
             print(response)
             
@@ -183,7 +182,7 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
     //先判断网络是否有链接 没有的话直接返回--代码略
     if !isNetworkConnect{
         print("提示用户网络似乎出现了问题")
-        SVProgressHUD.showProgress(3, status: "网络似乎出现了问题")
+        SVProgressHUD.showProgress(0, status: "网络似乎出现了问题")
         SVProgressHUD.dismiss(withDelay: 2.0)
         return
     }
@@ -191,8 +190,8 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
     //这里显示loading图
     Provider.request(target) { (result) in
         //隐藏hud
+        SVProgressHUD.dismiss()
         switch result {
-
         case let .success(response):
             print(response)
             
@@ -210,7 +209,6 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
             case StatusCode.API_CODE_LOGIN_NO.rawValue:
                 print("去登陆")
                 completion(dic)
-//                failed!(dic)
             case StatusCode.API_CODE_REGISTER_DEVICE_NO.rawValue:
                 print("注册设备")
                 deviceRegist(target: target, completion: completion)

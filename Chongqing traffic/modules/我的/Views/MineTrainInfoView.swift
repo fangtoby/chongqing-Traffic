@@ -153,7 +153,7 @@ extension MineTrainInfoView {
         self.codeLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.codeTipLabel.snp.right).offset(8)
             make.top.equalTo(self.codeTipLabel.snp.top)
-//            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(20)
         }
         
         //驾校
@@ -167,7 +167,7 @@ extension MineTrainInfoView {
         self.schoolLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.codeLabel.snp.left)
             make.top.equalTo(self.schoolTipLabel.snp.top)
-//            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(20)
         }
         
         //报名时间
@@ -181,7 +181,7 @@ extension MineTrainInfoView {
         self.dateLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.codeLabel.snp.left)
             make.top.equalTo(self.dateTipLabel.snp.top)
-//            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(20)
         }
         
         //联系电话
@@ -195,7 +195,7 @@ extension MineTrainInfoView {
         self.phoneLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.codeLabel.snp.left)
             make.top.equalTo(self.phoneTipLabel.snp.top)
-//            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(20)
         }
         
         //计时平台
@@ -209,7 +209,7 @@ extension MineTrainInfoView {
         self.platformLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.codeLabel.snp.left)
             make.top.equalTo(self.platformTipLabel.snp.top)
-//            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(20)
         }
         
         //结业状态
@@ -223,7 +223,7 @@ extension MineTrainInfoView {
         self.statusLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.codeLabel.snp.left)
             make.top.equalTo(self.statusTipLabel.snp.top)
-//            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(20)
         }
         
         //正在培训
@@ -237,7 +237,7 @@ extension MineTrainInfoView {
         self.currentLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.codeLabel.snp.left)
             make.top.equalTo(self.currentTipLabel.snp.top)
-//            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(20)
         }
     }
 }

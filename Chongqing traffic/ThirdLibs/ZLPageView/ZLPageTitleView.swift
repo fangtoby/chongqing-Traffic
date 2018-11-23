@@ -18,6 +18,8 @@ class ZLPageTitleView: UIView {
     
     fileprivate var style:ZLPageStyle
     
+    fileprivate var currentView:UIView
+    
     var titles:[String]
     var titleLabels:[UILabel] = [UILabel]()
     lazy var scrollView:UIScrollView = {
@@ -46,6 +48,10 @@ class ZLPageTitleView: UIView {
     init(frame:CGRect,titles:[String],style:ZLPageStyle = ZLPageStyle()) {
         self.titles = titles
         self.style = style
+        currentView = UIView()
+        currentView.backgroundColor = UIColor.init(r: 173, g: 215, b: 106)
+        currentView.layer.masksToBounds = true
+        currentView.layer.cornerRadius = 3.5
         super.init(frame: frame)
         
         setupUI()
@@ -228,6 +234,15 @@ extension ZLPageTitleView{
         //拿到选中的label
         let selectLabel = titleLabels[pageIndex]
         ajustViewPostion(selectLabel)
+    }
+    
+    ///初始化的时候当前部分添加标识
+    func currentPart(currentIndex:Int) {
+        let selectLabel = titleLabels[currentIndex]
+        
+        currentView.removeFromSuperview()
+        currentView.frame = CGRect.init(x: (selectLabel.frame.size.width - lineView.frame.size.width)/2.0 - 10, y: (selectLabel.frame.size.height - 7)/2.0, width: 7, height: 7)
+        selectLabel.addSubview(self.currentView)
     }
     
     private func getGRBValue(_ color : UIColor) -> (CGFloat, CGFloat, CGFloat) {

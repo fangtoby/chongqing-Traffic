@@ -18,7 +18,7 @@ class PeriodRecordHeaderView: UIView {
         return waitTrainLabel
     }()
     
-    lazy var waitTrainTipLabel: UILabel = {
+    private lazy var waitTrainTipLabel: UILabel = {
         let waitTrainTipLabel = UILabel()
         waitTrainTipLabel.font = KUIFont12
         waitTrainTipLabel.textColor = AssistColor
@@ -34,11 +34,11 @@ class PeriodRecordHeaderView: UIView {
         return qualifiedLabel
     }()
     
-    lazy var qualifiedTipLabel: UILabel = {
+    private lazy var qualifiedTipLabel: UILabel = {
         let qualifiedTipLabel = UILabel()
         qualifiedTipLabel.font = KUIFont12
         qualifiedTipLabel.textColor = AssistColor
-        qualifiedTipLabel.text = "15学时06分"
+        qualifiedTipLabel.text = "累计合格培训学时"
         return qualifiedTipLabel
     }()
     

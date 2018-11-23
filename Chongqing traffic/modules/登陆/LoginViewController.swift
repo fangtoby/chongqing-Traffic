@@ -9,7 +9,14 @@
 import UIKit
 import ESTabBarController_swift
 
+protocol ReLoginDelegate {
+    func reLogin()
+}
+
 class LoginViewController: UIViewController {
+    
+    var reLoginDelegate : ReLoginDelegate?
+    
     
     var isFirstLogin:Bool = true
     
@@ -48,6 +55,7 @@ class LoginViewController: UIViewController {
     //获取验证码
     func loadCodeData() {
         let codeParams = [String:Any]()
+        
         NetWorkRequest(.code(params: codeParams)) { [weak self](result) -> (Void) in
             self?.loginInfoView.loginCodeButton.setBackgroundImage(UIImage.init(data: result), for: .normal)
         }
@@ -151,6 +159,9 @@ extension LoginViewController {
                             self?.present(tabbarController, animated: true, completion: nil)
                         }
                     }else {
+                        if (self?.reLoginDelegate != nil) {
+                            self?.reLoginDelegate?.reLogin()
+                        }
                         self?.dismiss(animated: true, completion: nil)
                     }
                 })

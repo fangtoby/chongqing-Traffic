@@ -9,9 +9,12 @@
 import UIKit
 
 class PeriodRecordViewController: BaseViewController {
-    var part : Int = 0
-    var dataSource = [String]()
-    var isFresh = false
+    var part : Int = 0 //当前部分
+    var dataSource = [Any]()
+    var isHistory = false  //是否已归档
+    var page = 1  //分页参数
+    var allStudy:Int = 0 //全部学时
+    var valid:Int = 0 //有效学时
     
     lazy var periodRecordHeaderView: PeriodRecordHeaderView = {
         let headerView = PeriodRecordHeaderView.init(frame: CGRect.zero)
@@ -40,6 +43,8 @@ class PeriodRecordViewController: BaseViewController {
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableView.automaticDimension
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         } else {
@@ -63,7 +68,9 @@ class PeriodRecordViewController: BaseViewController {
         }
         
         setUpUI()
-        loadData()
+        if isHistory == false {
+            loadData()
+        }
     }
     
     func setUpUI() {
@@ -75,18 +82,64 @@ class PeriodRecordViewController: BaseViewController {
             make.bottom.equalTo(-2)
         }
         
+        let wait = allStudy - valid
+        periodRecordHeaderView.waitTrainLabel.text = "\(wait/45)学时\(wait%45)分"
+        periodRecordHeaderView.qualifiedLabel.text = "\(valid/45)学时\(valid%45)分"
+        
         self.view.addSubview(tableView)
         tableView.isShowPlaceHolderView = true
     }
     
     func loadData() {
-        if isFresh == true {
-            dataSource = ["","","","","","","","",""]
-        }
+        var params = [String : Any]()
+        params["subject"] = part+1
+        params["page"] = page
+        NetWorkRequest(.periodList(params: params), completion: { [weak self](result) -> (Void) in
+            if result.valueAsString(forKey: "code") == nil {
+                let dic = result.object(forKey: "data") as! NSDictionary
+                self?.dataSource = dic.object(forKey: "list") as! [Any]
+                self?.tableView.reloadData()
+            }else if result.valueAsString(forKey: "code") == "402" {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        })
         
         self.tableView.reloadData()
     }
     
+    func loadHistoryData() {
+        var params = [String : Any]()
+        params["subject"] = part+1
+        params["page"] = page
+        NetWorkRequest(.periodHistoryList(params: params), completion: { [weak self](result) -> (Void) in
+            if result.valueAsString(forKey: "code") == nil {
+                let dic = result.object(forKey: "data") as! NSDictionary
+                self?.dataSource = dic.object(forKey: "list") as! [Any]
+                self?.tableView.reloadData()
+            }else if result.valueAsString(forKey: "code") == "402" {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        })
+        self.tableView.reloadData()
+    }
+    
+    func reFreshData() {
+        
+    }
+    
+    func loadMoreData() {
+        
+    }
 }
 
 extension PeriodRecordViewController: UITableViewDelegate, ZLTableViewDataSource, ZLPlaceHolderDelegate {
@@ -96,10 +149,6 @@ extension PeriodRecordViewController: UITableViewDelegate, ZLTableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,6 +161,11 @@ extension PeriodRecordViewController: UITableViewDelegate, ZLTableViewDataSource
         }else {
             cell.topLineView.isHidden = false
         }
+        let dic:NSDictionary? = self.dataSource[indexPath.row] as? NSDictionary
+        if dic != nil {
+            cell.setDicInfo(dicInfo:dic!)
+        }
+        
         return cell
     }
     
@@ -125,14 +179,18 @@ extension PeriodRecordViewController: UITableViewDelegate, ZLTableViewDataSource
     
     func makePlaceHolderView(tableView: UITableView) -> UIView {
         let view = PeriodRecordNoDataView()
+        if isHistory == false {
+            view.freshButton.isHidden = false
+        }else {
+            view.titleLabel.text = "暂无数据"
+            view.freshButton.isHidden = true
+        }
         view.delegate = self
         return view
     }
     
     ///ZLPlaceHolderDelegate
     func emptyOverlayClicked() {
-        //刷新数据
-        self.isFresh = true
-        loadData()
+        loadHistoryData()
     }
 }

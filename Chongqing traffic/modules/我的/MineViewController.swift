@@ -23,7 +23,6 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         } else {
             automaticallyAdjustsScrollViewInsets = false;
         }
-//        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
         tableView.register(MineInfoTableViewCell.self, forCellReuseIdentifier: CellIdentifier1)
         tableView.register(MineTableViewCell.self, forCellReuseIdentifier: CellIdentifier2)
         
@@ -44,11 +43,13 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private lazy var dataSource: Array = {
         return [[ ],
-                ["icon":"icon_my_train", "title": "我的培训信息", "desc":"正在培训：第一部分"],
+                ["icon":"icon_my_train", "title": "我的培训信息", "desc":""],
                 ["icon":"icon_my_ensure", "title": "我的保障信息", "desc":"保障中"]]
     }()
     
     var userInfoDic:NSDictionary?
+    var currentPart:String?
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -70,6 +71,8 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         userInfoDic = UserDefaults.standard.object(forKey: userInfo) as? NSDictionary
         
         setUpUI()
+        loadData()
+        loadCurrentPart()
     }
     
     func setUpUI() {
@@ -89,14 +92,37 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func loadData(){
-//        NetWorkRequest(.newFeeds(type: 2, clumId: "SUBJECT_SIX"), completion: { (res) -> (Void) in
-//            print(res)
-////            print("网络成功的数据")
-//        }, failed: { (str) -> (Void) in
-//            print("网络请求失败的数据(resultCode不为正确时)")
-//        }) { () -> (Void) in
-//            print("网络错误了")
-//        }
+        let userInfoParams = [String:Any]()
+        NetWorkRequest(.studentInfo(params: userInfoParams), completion: { [weak self](result) -> (Void) in
+            if result.valueAsString(forKey: "code") == nil {
+                self?.userInfoDic = result.object(forKey: "data") as? NSDictionary
+                for key in (self?.userInfoDic?.allKeys)! {
+                    if self?.userInfoDic?[key] is NSNull {
+                        self?.userInfoDic?.setValue("", forKey: key as! String)
+                    }
+                }
+                UserDefaults.standard.set(self?.userInfoDic, forKey: userInfo)
+                self?.tableView.reloadData()
+            }
+        })
+    }
+    
+    func loadCurrentPart() {
+        let currentPartParams = [String:Any]()
+        
+        NetWorkRequest(.currentPart(params: currentPartParams), completion: { [weak self](result) -> (Void) in
+            if result.valueAsString(forKey: "code") == nil {
+                self?.currentPart = result.valueAsString(forKey: "data")
+                self?.tableView.reloadData()
+            }else if result.valueAsString(forKey: "code") == "402" {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        })
     }
     
     ///退出登录
@@ -110,6 +136,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             logoutParams["token"] = UIDevice.current.identifierForVendor?.uuidString
             NetWorkRequest(.logout(params: logoutParams), completion: { (result) -> (Void) in
                 UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
                 let loginVC = LoginViewController()
                 loginVC.isFirstLogin = true
                 self?.present(loginVC, animated: true, completion: nil)
@@ -144,18 +171,24 @@ extension MineViewController {
             let cell:MineInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier1, for: indexPath) as! MineInfoTableViewCell
             cell.accessoryType = .none
             cell.selectionStyle = .default
-            let logoImageUrl = userInfoDic?.object(forKey: "photourl") as? String
+            
+            let logoImageUrl = userInfoDic?.valueAsString(forKey: "photourl")
+            
+//            let logoImageUrl = userInfoDic?.object(forKey: "photourl") as? String
             let logoUrl = URL(string: logoImageUrl ?? "")
             
 //            cell.mineInfoView.userLogoImageView.kf.setImage(with: logoUrl)
             cell.mineInfoView.userLogoImageView.kf.setImage(with: logoUrl, placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
-            cell.mineInfoView.nameLabel.text = userInfoDic?.object(forKey: "name") as? String
-            let sex:Int = userInfoDic?.object(forKey: "sex") as! Int
+            cell.mineInfoView.nameLabel.text = userInfoDic?.valueAsString(forKey: "name")
+            let sexStr = userInfoDic?.valueAsString(forKey: "sex")
+            let sex = Int(sexStr ?? "1")
+            
             if sex == 2{
                 cell.mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_woman")
             }else {
                 cell.mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_man")
             }
+            cell.mineInfoView.descLabel.text = "目前正在\(userInfoDic?.valueAsString(forKey: "schName") ?? "")"+"学习\(userInfoDic?.valueAsString(forKey: "traintype") ?? "")技能"
             return cell
         }else {
             let cell:MineTableViewCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier2, for: indexPath) as! MineTableViewCell
@@ -163,14 +196,29 @@ extension MineViewController {
             cell.selectionStyle = .default
             if indexPath.row == 1 {
                 cell.topLineView.isHidden = true
+                if self.currentPart != nil {
+                    if self.currentPart == "1" {
+                        cell.descLabel.text = "正在培训：第一部分"
+                    }else if self.currentPart == "2" {
+                        cell.descLabel.text = "正在培训：第二部分"
+                    }else if self.currentPart == "3" {
+                        cell.descLabel.text = "正在培训：第三部分"
+                    }else if self.currentPart == "4" {
+                        cell.descLabel.text = "正在培训：第四部分"
+                    }else {
+                        cell.descLabel.text = ""
+                    }
+                }else {
+                    cell.descLabel.text = ""
+                }
             }else {
                 cell.topLineView.isHidden = false
+                cell.descLabel.text = "保障中"
             }
             let dict: [String: String] = dataSource[indexPath.row] as! [String : String]
             cell.setDicInfo(dicInfo: dict as NSDictionary)
             return cell
         }
-
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -182,6 +230,7 @@ extension MineViewController {
         }else if indexPath.row == 1 {
             //培训信息
             let trainInfoVC = MineTrainInfoViewController()
+            trainInfoVC.currentPart = self.currentPart
             self.navigationController?.pushViewController(trainInfoVC, animated: true)
         }else {
             //保障信息

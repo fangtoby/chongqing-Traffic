@@ -27,6 +27,8 @@ class MineEnsureViewController: BaseViewController {
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableView.automaticDimension
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         } else {
@@ -54,8 +56,6 @@ class MineEnsureViewController: BaseViewController {
         }
         
         self.view.addSubview(tableView)
-        tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = UITableView.automaticDimension
         self.tableView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.top.equalTo(navigationBarHeight)

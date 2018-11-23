@@ -33,6 +33,8 @@ class MineInfoViewController: BaseViewController, UITableViewDelegate, UITableVi
         return ["头像","昵称","手机号","签名"]
     }()
     
+    var userInfoDic:NSDictionary?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
@@ -45,6 +47,8 @@ class MineInfoViewController: BaseViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         self.title = "个人资料"
+        
+        userInfoDic = UserDefaults.standard.object(forKey: userInfo) as? NSDictionary
         
         self.view.addSubview(self.tableview)
         self.tableview.snp.makeConstraints { (make) in
@@ -78,16 +82,26 @@ extension MineInfoViewController {
         
         let cell:MineInfoControTableViewCell = tableview.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as! MineInfoControTableViewCell
         cell.accessoryType = .none
-        cell.selectionStyle = .default
+        cell.selectionStyle = .none
         cell.titleLabel.text = self.dataSource[indexPath.row]
+        
+        let logoImageUrl = userInfoDic?.valueAsString(forKey: "photourl")
+        let logoUrl = URL(string: logoImageUrl ?? "")
+        cell.userLogoImageView.kf.setImage(with: logoUrl, placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
         if indexPath.row == 0 {
             cell.userLogoImageView.isHidden = false
             cell.descLabel.isHidden = true
         }else {
             cell.userLogoImageView.isHidden = true
             cell.descLabel.isHidden = false
+            if indexPath.row == 1 {
+                cell.descLabel.text = userInfoDic?.valueAsString(forKey: "name")
+            }else if indexPath.row == 2{
+                cell.descLabel.text = userInfoDic?.valueAsString(forKey: "phone")
+            }else if indexPath.row == 3 {
+                cell.descLabel.text = "目前正在\(userInfoDic?.valueAsString(forKey: "schName") ?? "")"+"学习\(userInfoDic?.valueAsString(forKey: "traintype") ?? "")技能"
+            }
         }
-        //            cell.textLabel?.text = "个人信息"
         return cell
     }
     

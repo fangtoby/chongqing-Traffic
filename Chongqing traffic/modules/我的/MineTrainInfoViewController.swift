@@ -32,12 +32,25 @@ class MineTrainInfoViewController: BaseViewController {
         let view = MineTrainInfoView()
         return view
     }()
+    
+    var currentPart:String?    
+    var dataSource = [Any]()
+    var userInfoDic:NSDictionary?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         self.title = "我的培训信息"
+        
+        userInfoDic = UserDefaults.standard.object(forKey: userInfo) as? NSDictionary
+        
         setUpUI()
+        
+        reloadDataView()
+    }
+    
+    func loadTrainData() {
+        
     }
     
     func setUpUI() {
@@ -68,6 +81,53 @@ class MineTrainInfoViewController: BaseViewController {
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(self.mineInfoView.snp.bottom)
             make.bottom.equalTo(mineTrainInfoView.currentLabel.snp.bottom).offset(30)
+        }
+    }
+    
+    func reloadDataView() {
+        let logoImageUrl = userInfoDic?.valueAsString(forKey: "photourl")
+        let logoUrl = URL(string: logoImageUrl ?? "")
+        mineInfoView.userLogoImageView.kf.setImage(with: logoUrl, placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
+        mineInfoView.nameLabel.text = userInfoDic?.valueAsString(forKey: "name")
+        let sexStr = userInfoDic?.valueAsString(forKey: "sex")
+        let sex = Int(sexStr ?? "1")
+        
+        if sex == 2{
+            mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_woman")
+        }else {
+            mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_man")
+        }
+        mineInfoView.descLabel.text = "目前正在\(userInfoDic?.valueAsString(forKey: "schName") ?? "")"+"学习\(userInfoDic?.valueAsString(forKey: "traintype") ?? "")技能"
+        
+        mineTrainInfoView.codeLabel.text = userInfoDic?.valueAsString(forKey: "idcard")
+        mineTrainInfoView.schoolLabel.text = userInfoDic?.valueAsString(forKey: "schName")
+        mineTrainInfoView.phoneLabel.text = userInfoDic?.valueAsString(forKey: "phone")
+        mineTrainInfoView.platformLabel.text = userInfoDic?.valueAsString(forKey: "platName")
+        
+        let timeInterval = userInfoDic?.object(forKey: "applydate") as? Double
+        let date = Date.getNowDateFromatAnDate(Date(timeIntervalSince1970: (timeInterval ?? 0)/1000))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateStr = formatter.string(from: date)
+        mineTrainInfoView.dateLabel.text = dateStr
+        
+        let status = userInfoDic?.valueAsString(forKey: "graduation")
+        if status == "1" {
+             mineTrainInfoView.statusLabel.text = "已结业"
+        }else {
+            mineTrainInfoView.statusLabel.text = "未结业"
+        }
+        
+        if self.currentPart == "1" {
+            mineTrainInfoView.currentLabel.text = "第一部分"
+        }else if self.currentPart == "2" {
+            mineTrainInfoView.currentLabel.text = "第二部分"
+        }else if self.currentPart == "3" {
+            mineTrainInfoView.currentLabel.text = "第三部分"
+        }else if self.currentPart == "4" {
+            mineTrainInfoView.currentLabel.text = "第四部分"
+        }else {
+            mineTrainInfoView.currentLabel.text = ""
         }
     }
     

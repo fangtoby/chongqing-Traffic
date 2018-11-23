@@ -18,17 +18,35 @@ class PeriodPartViewController: BaseViewController {
     }()
     
     var part : Int = 0
-
+    var dicInfo : NSDictionary?
+    
     var periodSearchView : PeriodSearchView = {
         let searchView = PeriodSearchView.init(frame: CGRect.zero)
         
         return searchView
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.backgroundColor = .cyan
+        
         setUpUI()
+        loadData()
+    }
+    
+    func loadData() {
+        var params = [String : Any]()
+        params["subject"] = part+1
+        NetWorkRequest(.periodStatus(params: params), completion: { [weak self](result) -> (Void) in
+            if result.valueAsString(forKey: "code") == nil {
+                self?.dicInfo = result.object(forKey: "data") as? NSDictionary
+                self?.periodSearchView.setChartData(dicInfo: self?.dicInfo)
+            }
+        })
     }
     
     func setUpUI() {
@@ -42,23 +60,7 @@ class PeriodPartViewController: BaseViewController {
             make.left.right.equalTo(self.view)
             make.top.bottom.equalTo(self.scrollView)
         }
-        if part == 0 {
-            self.periodSearchView.studyLabel.snp.updateConstraints { (make) in
-                make.width.equalTo(40)
-            }
-        }else if part == 1 {
-            self.periodSearchView.studyLabel.snp.updateConstraints { (make) in
-                make.width.equalTo(80)
-            }
-        }else if part == 2 {
-//            self.periodSearchView.studyLabel.snp.updateConstraints { (make) in
-//                make.width.equalTo(40)
-//            }
-        }else if part == 3 {
-            self.periodSearchView.studyLabel.snp.updateConstraints { (make) in
-                make.width.equalTo(160)
-            }
-        }
+        
         self.periodSearchView.periodAllBtnClick = { [weak self](subject) in
             switch subject {
             case 11:
@@ -72,16 +74,37 @@ class PeriodPartViewController: BaseViewController {
                 //查看学时记录
                 print("查看学时记录")
                 let periodRecordVC = PeriodRecordViewController()
+                periodRecordVC.isHistory = self?.dicInfo?.object(forKey: "history") as? Bool ?? false
                 periodRecordVC.part = self?.part ?? 0
+                periodRecordVC.allStudy = self?.dicInfo?.object(forKey: "requireTime") as? Int ?? 0
+                periodRecordVC.valid = self?.dicInfo?.object(forKey: "validTime") as? Int ?? 0
                 self?.navigationController?.pushViewController(periodRecordVC, animated: true)
             case 14:
                 //刷新并推送
                 print("刷新并推送")
-                
+                self?.pushData()
             default:
                 print("Error: not found")
             }
         }
+    }
+    
+    func pushData() {
+        var params = [String : Any]()
+        params["subject"] = part+1
+        NetWorkRequest(.push(params: params), completion: { [weak self](result) -> (Void) in
+            if result.valueAsString(forKey: "code") == nil {
+                //提示推送成功
+                
+            }else if result.valueAsString(forKey: "code") == "402" {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        })
     }
 }
 

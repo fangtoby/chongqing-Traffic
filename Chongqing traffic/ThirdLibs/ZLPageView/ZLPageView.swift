@@ -8,8 +8,15 @@
 
 import UIKit
 
-class ZLPageView: UIView {
+protocol PageViewDelegate {
+    func currentSelect(selectIndex:Int)
+}
 
+class ZLPageView: UIView {
+    
+    var delegate : PageViewDelegate?
+    
+    
     fileprivate var titles:[String]
     fileprivate var controllers:[UIViewController]
     fileprivate var parentVc:UIViewController
@@ -60,6 +67,7 @@ class ZLPageView: UIView {
     }
     
     public func currentIndex(index:Int) {
+        titleView.currentPart(currentIndex: index)
         titleView.pageViewScrollEnd(pageIndex: index)
         let indexPath = IndexPath(row: index, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
@@ -179,5 +187,7 @@ extension ZLPageView : ZLPageTitleViewDelegate{
         //让collectionView滚动
         let indexPath = IndexPath(row: selectIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+        
+        delegate?.currentSelect(selectIndex: selectIndex)
     }
 }

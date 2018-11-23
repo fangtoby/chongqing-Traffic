@@ -10,6 +10,8 @@ import UIKit
 
 class PeriodSearchViewController: BaseViewController {
 
+    var pageView : ZLPageView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +28,33 @@ class PeriodSearchViewController: BaseViewController {
         titleLabel.frame = CGRect(x: 20, y: navigationBarHeight - 25 - (44 - 25)/2.0, width: KScreenWidth - 40, height: 25)
         self.navigationItem.titleView = titleLabel
         
+        setUpUI()
+        loadCurrentPart()
+    }
+    
+    func loadCurrentPart() {
+        let currentPartParams = [String:Any]()
+
+        NetWorkRequest(.currentPart(params: currentPartParams), completion: { [weak self](result) -> (Void) in
+            if result.valueAsString(forKey: "code") == nil {
+                
+                guard let part = result.valueAsString(forKey: "data") else { return }
+                if Int(part)! > 0 {
+                    self?.pageView?.currentIndex(index: Int(part)! - 1)
+                }
+                
+            }else if result.valueAsString(forKey: "code") == "402" {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        })
+    }
+    
+    func setUpUI() {
         //创建pageView
         let titles = ["第一部分","第二部分","第三部分","第四部分"]
         var childsVc:[UIViewController] = [UIViewController]()
@@ -44,9 +73,18 @@ class PeriodSearchViewController: BaseViewController {
         style.normalColor = UIColor(r: 65, g: 58, b: 57)
         style.titleBottomLineColor = UIColor(r: 250, g: 190, b: 0)
         style.isBottomAlginLabel = false
-        let pageView = ZLPageView(frame: CGRect(x: 0, y: navigationBarHeight, width: KScreenWidth, height: KScreenHeigth-navigationBarHeight - tabBarHeight), titles: titles, childControllers: childsVc, parentController: self, style: style)
-        self.view.addSubview(pageView)
+        pageView = ZLPageView(frame: CGRect(x: 0, y: navigationBarHeight, width: KScreenWidth, height: KScreenHeigth-navigationBarHeight - tabBarHeight), titles: titles, childControllers: childsVc, parentController: self, style: style)
+        pageView?.delegate = self
+        self.view.addSubview(pageView!)
+    }
+    
+    override func reLogin() {
+        loadCurrentPart()
+    }
+}
+
+extension PeriodSearchViewController:PageViewDelegate {
+    func currentSelect(selectIndex: Int) {
         
-        pageView.currentIndex(index: 2)
     }
 }

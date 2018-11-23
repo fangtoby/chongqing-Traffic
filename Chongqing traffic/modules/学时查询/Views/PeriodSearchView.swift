@@ -37,19 +37,6 @@ class PeriodSearchView: UIView {
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 0
         label.backgroundColor = .clear
-        let str = "19.4%"
-        let str1 = "本月合格率"
-        let attributeStr = NSMutableAttributedString.init(string: "19.4%\n本月合格率")
-        let multipleAttributes: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26),
-            NSAttributedString.Key.foregroundColor: MainYellowColor]
-        
-        let mulAttributes: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-            NSAttributedString.Key.foregroundColor: AssistColor]
-        attributeStr.addAttributes(multipleAttributes, range: NSRange.init(location: 0, length: str.count))
-        attributeStr.addAttributes(mulAttributes, range: NSRange.init(location: 6, length: str1.count))
-        label.attributedText = attributeStr
         return label
     }()
     
@@ -59,7 +46,6 @@ class PeriodSearchView: UIView {
         tipLabel.font = KUIFont14
         tipLabel.textColor = AssistColor
         tipLabel.textAlignment = .center
-        tipLabel.text = "本月有80.6%的学员\n无法一次性通过本科目考试"
         return tipLabel
     }()
     
@@ -88,7 +74,7 @@ class PeriodSearchView: UIView {
         let percentLabel = UILabel()
         percentLabel.font = KUIFont10
         percentLabel.textColor = MainBlueColor
-        percentLabel.text = "75%"
+        percentLabel.text = "0%"
         return percentLabel
     }()
     
@@ -105,7 +91,7 @@ class PeriodSearchView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "12小时20分钟"
+//        label.text = "12小时20分钟"
         return label
     }()
     
@@ -122,7 +108,7 @@ class PeriodSearchView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "12学时"
+//        label.text = "12学时"
         return label
     }()
     
@@ -147,7 +133,7 @@ class PeriodSearchView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "未推送考试系统"
+//        label.text = "未推送考试系统"
         return label
     }()
     
@@ -222,9 +208,7 @@ class PeriodSearchView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpUI()
-        
-//        setDateEmpty()
-        setChartData()
+        setDateEmpty()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -272,7 +256,7 @@ class PeriodSearchView: UIView {
         self.studyLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.chartView.snp.left).offset(19)
             make.centerY.equalTo(self.studyProgressLabel.snp.centerY)
-            make.width.equalTo(120)
+            make.width.equalTo(0)
             make.height.equalTo(10)
         }
         
@@ -394,22 +378,23 @@ class PeriodSearchView: UIView {
 
 extension PeriodSearchView {
     func setDateEmpty() {
+        let value1:Double = 0
+        let value2:Double = 100
         var yValues:[BarChartDataEntry] = []
-        let entryValue = BarChartDataEntry.init(x: 0, yValues: [Double(1)])
-        yValues.append(entryValue)
-        
+        let entryValue1 = BarChartDataEntry.init(x: 1, yValues: [value1] )
+        let entryValue2 = BarChartDataEntry.init(x: 2, yValues: [value2] )
+        yValues.append(entryValue1)
+        yValues.append(entryValue2)
         let dataSet = PieChartDataSet.init(values: yValues, label: "")
         dataSet.drawValuesEnabled = false
         dataSet.selectionShift = 0
         dataSet.valueLineVariableLength = false
-        
+        dataSet.sliceSpace = 5
         var colors: [UIColor] = []
+        colors.append(MainYellowColor)
         colors.append(KUIColorLine)
-        
         dataSet.colors = colors
-        
         let data = PieChartData.init(dataSets: [dataSet])
-//        let data = PieChartData.init(xVals: yValues, dataSet:dataSet)
         chartView.data = data
     }
     
@@ -418,19 +403,18 @@ extension PeriodSearchView {
         chartView.animate(xAxisDuration: 1, easingOption: ChartEasingOption.easeOutSine)
     }
     
-    func setChartData() {
+    func setChartData(dicInfo:NSDictionary?) {
         doAnimate()
         //此处填入展示的相应数字
-        let value1 = Double(194)
-        let value2 = Double(806)
-        
-        if value1 + value2 == 0 {
-            setDateEmpty()
-            return
+        let value1 = dicInfo?.valueAsDouble(forKey: "passing")
+        var value2:Double = 100
+        if value1 != nil {
+            value2 = 100 - value1!
         }
         
+        
         var yValues:[ChartDataEntry] = []
-        let entryValue1 = BarChartDataEntry.init(x: 1, yValues: [value1])
+        let entryValue1 = BarChartDataEntry.init(x: 1, yValues: [value1 ?? 0])
         let entryValue2 = BarChartDataEntry.init(x: 2, yValues: [value2] )
         
         yValues.append(entryValue1)
@@ -450,5 +434,60 @@ extension PeriodSearchView {
         let data = PieChartData.init(dataSets: [dataSet])
         
         chartView.data = data
+        
+        let str = "\(value1 ?? 0)%"
+        let str1 = "\n本月合格率"
+        let attributeStr = NSMutableAttributedString.init(string: str.appending(str1))
+        let multipleAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26),
+            NSAttributedString.Key.foregroundColor: MainYellowColor]
+        
+        let mulAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+            NSAttributedString.Key.foregroundColor: AssistColor]
+        attributeStr.addAttributes(multipleAttributes, range: NSRange.init(location: 0, length: str.count))
+        attributeStr.addAttributes(mulAttributes, range: NSRange.init(location: str.count, length: str1.count))
+        unPassPercentLabel.attributedText = attributeStr
+        
+        let unPassStr = NSMutableAttributedString.init(string: "本月有\(value2)%的学员\n无法一次性通过本科目考试")
+        let mutipleAttr : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: MainRedColor]
+        unPassStr.addAttributes(mutipleAttr, range: NSRange.init(location: 2, length: String(value2).count+1))
+        tipLabel.attributedText = unPassStr
+        
+        var allStudy = dicInfo?.object(forKey: "requireTime") as? Int
+        var study = dicInfo?.object(forKey: "trainTime") as? Int
+        var valid = dicInfo?.object(forKey: "validTime") as? Int
+        if allStudy == nil {
+            allStudy = 1
+        }
+        if study == nil {
+            study = 0
+        }
+        if valid == nil {
+            valid = 0
+        }
+        var percent = Double(valid!)/Double(allStudy!)*100
+        if percent > 100 {
+            percent = 100
+        }
+        let percentStr = String(format: "%.2f", percent)
+        
+        self.studyLabel.snp.updateConstraints { (make) in
+            make.width.equalTo(160*percent/100)
+        }
+        percentLabel.text = "\(percentStr)%"
+        trainLabel.text = "\(study!/60)小时\(study!%60)分钟"
+        validLabel.text = "\(valid!/45)学时\(valid!%45)分"
+        
+        let trainStatus = dicInfo?.object(forKey: "trainType") as? String
+        if trainStatus == "1" {
+            trainStatusLabel.text = "未满足推送考试系统要求"
+        }else if trainStatus == "2" {
+            trainStatusLabel.text = "待推送考试系统"
+        }else if trainStatus == "3" {
+            trainStatusLabel.text = "已推送考试系统"
+        }else {
+            trainStatusLabel.text = "未满足推送考试系统要求"
+        }
     }
 }
