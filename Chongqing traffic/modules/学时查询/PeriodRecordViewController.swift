@@ -95,11 +95,12 @@ class PeriodRecordViewController: BaseViewController {
         params["subject"] = part+1
         params["page"] = page
         NetWorkRequest(.periodList(params: params), completion: { [weak self](result) -> (Void) in
-            if result.valueAsString(forKey: "code") == nil {
+            let code = result.object(forKey: "code") as? Int
+            if code == nil || code == 0{
                 let dic = result.object(forKey: "data") as! NSDictionary
                 self?.dataSource = dic.object(forKey: "list") as! [Any]
                 self?.tableView.reloadData()
-            }else if result.valueAsString(forKey: "code") == "402" {
+            }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
                 let loginVC = LoginViewController()
@@ -117,11 +118,12 @@ class PeriodRecordViewController: BaseViewController {
         params["subject"] = part+1
         params["page"] = page
         NetWorkRequest(.periodHistoryList(params: params), completion: { [weak self](result) -> (Void) in
-            if result.valueAsString(forKey: "code") == nil {
+            let code = result.object(forKey: "code") as? Int
+            if code == nil || code == 0{
                 let dic = result.object(forKey: "data") as! NSDictionary
                 self?.dataSource = dic.object(forKey: "list") as! [Any]
                 self?.tableView.reloadData()
-            }else if result.valueAsString(forKey: "code") == "402" {
+            }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
                 let loginVC = LoginViewController()

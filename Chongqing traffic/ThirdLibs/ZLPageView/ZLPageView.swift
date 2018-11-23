@@ -187,7 +187,7 @@ extension ZLPageView : ZLPageTitleViewDelegate{
         //让collectionView滚动
         let indexPath = IndexPath(row: selectIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
-        
+    
         delegate?.currentSelect(selectIndex: selectIndex)
     }
 }

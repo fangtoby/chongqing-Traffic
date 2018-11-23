@@ -94,7 +94,9 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     private func loadData(){
         let userInfoParams = [String:Any]()
         NetWorkRequest(.studentInfo(params: userInfoParams), completion: { [weak self](result) -> (Void) in
-            if result.valueAsString(forKey: "code") == nil {
+            
+            let code = result.object(forKey: "code") as? Int
+            if code == nil || code == 0{
                 self?.userInfoDic = result.object(forKey: "data") as? NSDictionary
                 for key in (self?.userInfoDic?.allKeys)! {
                     if self?.userInfoDic?[key] is NSNull {
@@ -103,6 +105,14 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 }
                 UserDefaults.standard.set(self?.userInfoDic, forKey: userInfo)
                 self?.tableView.reloadData()
+                
+            }else if code == 402 {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
             }
         })
     }
@@ -111,10 +121,11 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let currentPartParams = [String:Any]()
         
         NetWorkRequest(.currentPart(params: currentPartParams), completion: { [weak self](result) -> (Void) in
-            if result.valueAsString(forKey: "code") == nil {
+            let code = result.object(forKey: "code") as? Int
+            if code == nil || code == 0{
                 self?.currentPart = result.valueAsString(forKey: "data")
                 self?.tableView.reloadData()
-            }else if result.valueAsString(forKey: "code") == "402" {
+            }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
                 let loginVC = LoginViewController()

@@ -36,14 +36,15 @@ class PeriodSearchViewController: BaseViewController {
         let currentPartParams = [String:Any]()
 
         NetWorkRequest(.currentPart(params: currentPartParams), completion: { [weak self](result) -> (Void) in
-            if result.valueAsString(forKey: "code") == nil {
+            let code = result.object(forKey: "code") as? Int
+            if code == nil || code == 0{
                 
                 guard let part = result.valueAsString(forKey: "data") else { return }
                 if Int(part)! > 0 {
                     self?.pageView?.currentIndex(index: Int(part)! - 1)
                 }
                 
-            }else if result.valueAsString(forKey: "code") == "402" {
+            }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
                 let loginVC = LoginViewController()
@@ -85,6 +86,7 @@ class PeriodSearchViewController: BaseViewController {
 
 extension PeriodSearchViewController:PageViewDelegate {
     func currentSelect(selectIndex: Int) {
+        print(selectIndex)
         
     }
 }

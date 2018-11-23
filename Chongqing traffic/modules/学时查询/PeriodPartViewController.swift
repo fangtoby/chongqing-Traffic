@@ -42,9 +42,17 @@ class PeriodPartViewController: BaseViewController {
         var params = [String : Any]()
         params["subject"] = part+1
         NetWorkRequest(.periodStatus(params: params), completion: { [weak self](result) -> (Void) in
-            if result.valueAsString(forKey: "code") == nil {
+            let code = result.object(forKey: "code") as? Int
+            if code == nil || code == 0{
                 self?.dicInfo = result.object(forKey: "data") as? NSDictionary
                 self?.periodSearchView.setChartData(dicInfo: self?.dicInfo)
+            }else if code == 402 {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
             }
         })
     }
@@ -93,10 +101,11 @@ class PeriodPartViewController: BaseViewController {
         var params = [String : Any]()
         params["subject"] = part+1
         NetWorkRequest(.push(params: params), completion: { [weak self](result) -> (Void) in
-            if result.valueAsString(forKey: "code") == nil {
+            let code = result.object(forKey: "code") as? Int
+            if code == nil || code == 0{
                 //提示推送成功
                 
-            }else if result.valueAsString(forKey: "code") == "402" {
+            }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
                 let loginVC = LoginViewController()
@@ -105,6 +114,15 @@ class PeriodPartViewController: BaseViewController {
                 self?.present(loginVC, animated: true, completion: nil)
             }
         })
+    }
+    
+    override func reLogin() {
+        loadData()
+    }
+    
+    ///当没有数据时  重新请求数据
+    func reFreshData() {
+        
     }
 }
 
