@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PeriodPartViewController: BaseViewController {
     
@@ -41,9 +42,10 @@ class PeriodPartViewController: BaseViewController {
     func loadData() {
         var params = [String : Any]()
         params["subject"] = part+1
+        SVProgressHUD.show()
         NetWorkRequest(.periodStatus(params: params), completion: { [weak self](result) -> (Void) in
-            let code = result.object(forKey: "code") as? Int
-            if code == nil || code == 0{
+            let code = result.object(forKey: "code") as! Int
+            if code == 0{
                 self?.dicInfo = result.object(forKey: "data") as? NSDictionary
                 self?.periodSearchView.setChartData(dicInfo: self?.dicInfo)
             }else if code == 402 {
@@ -101,8 +103,8 @@ class PeriodPartViewController: BaseViewController {
         var params = [String : Any]()
         params["subject"] = part+1
         NetWorkRequest(.push(params: params), completion: { [weak self](result) -> (Void) in
-            let code = result.object(forKey: "code") as? Int
-            if code == nil || code == 0{
+            let code = result.object(forKey: "code") as! Int
+            if code == 0{
                 //提示推送成功
                 
             }else if code == 402 {
@@ -122,7 +124,9 @@ class PeriodPartViewController: BaseViewController {
     
     ///当没有数据时  重新请求数据
     func reFreshData() {
-        
+        if self.dicInfo == nil {
+            loadData()
+        }
     }
 }
 

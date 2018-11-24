@@ -80,7 +80,7 @@ private let networkPlugin = NetworkActivityPlugin.init { (changeType, targetType
 
 ////网络请求发送的核心初始化方法，创建网络请求对象
 let Provider = MoyaProvider<API>(endpointClosure: myEndpointClosure, requestClosure: requestClosure, plugins: [networkPlugin], trackInflights: false)
-
+//let Provider = MoyaProvider<API>()
 
 
 /// 最常用的网络请求，只需知道正确的结果无需其他操作时候用这个
@@ -191,6 +191,7 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
     Provider.request(target) { (result) in
         //隐藏hud
         SVProgressHUD.dismiss()
+        print(result)
         switch result {
         case let .success(response):
             print(response)
@@ -215,11 +216,11 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
 
             case StatusCode.API_CODE_FORCE_UPGRADE.rawValue:
                 print("强制升级")
-            case StatusCode.API_CODE_SERVER_ERROR.rawValue:
+            case StatusCode.API_CODE_REQUEST_ERROR.rawValue:
                 print("服务器忙,请稍后再试")
 
             default:
-                print("aaaaaa")
+                print("请求失败，请稍后再试")
             }
         case let .failure(error):
             print("错误原因：\(error.errorDescription ?? "")")

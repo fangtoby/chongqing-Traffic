@@ -154,7 +154,11 @@ extension ZLAlertView {
     
     //隐藏Title
     func isHidenTitle() {
-        self.sureButton.snp.updateConstraints { (make) in
+        self.sureButton.snp.remakeConstraints { (make) in
+            make.left.equalToSuperview()
+            make.right.equalTo(self.alertView.snp.centerX)
+            make.height.equalTo(50)
+            make.bottom.equalToSuperview()
             make.top.equalTo(self.messegeLabel.snp.bottom).offset(17)
         }
     }
@@ -162,7 +166,11 @@ extension ZLAlertView {
     //只显示确认按钮（隐藏取消按钮）
     func isHidenCancle() {
         self.cancleButton.isHidden = true
-        self.sureButton.snp.updateConstraints { (make) in
+        self.sureButton.snp.remakeConstraints { (make) in
+            make.left.equalToSuperview()
+            make.top.equalTo(self.messegeLabel.snp.bottom)
+            make.height.equalTo(50)
+            make.bottom.equalToSuperview()
             make.right.equalToSuperview()
         }
     }

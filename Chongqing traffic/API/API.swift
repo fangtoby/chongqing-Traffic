@@ -46,6 +46,7 @@ enum API {
     case periodHistoryDetail(params:[String:Any]) //获取归档的教学日志详情
     case push(params:[String:Any]) //推送接口
     case complaint(params:[String:Any]) //投诉接口
+    case complaintStatus(params:[String:Any]) //是否可以投诉
 }
 
 extension API: TargetType {
@@ -67,44 +68,54 @@ extension API: TargetType {
         case .periodHistoryDetail: return "studentPeriod/periodHistoryDetail"
         case .push: return "push"
         case .complaint: return "complaint"
+        case .complaintStatus: return "complaint/complaintStatusQuery"
         }
     }
     
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .complaintStatus:
+            return .get
+        default:
+            return .post
+        }
+        
     }
     var task: Task {
-        var parmeters = [String:Any]()
+        var parameters = [String:Any]()
         
         switch self {
         case .deviceRegist(let params):
-            parmeters = params
+            parameters = params
         case .code(let params):
-            parmeters = params
+            parameters = params
         case .login(let params):
-            parmeters = params
+            parameters = params
         case .studentInfo(let params):
-            parmeters = params
+            parameters = params
         case .logout(let params):
-            parmeters = params
+            parameters = params
         case .currentPart(let params):
-            parmeters = params
+            parameters = params
         case .periodStatus(let params):
-            parmeters = params
+            parameters = params
         case .periodList(let params):
-            parmeters = params
+            parameters = params
         case .periodDetail(let params):
-            parmeters = params
+            parameters = params
         case .periodHistoryList(let params):
-            parmeters = params
+            parameters = params
         case .periodHistoryDetail(let params):
-            parmeters = params
+            parameters = params
         case .push(let params):
-            parmeters = params
+            parameters = params
         case .complaint(let params):
-            parmeters = params
+            parameters = params
+        case .complaintStatus(let params):
+            parameters = params
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
-        return .requestParameters(parameters: parmeters, encoding: JSONEncoding.default)
+        return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     }
     
     var sampleData: Data {

@@ -253,9 +253,9 @@ class PeriodRecordTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(trainFailLabel)
         self.trainFailLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.trainFailTipLabel.snp.right).offset(8)
+            make.left.equalTo(160)
             make.top.equalTo(self.trainFailTipLabel.snp.top)
-            make.right.equalTo(-20)
+            make.right.lessThanOrEqualTo(-20)
             make.bottom.equalTo(-20)
         }
     }
@@ -326,9 +326,9 @@ extension PeriodRecordTableViewCell {
                 make.bottom.equalTo(-20)
             }
             self.trainFailLabel.snp.remakeConstraints { (make) in
-                make.left.equalTo(self.trainFailTipLabel.snp.right).offset(8)
+                make.left.equalTo(160)
                 make.top.equalTo(self.trainFailTipLabel.snp.top)
-                make.right.equalTo(-20)
+                make.right.lessThanOrEqualTo(-20)
             }
         }else {
             var faildStr : String = ""
@@ -338,7 +338,7 @@ extension PeriodRecordTableViewCell {
                 for index in 0..<faildArray!.count {
                     let str = faildArray?[index]
                     let reason = faildReason(index: str!)
-                    
+//                    faildStr = faildStr + reason
                     if index == 0 {
                         faildStr = faildStr + reason
                     }else {
@@ -356,9 +356,9 @@ extension PeriodRecordTableViewCell {
                 make.left.equalTo(self.typeTipLabel.snp.right).offset(8)
             }
             self.trainFailLabel.snp.remakeConstraints { (make) in
-                make.left.equalTo(self.trainFailTipLabel.snp.right).offset(8)
+                make.left.equalTo(160)
                 make.top.equalTo(self.trainFailTipLabel.snp.top)
-                make.right.equalTo(-20)
+                make.right.lessThanOrEqualTo(-20)
                 make.bottom.equalTo(-20)
             }
         }

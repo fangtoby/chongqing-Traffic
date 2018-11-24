@@ -79,7 +79,8 @@ class ComplaintView: UIView {
     
     lazy var complaintButton: BaseButton = {
         let button = BaseButton()
-        button.backgroundColor = MainYellowColor
+        button.backgroundColor = UIColor(r: 255, g: 229, b: 147)
+        button.isUserInteractionEnabled  = false
         button.titleLabel?.font = KUIFont12
         button.setTitle("一键投诉", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -211,6 +212,14 @@ extension ComplaintView : UITextViewDelegate {
             self.tipLabel.text = "\(textView.text.count)/100"
         }else {
             self.tipLabel.text = "至少输入10个字"
+        }
+        
+        if (textView.text != "" && textView.text != nil) && selectObjectLabel.text != "请选择投诉对象" {
+            complaintButton.backgroundColor = MainYellowColor
+            complaintButton.isUserInteractionEnabled = true
+        }else {
+            complaintButton.backgroundColor = UIColor(r: 255, g: 229, b: 147)
+            complaintButton.isUserInteractionEnabled = false
         }
     }
     

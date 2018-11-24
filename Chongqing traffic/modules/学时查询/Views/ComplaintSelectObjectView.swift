@@ -18,7 +18,7 @@ class ComplaintSelectObjectView: UIView {
     
     private let CellIdentifier = "MineInfoTableViewCell"
     
-    var dataSource:[String]? = nil
+    var dataSource:[String]? = ["教练","驾校"]
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()

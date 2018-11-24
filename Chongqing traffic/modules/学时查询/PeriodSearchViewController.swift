@@ -11,6 +11,7 @@ import UIKit
 class PeriodSearchViewController: BaseViewController {
 
     var pageView : ZLPageView?
+    var currentPart : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +37,14 @@ class PeriodSearchViewController: BaseViewController {
         let currentPartParams = [String:Any]()
 
         NetWorkRequest(.currentPart(params: currentPartParams), completion: { [weak self](result) -> (Void) in
-            let code = result.object(forKey: "code") as? Int
-            if code == nil || code == 0{
-                
-                guard let part = result.valueAsString(forKey: "data") else { return }
+            let code = result.object(forKey: "code") as! Int
+            if code == 0{
+                guard let part = result.valueAsString(forKey: "data") else {
+                    self?.currentPart = 0
+                    return
+                }
                 if Int(part)! > 0 {
+                    self?.currentPart = Int(part)!
                     self?.pageView?.currentIndex(index: Int(part)! - 1)
                 }
                 
@@ -86,7 +90,12 @@ class PeriodSearchViewController: BaseViewController {
 
 extension PeriodSearchViewController:PageViewDelegate {
     func currentSelect(selectIndex: Int) {
-        print(selectIndex)
-        
+//        print(selectIndex)
+//        print(self.children)
+        if currentPart == nil {
+            loadCurrentPart()
+        }
+        let childController:PeriodPartViewController = self.children[selectIndex] as! PeriodPartViewController
+        childController.reFreshData()
     }
 }

@@ -8,14 +8,15 @@
 
 import UIKit
 import ESTabBarController_swift
+import SVProgressHUD
 
-protocol ReLoginDelegate {
+protocol ReLoginDelegate : class {
     func reLogin()
 }
 
 class LoginViewController: UIViewController {
     
-    var reLoginDelegate : ReLoginDelegate?
+    weak var reLoginDelegate : ReLoginDelegate?
     
     
     var isFirstLogin:Bool = true
@@ -95,9 +96,9 @@ extension LoginViewController {
             loginParams["cardCode"] = self?.loginInfoView.loginNumberTextField.text
             loginParams["drivingPermitted"] = self?.loginInfoView.loginDrivingTypeLabel.text
             loginParams["code"] = self?.loginInfoView.loginCodeTextField.text
-            
+            SVProgressHUD.show()
             NetWorkRequest(.login(params: loginParams), completion: { (result) -> (Void) in
-
+            
                 //登陆成功的信息
                 let loginInfoDic:NSDictionary = result.object(forKey: "data") as! NSDictionary
 //                print(loginInfoDic)
@@ -110,25 +111,43 @@ extension LoginViewController {
                 
                 let userInfoParams = [String:Any]()
                 NetWorkRequest(.studentInfo(params: userInfoParams), completion: { [weak self](result) -> (Void) in
-                    UserDefaults.standard.set(true, forKey: isLogin)
-                    //用户信息
-                    let userInfoDic:NSDictionary = result.object(forKey: "data") as! NSDictionary
-//                    print(userInfoDic)
-                    for key in userInfoDic.allKeys {
-                        if userInfoDic[key] is NSNull {
-                            userInfoDic.setValue("", forKey: key as! String)
+                    let code = result.object(forKey: "code") as! Int
+                    if code == 0 {
+                        UserDefaults.standard.set(true, forKey: isLogin)
+                        //用户信息
+                        let userInfoDic:NSDictionary = result.object(forKey: "data") as! NSDictionary
+                        //                    print(userInfoDic)
+                        for key in userInfoDic.allKeys {
+                            if userInfoDic[key] is NSNull {
+                                userInfoDic.setValue("", forKey: key as! String)
+                            }
                         }
-                    }
-                    UserDefaults.standard.set(userInfoDic, forKey: userInfo)
-                    
-                    if self?.isFirstLogin == true{
-                        let newUser:Bool? = loginInfoDic.object(forKey: "newUser") as? Bool
-                        if newUser == true {
-                            let alertView = ZLAlertView()
-                            alertView.titleLabel.text = "查询说明"
-                            alertView.messegeLabel.text = "系统检测到您为2018年7月10日之前报名学员，即将跳转专属查询结果页。"
-                            alertView.showView()
-                            alertView.sureBtnClick = { [weak self] in
+                        UserDefaults.standard.set(userInfoDic, forKey: userInfo)
+                        
+                        if self?.isFirstLogin == true{
+                            let newUser:Bool = loginInfoDic.object(forKey: "newUser") as! Bool
+                            if newUser == true {
+                                let alertView = ZLAlertView()
+                                alertView.titleLabel.text = "查询说明"
+                                alertView.messegeLabel.text = "系统检测到您为2018年7月10日之前报名学员，即将跳转专属查询结果页。"
+                                alertView.isHidenCancle()
+                                alertView.showView()
+                                alertView.sureBtnClick = { [weak self] in
+                                    let tabbarController = ESTabBarController()
+                                    let v1 = PeriodSearchViewController()
+                                    let v2 = MineViewController()
+                                    
+                                    v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
+                                    v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
+                                    
+                                    let nav1 = BaseNavigationViewController.init(rootViewController: v1)
+                                    let nav2 = BaseNavigationViewController.init(rootViewController: v2)
+                                    
+                                    tabbarController.viewControllers = [nav1,nav2]
+                                    tabbarController.tabBar.barTintColor = UIColor.white
+                                    self?.present(tabbarController, animated: true, completion: nil)
+                                }
+                            }else {
                                 let tabbarController = ESTabBarController()
                                 let v1 = PeriodSearchViewController()
                                 let v2 = MineViewController()
@@ -144,25 +163,10 @@ extension LoginViewController {
                                 self?.present(tabbarController, animated: true, completion: nil)
                             }
                         }else {
-                            let tabbarController = ESTabBarController()
-                            let v1 = PeriodSearchViewController()
-                            let v2 = MineViewController()
                             
-                            v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
-                            v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
-                            
-                            let nav1 = BaseNavigationViewController.init(rootViewController: v1)
-                            let nav2 = BaseNavigationViewController.init(rootViewController: v2)
-                            
-                            tabbarController.viewControllers = [nav1,nav2]
-                            tabbarController.tabBar.barTintColor = UIColor.white
-                            self?.present(tabbarController, animated: true, completion: nil)
-                        }
-                    }else {
-                        if (self?.reLoginDelegate != nil) {
                             self?.reLoginDelegate?.reLogin()
+                            self?.dismiss(animated: true, completion: nil)
                         }
-                        self?.dismiss(animated: true, completion: nil)
                     }
                 })
             })
@@ -185,6 +189,7 @@ extension LoginViewController {
         }
         
         self.loginInfoView.getLoginCode = { [weak self] in
+            
             self?.loadCodeData()
         }
     }

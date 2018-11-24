@@ -18,7 +18,7 @@ class PeriodRecordDetailInfoView: UIView {
     //编号
     lazy var numberLabel: UILabel = {
         let label = UILabel()
-        label.text = "编号：0001"
+//        label.text = "编号：0001"
         label.font = KUIFont16
         label.textColor = .black
         return label
@@ -27,12 +27,13 @@ class PeriodRecordDetailInfoView: UIView {
     //一键投诉
     lazy var complaintButton: BaseButton = {
         let button = BaseButton()
-        button.backgroundColor = MainYellowColor
+        button.backgroundColor = UIColor(r: 255, g: 229, b: 147)
         button.titleLabel?.font = KUIFont12
         button.setTitle("一键投诉", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 4
+        button.isUserInteractionEnabled = false
         button.addTarget(self, action: #selector(complaint), for: .touchUpInside)
         return button
     }()
@@ -50,7 +51,7 @@ class PeriodRecordDetailInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "2018-10-30 08:42:33"
+//        label.text = "2018-10-30 08:42:33"
         return label
     }()
     
@@ -67,7 +68,7 @@ class PeriodRecordDetailInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "2018-10-30 09:31:29"
+//        label.text = "2018-10-30 09:31:29"
         return label
     }()
     
@@ -84,7 +85,7 @@ class PeriodRecordDetailInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "1学时4分钟"
+//        label.text = "1学时4分钟"
         return label
     }()
     
@@ -101,7 +102,7 @@ class PeriodRecordDetailInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "10公里"
+//        label.text = "10公里"
         return label
     }()
     
@@ -119,7 +120,7 @@ class PeriodRecordDetailInfoView: UIView {
         label.font = KUIFont14
         label.textColor = .black
         label.numberOfLines = 0
-        label.text = "10：找不到对应的分钟学时\n11：找不到对应的学时"
+//        label.text = "10：找不到对应的分钟学时\n11：找不到对应的学时"
         return label
     }()
     
@@ -129,8 +130,7 @@ class PeriodRecordDetailInfoView: UIView {
         return imageView
     }()
     
-    
-    //培训学时不合格原因
+    //培训机构
     lazy var trainSchoolTipLabel: UILabel = {
         let tipLabel = UILabel()
         tipLabel.font = KUIFont14
@@ -143,7 +143,8 @@ class PeriodRecordDetailInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "重庆市机动车驾驶培训有限公司"
+        label.numberOfLines = 0
+//        label.text = "重庆市机动车驾驶培训有限公司"
         return label
     }()
     
@@ -160,7 +161,7 @@ class PeriodRecordDetailInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "张书军"
+//        label.text = "张书军"
         return label
     }()
     
@@ -177,7 +178,7 @@ class PeriodRecordDetailInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "冀E3733学"
+//        label.text = "冀E3733学"
         return label
     }()
     
@@ -194,6 +195,80 @@ class PeriodRecordDetailInfoView: UIView {
     @objc func complaint() {
         guard let complaintBtnClick = complaintBtnClick else { return }
         complaintBtnClick()
+    }
+    
+    func isComplaint(complaint:Bool) {
+        if complaint == true  {
+            complaintButton.setTitle("已投诉", for: .normal)
+            complaintButton.backgroundColor = UIColor(r: 255, g: 229, b: 147)
+            complaintButton.isUserInteractionEnabled = false
+        }else {
+            complaintButton.setTitle("一键投诉", for: .normal)
+            complaintButton.backgroundColor = MainYellowColor
+            complaintButton.isUserInteractionEnabled = true
+        }
+    }
+    
+    func setUpData(dicInfo:NSDictionary?) {
+        numberLabel.text = "编号：\(dicInfo?.object(forKey: "rated") ?? "")"
+        
+        let starTime = dicInfo?.object(forKey: "starttime") as? Double
+        let endTime = dicInfo?.object(forKey: "endtime") as? Double
+        let starDate = Date.getNowDateFromatAnDate(Date(timeIntervalSince1970: (starTime ?? 0)/1000))
+        let endDate = Date.getNowDateFromatAnDate(Date(timeIntervalSince1970: (endTime ?? 0)/1000))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let starDateStr = formatter.string(from: starDate)
+        let endDateStr = formatter.string(from: endDate)
+        
+        beginLabel.text = starDateStr
+        endLabel.text = endDateStr
+        
+        var study = dicInfo?.object(forKey: "duration") as? Int
+        if study == nil {
+            study = 0
+        }
+        trainTimeLabel.text = "\(study!/45)学时\(study!%45)分"
+        trainDistanceLabel.text = "\(dicInfo?.object(forKey: "mileage") ?? 0)公里"
+        
+        let failReason = dicInfo?.object(forKey: "recheckreason") as? String
+        if failReason == nil || failReason == "" {
+            trainFailResonLabel.isHidden = true
+            trainFailResonTipLabel.isHidden = true
+            self.trainSchoolTipLabel.snp.remakeConstraints { (make) in
+                make.left.equalTo(40)
+                make.top.equalTo(self.trainDistanceTipLabel.snp.bottom).offset(20)
+            }
+            
+        }else {
+            var faildStr : String = ""
+            var faildArray =  failReason?.components(separatedBy: ",")
+            faildArray?.removeLast()
+            if faildArray != nil {
+                for index in 0..<faildArray!.count {
+                    let str = faildArray?[index]
+                    let reason = faildReason(index: str!)
+                    //                    faildStr = faildStr + reason
+                    if index == 0 {
+                        faildStr = faildStr + reason
+                    }else {
+                        faildStr = faildStr + "\n" + reason
+                    }
+                }
+            }
+            trainFailResonLabel.isHidden = false
+            trainFailResonTipLabel.isHidden = false
+            trainFailResonLabel.text = faildStr
+            
+            self.trainSchoolTipLabel.snp.remakeConstraints { (make) in
+                make.left.equalTo(40)
+                make.top.equalTo(self.trainFailResonLabel.snp.bottom).offset(20)
+            }
+        }
+        
+        trainSchoolLabel.text = dicInfo?.object(forKey: "schName") as? String
+        coachLabel.text = dicInfo?.object(forKey: "coachName") as? String
+        carCodeLabel.text = dicInfo?.object(forKey: "carName") as? String
     }
 }
 
@@ -277,6 +352,7 @@ extension PeriodRecordDetailInfoView {
         }
         
         self.addSubview(trainSchoolTipLabel)
+        trainSchoolTipLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1000), for: NSLayoutConstraint.Axis.horizontal)
         self.trainSchoolTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(40)
             make.top.equalTo(self.trainFailResonLabel.snp.bottom).offset(20)
@@ -284,14 +360,16 @@ extension PeriodRecordDetailInfoView {
         
         self.addSubview(trainSchoolLabel)
         self.trainSchoolLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.beginLabel.snp.left)
-            make.centerY.equalTo(self.trainSchoolTipLabel.snp.centerY)
+            make.left.equalTo(135)
+            make.top.equalTo(self.trainSchoolTipLabel.snp.top)
+            make.right.lessThanOrEqualTo(-20)
+            make.height.greaterThanOrEqualTo(20)
         }
         
         self.addSubview(coachTipLabel)
         self.coachTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(40)
-            make.top.equalTo(self.trainSchoolTipLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.trainSchoolLabel.snp.bottom).offset(10)
         }
         
         self.addSubview(coachLabel)

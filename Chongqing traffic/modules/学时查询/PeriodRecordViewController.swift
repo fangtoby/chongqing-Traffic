@@ -95,8 +95,8 @@ class PeriodRecordViewController: BaseViewController {
         params["subject"] = part+1
         params["page"] = page
         NetWorkRequest(.periodList(params: params), completion: { [weak self](result) -> (Void) in
-            let code = result.object(forKey: "code") as? Int
-            if code == nil || code == 0{
+            let code = result.object(forKey: "code") as! Int
+            if code == 0{
                 let dic = result.object(forKey: "data") as! NSDictionary
                 self?.dataSource = dic.object(forKey: "list") as! [Any]
                 self?.tableView.reloadData()
@@ -118,8 +118,8 @@ class PeriodRecordViewController: BaseViewController {
         params["subject"] = part+1
         params["page"] = page
         NetWorkRequest(.periodHistoryList(params: params), completion: { [weak self](result) -> (Void) in
-            let code = result.object(forKey: "code") as? Int
-            if code == nil || code == 0{
+            let code = result.object(forKey: "code") as! Int
+            if code == 0{
                 let dic = result.object(forKey: "data") as! NSDictionary
                 self?.dataSource = dic.object(forKey: "list") as! [Any]
                 self?.tableView.reloadData()
@@ -173,9 +173,10 @@ extension PeriodRecordViewController: UITableViewDelegate, ZLTableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let dicInfo:NSDictionary? = self.dataSource[indexPath.row] as? NSDictionary
         
         let periodRecordDetailVC = PeriodRecordDetailViewController()
-        
+        periodRecordDetailVC.dicInfo = dicInfo
         self.navigationController?.pushViewController(periodRecordDetailVC, animated: true)
     }
     

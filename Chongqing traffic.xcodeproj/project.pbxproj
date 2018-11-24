@@ -81,6 +81,10 @@
 		848613EB21A79453005A663B /* NSDictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848613EA21A79453005A663B /* NSDictionary+Extension.swift */; };
 		848613ED21A7E6F9005A663B /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848613EC21A7E6F9005A663B /* NSDate+Extension.swift */; };
 		848613EF21A80A3F005A663B /* PeriodFailReson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848613EE21A80A3F005A663B /* PeriodFailReson.swift */; };
+		848613F721A90191005A663B /* icon_login_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613F421A90191005A663B /* icon_login_error@3x.png */; };
+		848613F821A90191005A663B /* icon_login_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613F521A90191005A663B /* icon_login_error.png */; };
+		848613F921A90191005A663B /* icon_login_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613F621A90191005A663B /* icon_login_error@2x.png */; };
+		848613FF21A958FD005A663B /* ComplaintObjectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848613FE21A958FD005A663B /* ComplaintObjectPickerView.swift */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -256,6 +260,10 @@
 		848613EA21A79453005A663B /* NSDictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Extension.swift"; sourceTree = "<group>"; };
 		848613EC21A7E6F9005A663B /* NSDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		848613EE21A80A3F005A663B /* PeriodFailReson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodFailReson.swift; sourceTree = "<group>"; };
+		848613F421A90191005A663B /* icon_login_error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_login_error@3x.png"; sourceTree = "<group>"; };
+		848613F521A90191005A663B /* icon_login_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_login_error.png; sourceTree = "<group>"; };
+		848613F621A90191005A663B /* icon_login_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_login_error@2x.png"; sourceTree = "<group>"; };
+		848613FE21A958FD005A663B /* ComplaintObjectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintObjectPickerView.swift; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -379,6 +387,7 @@
 				650BBCFC219FE09D00D7046D /* PeriodRecordDetailInfoView.swift */,
 				650BBCFE219FE0B200D7046D /* PeriodRecordDetailImagesView.swift */,
 				650BBD0421A05B4500D7046D /* ComplaintView.swift */,
+				848613FE21A958FD005A663B /* ComplaintObjectPickerView.swift */,
 				65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */,
 				8467053421A2A7E000D55432 /* PeriodRecordNoDataView.swift */,
 				65411A3021A591CB00C4C34F /* TrainingStatusTableViewCell.swift */,
@@ -586,6 +595,9 @@
 		84F9734D21903AB700433E65 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				848613F521A90191005A663B /* icon_login_error.png */,
+				848613F621A90191005A663B /* icon_login_error@2x.png */,
+				848613F421A90191005A663B /* icon_login_error@3x.png */,
 				848613E521A67156005A663B /* icon_my_ensure.png */,
 				848613E621A67156005A663B /* icon_my_ensure@2x.png */,
 				848613E421A67156005A663B /* icon_my_ensure@3x.png */,
@@ -820,6 +832,7 @@
 				84F973DE219D5F5000433E65 /* home_search_select@2x.png in Resources */,
 				8467058721A5481600D55432 /* pay_wechat.png in Resources */,
 				84F97389219AA7F100433E65 /* icon_login_code@2x.png in Resources */,
+				848613F821A90191005A663B /* icon_login_error.png in Resources */,
 				65854ED721A165AC004F72CC /* icon_right_tip1@3x.png in Resources */,
 				8467058821A5481600D55432 /* btn_pay_select_yes@2x.png in Resources */,
 				84F973CF219D5F5000433E65 /* icon_sex_woman@3x.png in Resources */,
@@ -861,6 +874,7 @@
 				8467053F21A3C32A00D55432 /* icon_no_data@3x.png in Resources */,
 				84F973D6219D5F5000433E65 /* icon_my_train.png in Resources */,
 				65411A2B21A587DE00C4C34F /* btn_close@2x.png in Resources */,
+				848613F721A90191005A663B /* icon_login_error@3x.png in Resources */,
 				84F973D5219D5F5000433E65 /* icon_my_train@3x.png in Resources */,
 				848613E921A67156005A663B /* icon_my_ensure@2x.png in Resources */,
 				8467058521A5481600D55432 /* pay_ali@2x.png in Resources */,
@@ -890,6 +904,7 @@
 				84F9740E219EAC6900433E65 /* icon_train_date@3x.png in Resources */,
 				84F973DB219D5F5000433E65 /* icon_sex_woman.png in Resources */,
 				8467055821A51F2D00D55432 /* btn_image_delete@2x.png in Resources */,
+				848613F921A90191005A663B /* icon_login_error@2x.png in Resources */,
 				8467058121A5481500D55432 /* btn_pay_select_yes.png in Resources */,
 				8467057F21A5481500D55432 /* icon_add_image.png in Resources */,
 				8467053E21A3C32A00D55432 /* icon_no_data.png in Resources */,
@@ -1038,6 +1053,7 @@
 				84F97397219BB4F900433E65 /* DrivingTypePickerView.swift in Sources */,
 				8467059121A55CAF00D55432 /* InsuranceOrderUserInfoView.swift in Sources */,
 				84F973F6219E845900433E65 /* ZLPageView.swift in Sources */,
+				848613FF21A958FD005A663B /* ComplaintObjectPickerView.swift in Sources */,
 				8467056B21A5362500D55432 /* InsuranceBuyView.swift in Sources */,
 				848613ED21A7E6F9005A663B /* NSDate+Extension.swift in Sources */,
 				8467054321A3EAA900D55432 /* MineEnsureOrderInfoView.swift in Sources */,

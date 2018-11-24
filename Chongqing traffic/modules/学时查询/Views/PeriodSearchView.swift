@@ -404,7 +404,7 @@ extension PeriodSearchView {
     }
     
     func setChartData(dicInfo:NSDictionary?) {
-        doAnimate()
+//        doAnimate()
         //此处填入展示的相应数字
         let value1 = dicInfo?.valueAsDouble(forKey: "passing")
         var value2:Double = 100

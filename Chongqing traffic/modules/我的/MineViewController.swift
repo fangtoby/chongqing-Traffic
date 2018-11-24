@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -93,10 +94,11 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private func loadData(){
         let userInfoParams = [String:Any]()
+        SVProgressHUD.show()
         NetWorkRequest(.studentInfo(params: userInfoParams), completion: { [weak self](result) -> (Void) in
             
-            let code = result.object(forKey: "code") as? Int
-            if code == nil || code == 0{
+            let code = result.object(forKey: "code") as! Int
+            if code == 0{
                 self?.userInfoDic = result.object(forKey: "data") as? NSDictionary
                 for key in (self?.userInfoDic?.allKeys)! {
                     if self?.userInfoDic?[key] is NSNull {
@@ -121,8 +123,8 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let currentPartParams = [String:Any]()
         
         NetWorkRequest(.currentPart(params: currentPartParams), completion: { [weak self](result) -> (Void) in
-            let code = result.object(forKey: "code") as? Int
-            if code == nil || code == 0{
+            let code = result.object(forKey: "code") as! Int
+            if code == 0{
                 self?.currentPart = result.valueAsString(forKey: "data")
                 self?.tableView.reloadData()
             }else if code == 402 {
@@ -138,6 +140,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     ///退出登录
     @objc func loginOut() {
+        
         let alertView = ZLAlertView()
         alertView.messegeLabel.text = " 您是否要退出当前账号？"
         alertView.isHidenTitle()
@@ -184,8 +187,6 @@ extension MineViewController {
             cell.selectionStyle = .default
             
             let logoImageUrl = userInfoDic?.valueAsString(forKey: "photourl")
-            
-//            let logoImageUrl = userInfoDic?.object(forKey: "photourl") as? String
             let logoUrl = URL(string: logoImageUrl ?? "")
             
 //            cell.mineInfoView.userLogoImageView.kf.setImage(with: logoUrl)
