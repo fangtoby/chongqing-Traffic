@@ -16,6 +16,7 @@ class MineInfoView: UIView {
 //        iconImageView.image = UIImage.init(named: "pic1.jpeg")
         iconImageView.layer.masksToBounds = true
         iconImageView.layer.cornerRadius = 30
+        iconImageView.contentMode = UIView.ContentMode.scaleAspectFill
         return iconImageView
     }()
     

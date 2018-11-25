@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import Kingfisher
 
 class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -186,11 +187,10 @@ extension MineViewController {
             cell.accessoryType = .none
             cell.selectionStyle = .default
             
-            let logoImageUrl = userInfoDic?.valueAsString(forKey: "photourl")
-            let logoUrl = URL(string: logoImageUrl ?? "")
+            let logoImageUrl:String = userInfoDic?.valueAsString(forKey: "photourl") ?? ""
+            let logoUrl:URL = URL(string: logoImageUrl)!
             
-//            cell.mineInfoView.userLogoImageView.kf.setImage(with: logoUrl)
-            cell.mineInfoView.userLogoImageView.kf.setImage(with: logoUrl, placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
+            cell.mineInfoView.userLogoImageView.kf.setImage(with: ImageResource(downloadURL: logoUrl), placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
             cell.mineInfoView.nameLabel.text = userInfoDic?.valueAsString(forKey: "name")
             let sexStr = userInfoDic?.valueAsString(forKey: "sex")
             let sex = Int(sexStr ?? "1")
