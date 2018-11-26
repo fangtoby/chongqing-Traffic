@@ -20,7 +20,6 @@
 		65411A3621A5974E00C4C34F /* btn_right_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 65411A3321A5974E00C4C34F /* btn_right_close.png */; };
 		65411A3721A5974E00C4C34F /* btn_right_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65411A3421A5974E00C4C34F /* btn_right_close@2x.png */; };
 		656A91B6219DB516005427C8 /* PeriodSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A91B5219DB516005427C8 /* PeriodSearchView.swift */; };
-		65854ECC21A146D4004F72CC /* ComplaintSelectObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */; };
 		65854ED321A165AC004F72CC /* icon_right_tip1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ECD21A165AC004F72CC /* icon_right_tip1.png */; };
 		65854ED421A165AC004F72CC /* icon_right_tip2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ECE21A165AC004F72CC /* icon_right_tip2.png */; };
 		65854ED521A165AC004F72CC /* icon_right_tip2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65854ECF21A165AC004F72CC /* icon_right_tip2@3x.png */; };
@@ -63,7 +62,6 @@
 		8467056721A52D0700D55432 /* InsuranceUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056621A52D0700D55432 /* InsuranceUserInfoView.swift */; };
 		8467056921A52D8E00D55432 /* InsuranceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056821A52D8E00D55432 /* InsuranceInfoView.swift */; };
 		8467056B21A5362500D55432 /* InsuranceBuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056A21A5362500D55432 /* InsuranceBuyView.swift */; };
-		8467056F21A53F8300D55432 /* PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467056E21A53F8300D55432 /* PayButton.swift */; };
 		8467057121A5463D00D55432 /* InsurancePayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467057021A5463D00D55432 /* InsurancePayInfoView.swift */; };
 		8467057F21A5481500D55432 /* icon_add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057221A5481500D55432 /* icon_add_image.png */; };
 		8467058021A5481500D55432 /* pay_wechat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467057321A5481500D55432 /* pay_wechat@3x.png */; };
@@ -91,6 +89,30 @@
 		848613F821A90191005A663B /* icon_login_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613F521A90191005A663B /* icon_login_error.png */; };
 		848613F921A90191005A663B /* icon_login_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848613F621A90191005A663B /* icon_login_error@2x.png */; };
 		848613FF21A958FD005A663B /* ComplaintObjectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848613FE21A958FD005A663B /* ComplaintObjectPickerView.swift */; };
+		8486140C21AB878B005A663B /* btn_payali_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140021AB8789005A663B /* btn_payali_yes.png */; };
+		8486140D21AB878B005A663B /* btn_paywechat_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140121AB8789005A663B /* btn_paywechat_no@2x.png */; };
+		8486140E21AB878B005A663B /* btn_payali_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140221AB8789005A663B /* btn_payali_no@2x.png */; };
+		8486140F21AB878B005A663B /* btn_payali_no.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140321AB8789005A663B /* btn_payali_no.png */; };
+		8486141021AB878B005A663B /* btn_paywechat_no@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140421AB8789005A663B /* btn_paywechat_no@3x.png */; };
+		8486141121AB878B005A663B /* btn_paywechat_yes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140521AB878A005A663B /* btn_paywechat_yes@3x.png */; };
+		8486141221AB878B005A663B /* btn_payali_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140621AB878A005A663B /* btn_payali_yes@2x.png */; };
+		8486141321AB878B005A663B /* btn_paywechat_no.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140721AB878A005A663B /* btn_paywechat_no.png */; };
+		8486141421AB878B005A663B /* btn_payali_yes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140821AB878A005A663B /* btn_payali_yes@3x.png */; };
+		8486141521AB878B005A663B /* btn_paywechat_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140921AB878A005A663B /* btn_paywechat_yes.png */; };
+		8486141621AB878B005A663B /* btn_payali_no@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140A21AB878A005A663B /* btn_payali_no@3x.png */; };
+		8486141721AB878B005A663B /* btn_paywechat_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486140B21AB878A005A663B /* btn_paywechat_yes@2x.png */; };
+		8486141921AB8CF8005A663B /* MBProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486141821AB8CF8005A663B /* MBProgressHUD+Extension.swift */; };
+		8486142021AB9810005A663B /* NSObject+UIAppearance_Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = 8486141F21AB9810005A663B /* NSObject+UIAppearance_Swift.m */; };
+		8486142721ABC411005A663B /* icon_default_man@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142121ABC410005A663B /* icon_default_man@3x.png */; };
+		8486142821ABC411005A663B /* icon_default_woman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142221ABC411005A663B /* icon_default_woman@2x.png */; };
+		8486142921ABC411005A663B /* icon_default_man.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142321ABC411005A663B /* icon_default_man.png */; };
+		8486142A21ABC411005A663B /* icon_default_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142421ABC411005A663B /* icon_default_man@2x.png */; };
+		8486142B21ABC411005A663B /* icon_default_woman.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142521ABC411005A663B /* icon_default_woman.png */; };
+		8486142C21ABC411005A663B /* icon_default_woman@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142621ABC411005A663B /* icon_default_woman@3x.png */; };
+		8486143021ABCB31005A663B /* bg_default_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142D21ABCB31005A663B /* bg_default_img.png */; };
+		8486143121ABCB31005A663B /* bg_default_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142E21ABCB31005A663B /* bg_default_img@2x.png */; };
+		8486143221ABCB31005A663B /* bg_default_img@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142F21ABCB31005A663B /* bg_default_img@3x.png */; };
+		8486143421ABCFA0005A663B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486143321ABCFA0005A663B /* String+Extension.swift */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -205,7 +227,6 @@
 		65411A3321A5974E00C4C34F /* btn_right_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_right_close.png; sourceTree = "<group>"; };
 		65411A3421A5974E00C4C34F /* btn_right_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_right_close@2x.png"; sourceTree = "<group>"; };
 		656A91B5219DB516005427C8 /* PeriodSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodSearchView.swift; sourceTree = "<group>"; };
-		65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintSelectObjectView.swift; sourceTree = "<group>"; };
 		65854ECD21A165AC004F72CC /* icon_right_tip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_right_tip1.png; sourceTree = "<group>"; };
 		65854ECE21A165AC004F72CC /* icon_right_tip2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_right_tip2.png; sourceTree = "<group>"; };
 		65854ECF21A165AC004F72CC /* icon_right_tip2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_right_tip2@3x.png"; sourceTree = "<group>"; };
@@ -248,7 +269,6 @@
 		8467056621A52D0700D55432 /* InsuranceUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceUserInfoView.swift; sourceTree = "<group>"; };
 		8467056821A52D8E00D55432 /* InsuranceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceInfoView.swift; sourceTree = "<group>"; };
 		8467056A21A5362500D55432 /* InsuranceBuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceBuyView.swift; sourceTree = "<group>"; };
-		8467056E21A53F8300D55432 /* PayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButton.swift; sourceTree = "<group>"; };
 		8467057021A5463D00D55432 /* InsurancePayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurancePayInfoView.swift; sourceTree = "<group>"; };
 		8467057221A5481500D55432 /* icon_add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add_image.png; sourceTree = "<group>"; };
 		8467057321A5481500D55432 /* pay_wechat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_wechat@3x.png"; sourceTree = "<group>"; };
@@ -276,6 +296,32 @@
 		848613F521A90191005A663B /* icon_login_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_login_error.png; sourceTree = "<group>"; };
 		848613F621A90191005A663B /* icon_login_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_login_error@2x.png"; sourceTree = "<group>"; };
 		848613FE21A958FD005A663B /* ComplaintObjectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintObjectPickerView.swift; sourceTree = "<group>"; };
+		8486140021AB8789005A663B /* btn_payali_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_payali_yes.png; sourceTree = "<group>"; };
+		8486140121AB8789005A663B /* btn_paywechat_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_paywechat_no@2x.png"; sourceTree = "<group>"; };
+		8486140221AB8789005A663B /* btn_payali_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_payali_no@2x.png"; sourceTree = "<group>"; };
+		8486140321AB8789005A663B /* btn_payali_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_payali_no.png; sourceTree = "<group>"; };
+		8486140421AB8789005A663B /* btn_paywechat_no@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_paywechat_no@3x.png"; sourceTree = "<group>"; };
+		8486140521AB878A005A663B /* btn_paywechat_yes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_paywechat_yes@3x.png"; sourceTree = "<group>"; };
+		8486140621AB878A005A663B /* btn_payali_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_payali_yes@2x.png"; sourceTree = "<group>"; };
+		8486140721AB878A005A663B /* btn_paywechat_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_paywechat_no.png; sourceTree = "<group>"; };
+		8486140821AB878A005A663B /* btn_payali_yes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_payali_yes@3x.png"; sourceTree = "<group>"; };
+		8486140921AB878A005A663B /* btn_paywechat_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_paywechat_yes.png; sourceTree = "<group>"; };
+		8486140A21AB878A005A663B /* btn_payali_no@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_payali_no@3x.png"; sourceTree = "<group>"; };
+		8486140B21AB878A005A663B /* btn_paywechat_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_paywechat_yes@2x.png"; sourceTree = "<group>"; };
+		8486141821AB8CF8005A663B /* MBProgressHUD+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Extension.swift"; sourceTree = "<group>"; };
+		8486141A21AB96D0005A663B /* Chongqing traffic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chongqing traffic-Bridging-Header.h"; sourceTree = "<group>"; };
+		8486141E21AB9810005A663B /* NSObject+UIAppearance_Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearance_Swift.h"; sourceTree = "<group>"; };
+		8486141F21AB9810005A663B /* NSObject+UIAppearance_Swift.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearance_Swift.m"; sourceTree = "<group>"; };
+		8486142121ABC410005A663B /* icon_default_man@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default_man@3x.png"; sourceTree = "<group>"; };
+		8486142221ABC411005A663B /* icon_default_woman@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default_woman@2x.png"; sourceTree = "<group>"; };
+		8486142321ABC411005A663B /* icon_default_man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default_man.png; sourceTree = "<group>"; };
+		8486142421ABC411005A663B /* icon_default_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default_man@2x.png"; sourceTree = "<group>"; };
+		8486142521ABC411005A663B /* icon_default_woman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default_woman.png; sourceTree = "<group>"; };
+		8486142621ABC411005A663B /* icon_default_woman@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default_woman@3x.png"; sourceTree = "<group>"; };
+		8486142D21ABCB31005A663B /* bg_default_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_default_img.png; sourceTree = "<group>"; };
+		8486142E21ABCB31005A663B /* bg_default_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_default_img@2x.png"; sourceTree = "<group>"; };
+		8486142F21ABCB31005A663B /* bg_default_img@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_default_img@3x.png"; sourceTree = "<group>"; };
+		8486143321ABCFA0005A663B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -400,7 +446,6 @@
 				650BBCFE219FE0B200D7046D /* PeriodRecordDetailImagesView.swift */,
 				650BBD0421A05B4500D7046D /* ComplaintView.swift */,
 				848613FE21A958FD005A663B /* ComplaintObjectPickerView.swift */,
-				65854ECB21A146D4004F72CC /* ComplaintSelectObjectView.swift */,
 				8467053421A2A7E000D55432 /* PeriodRecordNoDataView.swift */,
 				65411A3021A591CB00C4C34F /* TrainingStatusTableViewCell.swift */,
 				848613EE21A80A3F005A663B /* PeriodFailReson.swift */,
@@ -436,7 +481,6 @@
 				8467059021A55CAF00D55432 /* InsuranceOrderUserInfoView.swift */,
 				8467059221A5601F00D55432 /* PartButton.swift */,
 				8467057021A5463D00D55432 /* InsurancePayInfoView.swift */,
-				8467056E21A53F8300D55432 /* PayButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -505,11 +549,16 @@
 				84F97373219A766C00433E65 /* Md5 */,
 				84F973582190492E00433E65 /* MJRefresh */,
 				84F97378219A88F800433E65 /* StringToDictionary.swift */,
+				8486143321ABCFA0005A663B /* String+Extension.swift */,
 				84F973EE219E803900433E65 /* UIColor+Extension.swift */,
 				84F97398219BB50700433E65 /* UIView+KLExtension.swift */,
 				8467053821A3B44300D55432 /* UItableView+Extension.swift */,
 				848613EA21A79453005A663B /* NSDictionary+Extension.swift */,
 				848613EC21A7E6F9005A663B /* NSDate+Extension.swift */,
+				8486141821AB8CF8005A663B /* MBProgressHUD+Extension.swift */,
+				8486141E21AB9810005A663B /* NSObject+UIAppearance_Swift.h */,
+				8486141F21AB9810005A663B /* NSObject+UIAppearance_Swift.m */,
+				8486141A21AB96D0005A663B /* Chongqing traffic-Bridging-Header.h */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -607,6 +656,27 @@
 		84F9734D21903AB700433E65 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8486142D21ABCB31005A663B /* bg_default_img.png */,
+				8486142E21ABCB31005A663B /* bg_default_img@2x.png */,
+				8486142F21ABCB31005A663B /* bg_default_img@3x.png */,
+				8486142321ABC411005A663B /* icon_default_man.png */,
+				8486142421ABC411005A663B /* icon_default_man@2x.png */,
+				8486142121ABC410005A663B /* icon_default_man@3x.png */,
+				8486142521ABC411005A663B /* icon_default_woman.png */,
+				8486142221ABC411005A663B /* icon_default_woman@2x.png */,
+				8486142621ABC411005A663B /* icon_default_woman@3x.png */,
+				8486140321AB8789005A663B /* btn_payali_no.png */,
+				8486140221AB8789005A663B /* btn_payali_no@2x.png */,
+				8486140A21AB878A005A663B /* btn_payali_no@3x.png */,
+				8486140021AB8789005A663B /* btn_payali_yes.png */,
+				8486140621AB878A005A663B /* btn_payali_yes@2x.png */,
+				8486140821AB878A005A663B /* btn_payali_yes@3x.png */,
+				8486140721AB878A005A663B /* btn_paywechat_no.png */,
+				8486140121AB8789005A663B /* btn_paywechat_no@2x.png */,
+				8486140421AB8789005A663B /* btn_paywechat_no@3x.png */,
+				8486140921AB878A005A663B /* btn_paywechat_yes.png */,
+				8486140B21AB878A005A663B /* btn_paywechat_yes@2x.png */,
+				8486140521AB878A005A663B /* btn_paywechat_yes@3x.png */,
 				65DF749821AAFB0A00CCAD54 /* icon_requst_error.png */,
 				65DF749921AAFB0A00CCAD54 /* icon_requst_error@2x.png */,
 				65DF749C21AAFB0A00CCAD54 /* icon_requst_error@3x.png */,
@@ -807,6 +877,7 @@
 				TargetAttributes = {
 					84F9730D21900EF400433E65 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -834,11 +905,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DF74A021AAFB0A00CCAD54 /* icon_requst_success@3x.png in Resources */,
+				8486141221AB878B005A663B /* btn_payali_yes@2x.png in Resources */,
 				84F973DF219D5F5000433E65 /* icon_link_web@2x.png in Resources */,
 				65854EDD21A16633004F72CC /* icon_sex_man@2x.png in Resources */,
 				84F9738F219AAF0D00433E65 /* icon_login_drivingType@3x.png in Resources */,
+				8486140E21AB878B005A663B /* btn_payali_no@2x.png in Resources */,
 				8467058321A5481600D55432 /* pay_wechat@2x.png in Resources */,
 				84F973E9219D5F5000433E65 /* home_usercenter_nomal.png in Resources */,
+				8486143221ABCB31005A663B /* bg_default_img@3x.png in Resources */,
 				84F9740D219EAC6900433E65 /* icon_train_time@2x.png in Resources */,
 				8467058221A5481500D55432 /* btn_pay_select_no@2x.png in Resources */,
 				84F9731C21900EF600433E65 /* LaunchScreen.storyboard in Resources */,
@@ -846,8 +920,10 @@
 				84F973E0219D5F5000433E65 /* home_search_normal@2x.png in Resources */,
 				8467055921A51F2D00D55432 /* btn_image_delete.png in Resources */,
 				84F97388219AA7F100433E65 /* icon_login_number.png in Resources */,
+				8486142B21ABC411005A663B /* icon_default_woman.png in Resources */,
 				84F97408219EAC6900433E65 /* icon_train_date@2x.png in Resources */,
 				84F973E5219D5F5000433E65 /* home_search_normal@3x.png in Resources */,
+				8486141321AB878B005A663B /* btn_paywechat_no.png in Resources */,
 				84F973DE219D5F5000433E65 /* home_search_select@2x.png in Resources */,
 				8467058721A5481600D55432 /* pay_wechat.png in Resources */,
 				84F97389219AA7F100433E65 /* icon_login_code@2x.png in Resources */,
@@ -857,6 +933,7 @@
 				84F973CF219D5F5000433E65 /* icon_sex_woman@3x.png in Resources */,
 				84F97386219AA7F100433E65 /* icon_login_code@3x.png in Resources */,
 				8467058921A5481600D55432 /* btn_pay_select_yes@3x.png in Resources */,
+				8486141621AB878B005A663B /* btn_payali_no@3x.png in Resources */,
 				84F973D2219D5F5000433E65 /* home_search_select@3x.png in Resources */,
 				84F973D9219D5F5000433E65 /* icon_select_no.png in Resources */,
 				65DF749D21AAFB0A00CCAD54 /* icon_requst_success@2x.png in Resources */,
@@ -870,10 +947,12 @@
 				65411A2921A587DE00C4C34F /* btn_close@3x.png in Resources */,
 				84F9735121903AB700433E65 /* pic1.jpeg in Resources */,
 				84F97385219AA7F100433E65 /* icon_login_number@3x.png in Resources */,
+				8486142921ABC411005A663B /* icon_default_man.png in Resources */,
 				84F9738A219AA7F100433E65 /* icon_login_phone@3x.png in Resources */,
 				84F973E6219D5F5000433E65 /* icon_select_yes.png in Resources */,
 				84F973DC219D5F5000433E65 /* icon_sex_woman@2x.png in Resources */,
 				848613E821A67156005A663B /* icon_my_ensure.png in Resources */,
+				8486142A21ABC411005A663B /* icon_default_man@2x.png in Resources */,
 				65411A2A21A587DE00C4C34F /* btn_close.png in Resources */,
 				84F9735221903AB700433E65 /* pic3.jpeg in Resources */,
 				84F9740F219EAC6900433E65 /* icon_train_time@3x.png in Resources */,
@@ -884,6 +963,7 @@
 				65DF74A221AAFB0A00CCAD54 /* icon_requst_error@3x.png in Resources */,
 				84F973E2219D5F5000433E65 /* icon_link_web@3x.png in Resources */,
 				65854ED421A165AC004F72CC /* icon_right_tip2.png in Resources */,
+				8486141421AB878B005A663B /* btn_payali_yes@3x.png in Resources */,
 				84F973E8219D5F5000433E65 /* home_usercenter_select@3x.png in Resources */,
 				84F97410219EAC6900433E65 /* icon_train_date.png in Resources */,
 				65411A3621A5974E00C4C34F /* btn_right_close.png in Resources */,
@@ -891,7 +971,9 @@
 				8467055321A503B700D55432 /* icon_add_image@2x.png in Resources */,
 				65854EDE21A16633004F72CC /* icon_sex_man@3x.png in Resources */,
 				65DF749E21AAFB0A00CCAD54 /* icon_requst_error.png in Resources */,
+				8486140F21AB878B005A663B /* btn_payali_no.png in Resources */,
 				84F973D1219D5F5000433E65 /* home_usercenter_select.png in Resources */,
+				8486143121ABCB31005A663B /* bg_default_img@2x.png in Resources */,
 				84F9740C219EAC6900433E65 /* icon_back.png in Resources */,
 				8467058B21A5481600D55432 /* pay_ali@3x.png in Resources */,
 				8467053F21A3C32A00D55432 /* icon_no_data@3x.png in Resources */,
@@ -899,14 +981,18 @@
 				65411A2B21A587DE00C4C34F /* btn_close@2x.png in Resources */,
 				848613F721A90191005A663B /* icon_login_error@3x.png in Resources */,
 				65DF74A121AAFB0A00CCAD54 /* icon_requst_success.png in Resources */,
+				8486142821ABC411005A663B /* icon_default_woman@2x.png in Resources */,
+				8486140D21AB878B005A663B /* btn_paywechat_no@2x.png in Resources */,
 				84F973D5219D5F5000433E65 /* icon_my_train@3x.png in Resources */,
 				848613E921A67156005A663B /* icon_my_ensure@2x.png in Resources */,
 				8467058521A5481600D55432 /* pay_ali@2x.png in Resources */,
 				84F9738B219AA7F100433E65 /* icon_login_phone.png in Resources */,
 				65854ED821A165AC004F72CC /* icon_right_tip1@2x.png in Resources */,
 				84F9740A219EAC6900433E65 /* icon_back@3x.png in Resources */,
+				8486140C21AB878B005A663B /* btn_payali_yes.png in Resources */,
 				84F973E1219D5F5000433E65 /* icon_select_yes@3x.png in Resources */,
 				65854ED621A165AC004F72CC /* icon_right_tip2@2x.png in Resources */,
+				8486141721AB878B005A663B /* btn_paywechat_yes@2x.png in Resources */,
 				84F973DD219D5F5000433E65 /* icon_select_no@3x.png in Resources */,
 				84F9740B219EAC6900433E65 /* icon_train_time.png in Resources */,
 				84F97396219BB4F900433E65 /* drivingType.plist in Resources */,
@@ -915,20 +1001,26 @@
 				65854ED521A165AC004F72CC /* icon_right_tip2@3x.png in Resources */,
 				848613E721A67156005A663B /* icon_my_ensure@3x.png in Resources */,
 				84F97387219AA7F100433E65 /* icon_login_number@2x.png in Resources */,
+				8486141021AB878B005A663B /* btn_paywechat_no@3x.png in Resources */,
+				8486141121AB878B005A663B /* btn_paywechat_yes@3x.png in Resources */,
+				8486142721ABC411005A663B /* icon_default_man@3x.png in Resources */,
 				84F97409219EAC6900433E65 /* icon_back@2x.png in Resources */,
 				84F973DA219D5F5000433E65 /* icon_link_web.png in Resources */,
 				84F97383219AA7F100433E65 /* icon_login_code.png in Resources */,
 				84F973D7219D5F5000433E65 /* home_usercenter_nomal@2x.png in Resources */,
 				84F97384219AA7F100433E65 /* icon_login_phone@2x.png in Resources */,
 				8467053D21A3C32A00D55432 /* icon_no_data@2x.png in Resources */,
+				8486143021ABCB31005A663B /* bg_default_img.png in Resources */,
 				65854ED321A165AC004F72CC /* icon_right_tip1.png in Resources */,
 				84F973D0219D5F5000433E65 /* icon_select_no@2x.png in Resources */,
 				8467058A21A5481600D55432 /* pay_ali.png in Resources */,
 				84F9735321903AB700433E65 /* pic2.jpeg in Resources */,
 				84F9740E219EAC6900433E65 /* icon_train_date@3x.png in Resources */,
+				8486141521AB878B005A663B /* btn_paywechat_yes.png in Resources */,
 				84F973DB219D5F5000433E65 /* icon_sex_woman.png in Resources */,
 				8467055821A51F2D00D55432 /* btn_image_delete@2x.png in Resources */,
 				848613F921A90191005A663B /* icon_login_error@2x.png in Resources */,
+				8486142C21ABC411005A663B /* icon_default_woman@3x.png in Resources */,
 				8467058121A5481500D55432 /* btn_pay_select_yes.png in Resources */,
 				8467057F21A5481500D55432 /* icon_add_image.png in Resources */,
 				8467053E21A3C32A00D55432 /* icon_no_data.png in Resources */,
@@ -982,10 +1074,10 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KMPlaceholderTextView/KMPlaceholderTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
@@ -1003,10 +1095,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPlaceholderTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
@@ -1031,7 +1123,6 @@
 				650BBD01219FFA8200D7046D /* ComplaintViewController.swift in Sources */,
 				8467056921A52D8E00D55432 /* InsuranceInfoView.swift in Sources */,
 				84F973FA219E963600433E65 /* PeriodRecordViewController.swift in Sources */,
-				8467056F21A53F8300D55432 /* PayButton.swift in Sources */,
 				84F973EF219E803900433E65 /* UIColor+Extension.swift in Sources */,
 				8467054921A406BC00D55432 /* MineEnsureDetailView.swift in Sources */,
 				8467054D21A4114300D55432 /* MineApplyPaymentInfoView.swift in Sources */,
@@ -1071,16 +1162,18 @@
 				84F973A1219D1B6600433E65 /* MineInfoViewController.swift in Sources */,
 				84F973A3219D1BB600433E65 /* MineInfoControTableViewCell.swift in Sources */,
 				8467056221A52C8300D55432 /* InsuranceViewController.swift in Sources */,
-				65854ECC21A146D4004F72CC /* ComplaintSelectObjectView.swift in Sources */,
 				650BBCFF219FE0B200D7046D /* PeriodRecordDetailImagesView.swift in Sources */,
 				65854EE721A1A7D5004F72CC /* ZLAlertView.swift in Sources */,
 				84F97397219BB4F900433E65 /* DrivingTypePickerView.swift in Sources */,
+				8486141921AB8CF8005A663B /* MBProgressHUD+Extension.swift in Sources */,
 				8467059121A55CAF00D55432 /* InsuranceOrderUserInfoView.swift in Sources */,
 				84F973F6219E845900433E65 /* ZLPageView.swift in Sources */,
 				848613FF21A958FD005A663B /* ComplaintObjectPickerView.swift in Sources */,
 				8467056B21A5362500D55432 /* InsuranceBuyView.swift in Sources */,
 				848613ED21A7E6F9005A663B /* NSDate+Extension.swift in Sources */,
 				8467054321A3EAA900D55432 /* MineEnsureOrderInfoView.swift in Sources */,
+				8486142021AB9810005A663B /* NSObject+UIAppearance_Swift.m in Sources */,
+				8486143421ABCFA0005A663B /* String+Extension.swift in Sources */,
 				84F9732D2190220700433E65 /* MineViewController.swift in Sources */,
 				84F97338219025D200433E65 /* BaseNavigationViewController.swift in Sources */,
 				84F973412190271900433E65 /* WRNavigationBar.swift in Sources */,
@@ -1246,6 +1339,7 @@
 			baseConfigurationReference = 375784E0078E200F7F1EB62D /* Pods-Chongqing traffic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NXJ4UY7738;
 				INFOPLIST_FILE = "Chongqing traffic/Info.plist";
@@ -1256,6 +1350,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.GJYW.Chongqing-traffic";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Chongqing traffic/Tools/Chongqing traffic-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1266,6 +1362,7 @@
 			baseConfigurationReference = EF6D54EE24549DC64EA8B402 /* Pods-Chongqing traffic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NXJ4UY7738;
 				INFOPLIST_FILE = "Chongqing traffic/Info.plist";
@@ -1276,6 +1373,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.GJYW.Chongqing-traffic";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Chongqing traffic/Tools/Chongqing traffic-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

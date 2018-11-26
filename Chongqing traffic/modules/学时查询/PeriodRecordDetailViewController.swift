@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class PeriodRecordDetailViewController: BaseViewController {
     
@@ -52,7 +53,7 @@ class PeriodRecordDetailViewController: BaseViewController {
         let id = self.dicInfo?.object(forKey: "periodId") as? String
         var params = [String : Any]()
         params["pid"] = Int(id ?? "0")
-        
+        MBProgressHUD.showWait("请稍后...")
         NetWorkRequest(.complaintStatus(params: params), completion: { [weak self](result) -> (Void) in
             
             let code = result.object(forKey: "code") as! Int
@@ -78,10 +79,11 @@ class PeriodRecordDetailViewController: BaseViewController {
         let beiginImageUrl = self.dicInfo?.object(forKey: "url1") as? String
         let trainingImageUrl = self.dicInfo?.object(forKey: "url2") as? String
         let endImageUrl = self.dicInfo?.object(forKey: "url3") as? String
+        let placeholder = UIImage.init(named: "bg_default_img")
         
-        self.recordDetailImagesView.beginImageView.kf.setImage(with: URL(string: beiginImageUrl ?? ""))
-        self.recordDetailImagesView.trainingImageView.kf.setImage(with: URL(string: trainingImageUrl ?? ""))
-        self.recordDetailImagesView.endImageView.kf.setImage(with: URL(string: endImageUrl ?? ""))
+        self.recordDetailImagesView.beginImageView.kf.setImage(with: URL(string: beiginImageUrl ?? ""), placeholder: placeholder, options: nil, progressBlock: nil, completionHandler: nil)
+        self.recordDetailImagesView.trainingImageView.kf.setImage(with: URL(string: trainingImageUrl ?? ""), placeholder: placeholder, options: nil, progressBlock: nil, completionHandler: nil)
+        self.recordDetailImagesView.endImageView.kf.setImage(with: URL(string: endImageUrl ?? ""), placeholder: placeholder, options: nil, progressBlock: nil, completionHandler: nil)
     }
     
     func setUpUI() {

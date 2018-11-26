@@ -85,9 +85,19 @@ extension MineInfoViewController {
         cell.selectionStyle = .none
         cell.titleLabel.text = self.dataSource[indexPath.row]
         
+        let sexStr = userInfoDic?.valueAsString(forKey: "sex")
+        let sex = Int(sexStr ?? "1")
+        
+        var placeholder:UIImage
+        if sex == 2{
+            placeholder = UIImage.init(named: "icon_default_woman")!
+        }else {
+            placeholder = UIImage.init(named: "icon_default_man")!
+        }
+        
         let logoImageUrl = userInfoDic?.valueAsString(forKey: "photourl")
         let logoUrl = URL(string: logoImageUrl ?? "")
-        cell.userLogoImageView.kf.setImage(with: logoUrl, placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
+        cell.userLogoImageView.kf.setImage(with: logoUrl, placeholder: placeholder, options: nil, progressBlock: nil, completionHandler: nil)
         if indexPath.row == 0 {
             cell.userLogoImageView.isHidden = false
             cell.descLabel.isHidden = true
@@ -97,7 +107,9 @@ extension MineInfoViewController {
             if indexPath.row == 1 {
                 cell.descLabel.text = userInfoDic?.valueAsString(forKey: "name")
             }else if indexPath.row == 2{
-                cell.descLabel.text = userInfoDic?.valueAsString(forKey: "phone")
+                var phone = userInfoDic?.valueAsString(forKey: "phone")
+                phone = phone?.phoneNumberEncryption(string: phone ?? "")
+                cell.descLabel.text = phone
             }else if indexPath.row == 3 {
                 cell.descLabel.text = "目前正在\(userInfoDic?.valueAsString(forKey: "schName") ?? "")"+"学习\(userInfoDic?.valueAsString(forKey: "traintype") ?? "")技能"
             }
@@ -107,26 +119,26 @@ extension MineInfoViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableview.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0 {
-            //头像
-            
-            
-        }else if indexPath.row == 1 {
-            //昵称
-            let chanceNickNameVC = MineChanceNickNameAndSignViewController()
-            chanceNickNameVC.nickNameStr = "李某某"
-            self.navigationController?.pushViewController(chanceNickNameVC, animated: true)
-            
-        }else if indexPath.row == 2{
-            //手机号
-            let chancePhoneNumberVC = MineChancePhoneNumberViewController()
-            chancePhoneNumberVC.oldNumber = "18888888888"
-            self.navigationController?.pushViewController(chancePhoneNumberVC, animated: true)
-        }else {
-            //签名
-            let chanceSignVC = MineChanceNickNameAndSignViewController()
-            chanceSignVC.changeType = 2
-            self.navigationController?.pushViewController(chanceSignVC, animated: true)
-        }
+//        if indexPath.row == 0 {
+//            //头像
+//
+//
+//        }else if indexPath.row == 1 {
+//            //昵称
+//            let chanceNickNameVC = MineChanceNickNameAndSignViewController()
+//            chanceNickNameVC.nickNameStr = "李某某"
+//            self.navigationController?.pushViewController(chanceNickNameVC, animated: true)
+//
+//        }else if indexPath.row == 2{
+//            //手机号
+//            let chancePhoneNumberVC = MineChancePhoneNumberViewController()
+//            chancePhoneNumberVC.oldNumber = "18888888888"
+//            self.navigationController?.pushViewController(chancePhoneNumberVC, animated: true)
+//        }else {
+//            //签名
+//            let chanceSignVC = MineChanceNickNameAndSignViewController()
+//            chanceSignVC.changeType = 2
+//            self.navigationController?.pushViewController(chanceSignVC, animated: true)
+//        }
     }
 }

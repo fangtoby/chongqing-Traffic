@@ -7,7 +7,8 @@ target 'Chongqing traffic' do
 
   # Pods for Chongqing traffic
   pod 'SnapKit'
-  pod 'SVProgressHUD'
+#  pod 'SVProgressHUD'
+  pod 'MBProgressHUD'
   pod 'Kingfisher'
   pod 'YYKit'
   #tabbar样式

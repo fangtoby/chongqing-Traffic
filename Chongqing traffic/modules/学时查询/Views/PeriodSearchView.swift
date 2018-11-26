@@ -13,6 +13,7 @@ import Charts
 // 创建闭包
 typealias PeriodAllBtnClick = ((Int) -> (Void))
 
+
 class PeriodSearchView: UIView {
     
     var periodAllBtnClick : PeriodAllBtnClick?
@@ -189,8 +190,19 @@ class PeriodSearchView: UIView {
         let insuranceLabel = UILabel()
         insuranceLabel.font = KUIFont12
         insuranceLabel.textColor = MainTitleColor
+        insuranceLabel.numberOfLines = 0
         insuranceLabel.text = "花10元购买驾考无忧险，考试未通过文案"
         return insuranceLabel
+    }()
+    
+    lazy var insuranceIntroBtn: BaseButton = {
+        let button = BaseButton()
+        button.tag = 103
+        button.titleLabel?.font = KUIFont12
+        button.setTitle("投保说明", for: .normal)
+        button.setTitleColor(MainYellowColor, for: .normal)
+        button.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)
+        return button
     }()
     
     ///刷新并推送按钮
@@ -347,10 +359,19 @@ class PeriodSearchView: UIView {
             make.width.height.equalTo(14)
         }
         
+        self.addSubview(insuranceIntroBtn)
+        self.insuranceIntroBtn.snp.makeConstraints { (make) in
+            make.centerY.equalTo(self.insuranceButton.snp.centerY)
+            make.right.lessThanOrEqualTo(40)
+            make.height.equalTo(20)
+            make.width.equalTo(50)
+        }
+        
         self.addSubview(insuranceLabel)
         self.insuranceLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.insuranceButton.snp.right).offset(8)
-            make.centerY.equalTo(self.insuranceButton.snp.centerY)
+            make.top.equalTo(self.insuranceButton.snp.top)
+            make.right.equalTo(self.insuranceIntroBtn.snp.left).offset(-8)
         }
         
         self.addSubview(freshAndPushButton)
@@ -489,5 +510,7 @@ extension PeriodSearchView {
         }else {
             trainStatusLabel.text = "未满足推送考试系统要求"
         }
+        
+        insuranceLabel.text = dicInfo?.object(forKey: "copywriting") as? String
     }
 }

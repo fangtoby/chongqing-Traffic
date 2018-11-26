@@ -10,6 +10,8 @@ import UIKit
 
 class InsuranceViewController: BaseViewController {
     
+    var userInfoDic:NSDictionary?
+    
     lazy var sureBtn: BaseButton = {
         let button = BaseButton()
         button.titleLabel?.font = KUIFont16
@@ -35,7 +37,10 @@ class InsuranceViewController: BaseViewController {
 
         self.title = "学车无忧险"
         
+        userInfoDic = UserDefaults.standard.object(forKey: userInfo) as? NSDictionary
+        
         setUpUI()
+        self.userInfoView.setData(dicInfo:userInfoDic)
     }
     
     func setUpUI() {
@@ -62,6 +67,11 @@ class InsuranceViewController: BaseViewController {
     }
     
     @objc func sureButtonClicked() {
+        
+        
+        
+        
+        
         //确认信息
         let insuranceBuyView = InsuranceBuyView()
         self.view.addSubview(insuranceBuyView)

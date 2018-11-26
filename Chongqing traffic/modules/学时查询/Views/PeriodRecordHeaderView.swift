@@ -14,7 +14,7 @@ class PeriodRecordHeaderView: UIView {
         let waitTrainLabel = UILabel()
         waitTrainLabel.font = KBUIFont20
         waitTrainLabel.textColor = UIColor(r: 245, g: 166, b: 35)
-        waitTrainLabel.text = "1学时21分"
+//        waitTrainLabel.text = "1学时21分"
         return waitTrainLabel
     }()
     
@@ -30,7 +30,7 @@ class PeriodRecordHeaderView: UIView {
         let qualifiedLabel = UILabel()
         qualifiedLabel.font = KBUIFont20
         qualifiedLabel.textColor = MainBlueColor
-        qualifiedLabel.text = "15学时06分"
+//        qualifiedLabel.text = "15学时06分"
         return qualifiedLabel
     }()
     

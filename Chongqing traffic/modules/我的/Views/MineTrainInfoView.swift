@@ -23,7 +23,7 @@ class MineTrainInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "666 666 **** **** 6666"
+//        label.text = "666 666 **** **** 6666"
         return label
     }()
     
@@ -40,7 +40,7 @@ class MineTrainInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "重庆xx驾校"
+//        label.text = "重庆xx驾校"
         return label
     }()
     
@@ -57,7 +57,7 @@ class MineTrainInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "2018-08-15"
+//        label.text = "2018-08-15"
         return label
     }()
     
@@ -74,7 +74,7 @@ class MineTrainInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "188 **** 8888"
+//        label.text = "188 **** 8888"
         return label
     }()
     
@@ -91,7 +91,7 @@ class MineTrainInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "六六计时培训系统"
+//        label.text = "六六计时培训系统"
         return label
     }()
     
@@ -108,7 +108,7 @@ class MineTrainInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "未结业"
+//        label.text = "未结业"
         return label
     }()
     
@@ -125,7 +125,7 @@ class MineTrainInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainTitleColor
-        label.text = "未结业"
+//        label.text = "未结业"
         return label
     }()
 

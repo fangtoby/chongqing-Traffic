@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SVProgressHUD
+import MBProgressHUD
 import Kingfisher
 
 class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
@@ -55,6 +55,8 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        loadData()
+        loadCurrentPart()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -73,8 +75,6 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         userInfoDic = UserDefaults.standard.object(forKey: userInfo) as? NSDictionary
         
         setUpUI()
-        loadData()
-        loadCurrentPart()
     }
     
     func setUpUI() {
@@ -95,9 +95,8 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private func loadData(){
         let userInfoParams = [String:Any]()
-        SVProgressHUD.show()
+        MBProgressHUD.showWait("请稍后...")
         NetWorkRequest(.studentInfo(params: userInfoParams), completion: { [weak self](result) -> (Void) in
-            
             let code = result.object(forKey: "code") as! Int
             if code == 0{
                 self?.userInfoDic = result.object(forKey: "data") as? NSDictionary
@@ -122,7 +121,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func loadCurrentPart() {
         let currentPartParams = [String:Any]()
-        
+        MBProgressHUD.showWait("请稍后...")
         NetWorkRequest(.currentPart(params: currentPartParams), completion: { [weak self](result) -> (Void) in
             let code = result.object(forKey: "code") as! Int
             if code == 0{
@@ -149,6 +148,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         alertView.sureBtnClick = { [weak self] in
             var logoutParams = [String:Any]()
             logoutParams["token"] = UIDevice.current.identifierForVendor?.uuidString
+            MBProgressHUD.showWait("正在退出登陆...")
             NetWorkRequest(.logout(params: logoutParams), completion: { (result) -> (Void) in
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
@@ -156,7 +156,7 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 loginVC.isFirstLogin = true
                 self?.present(loginVC, animated: true, completion: nil)
             }, failed: { (error) -> (Void) in
-                
+
             })
         }
     }
@@ -187,19 +187,23 @@ extension MineViewController {
             cell.accessoryType = .none
             cell.selectionStyle = .default
             
-            let logoImageUrl:String = userInfoDic?.valueAsString(forKey: "photourl") ?? ""
-            let logoUrl:URL = URL(string: logoImageUrl)!
-            
-            cell.mineInfoView.userLogoImageView.kf.setImage(with: ImageResource(downloadURL: logoUrl), placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
-            cell.mineInfoView.nameLabel.text = userInfoDic?.valueAsString(forKey: "name")
             let sexStr = userInfoDic?.valueAsString(forKey: "sex")
             let sex = Int(sexStr ?? "1")
-            
+
+            var placeholder:UIImage
             if sex == 2{
+                placeholder = UIImage.init(named: "icon_default_woman")!
                 cell.mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_woman")
             }else {
+                placeholder = UIImage.init(named: "icon_default_man")!
                 cell.mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_man")
             }
+            
+            let logoImageUrl:String = userInfoDic?.valueAsString(forKey: "photourl") ?? ""
+            let logoUrl:URL = URL(string: logoImageUrl)!
+            cell.mineInfoView.userLogoImageView.kf.setImage(with: ImageResource(downloadURL: logoUrl), placeholder: placeholder, options: nil, progressBlock: nil, completionHandler: nil)
+            cell.mineInfoView.nameLabel.text = userInfoDic?.valueAsString(forKey: "name")
+            
             cell.mineInfoView.descLabel.text = "目前正在\(userInfoDic?.valueAsString(forKey: "schName") ?? "")"+"学习\(userInfoDic?.valueAsString(forKey: "traintype") ?? "")技能"
             return cell
         }else {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class PeriodSearchViewController: BaseViewController {
 
@@ -35,7 +36,7 @@ class PeriodSearchViewController: BaseViewController {
     
     func loadCurrentPart() {
         let currentPartParams = [String:Any]()
-
+        MBProgressHUD.showWait("请稍后...")
         NetWorkRequest(.currentPart(params: currentPartParams), completion: { [weak self](result) -> (Void) in
             let code = result.object(forKey: "code") as! Int
             if code == 0{

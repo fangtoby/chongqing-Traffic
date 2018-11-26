@@ -25,7 +25,7 @@ class MineInfoView: UIView {
         let nameLabel = UILabel()
         nameLabel.font = KUIFont20
         nameLabel.textColor = MainYellowColor
-        nameLabel.text = "哈哈哈"
+//        nameLabel.text = "哈哈哈"
         return nameLabel
     }()
     
@@ -42,7 +42,7 @@ class MineInfoView: UIView {
         descLabel.font = KUIFont12
         descLabel.textColor = AssistColor
         descLabel.numberOfLines = 0
-        descLabel.text = "目前正在呱呱驾校学习C1技能"
+//        descLabel.text = "目前正在呱呱驾校学习C1技能"
         return descLabel
     }()
     

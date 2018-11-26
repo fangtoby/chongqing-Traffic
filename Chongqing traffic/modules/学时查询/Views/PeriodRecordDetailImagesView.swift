@@ -23,6 +23,7 @@ class PeriodRecordDetailImagesView: UIView {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 4
         imageView.backgroundColor = KUIColorBG
+        imageView.image = UIImage.init(named: "bg_default_img")
         return imageView
     }()
     
@@ -39,6 +40,7 @@ class PeriodRecordDetailImagesView: UIView {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 4
         imageView.backgroundColor = KUIColorBG
+        imageView.image = UIImage.init(named: "bg_default_img")
         return imageView
     }()
     
@@ -55,6 +57,7 @@ class PeriodRecordDetailImagesView: UIView {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 4
         imageView.backgroundColor = KUIColorBG
+        imageView.image = UIImage.init(named: "bg_default_img")
         return imageView
     }()
     

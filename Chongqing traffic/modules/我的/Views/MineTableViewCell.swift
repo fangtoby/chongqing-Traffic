@@ -22,7 +22,7 @@ class MineTableViewCell: UITableViewCell {
         let titleLabel = UILabel()
         titleLabel.font = KUIFont14
         titleLabel.textColor = MainTitleColor
-        titleLabel.text = "哈哈哈"
+//        titleLabel.text = "哈哈哈"
         return titleLabel
     }()
     
@@ -32,7 +32,7 @@ class MineTableViewCell: UITableViewCell {
         descLabel.font = KUIFont14
         descLabel.textColor = AssistColor
         descLabel.numberOfLines = 0
-        descLabel.text = "目前正在呱呱驾校学习C1技能"
+//        descLabel.text = "目前正在呱呱驾校学习C1技能"
         return descLabel
     }()
     
@@ -98,6 +98,7 @@ class MineTableViewCell: UITableViewCell {
     func setDicInfo(dicInfo:NSDictionary?) {
         self.iconImageView.image = UIImage.init(named: dicInfo?["icon"] as! String)
         self.titleLabel.text = dicInfo?["title"] as? String
+        self.descLabel.text = dicInfo?["desc"] as? String
     }
 
     override func awakeFromNib() {

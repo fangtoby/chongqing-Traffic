@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class PeriodRecordViewController: BaseViewController {
     var part : Int = 0 //当前部分
@@ -94,6 +95,7 @@ class PeriodRecordViewController: BaseViewController {
         var params = [String : Any]()
         params["subject"] = part+1
         params["page"] = page
+        MBProgressHUD.showWait("请稍后...")
         NetWorkRequest(.periodList(params: params), completion: { [weak self](result) -> (Void) in
             let code = result.object(forKey: "code") as! Int
             if code == 0{
@@ -117,6 +119,7 @@ class PeriodRecordViewController: BaseViewController {
         var params = [String : Any]()
         params["subject"] = part+1
         params["page"] = page
+        MBProgressHUD.showWait("请稍后...")
         NetWorkRequest(.periodHistoryList(params: params), completion: { [weak self](result) -> (Void) in
             let code = result.object(forKey: "code") as! Int
             if code == 0{
@@ -182,7 +185,7 @@ extension PeriodRecordViewController: UITableViewDelegate, ZLTableViewDataSource
     
     func makePlaceHolderView(tableView: UITableView) -> UIView {
         let view = PeriodRecordNoDataView()
-        if isHistory == false {
+        if isHistory == true {
             view.freshButton.isHidden = false
         }else {
             view.titleLabel.text = "暂无数据"

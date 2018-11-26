@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SVProgressHUD
+import MBProgressHUD
 
 class PeriodPartViewController: BaseViewController {
     
@@ -42,7 +42,7 @@ class PeriodPartViewController: BaseViewController {
     func loadData() {
         var params = [String : Any]()
         params["subject"] = part+1
-        SVProgressHUD.show()
+        MBProgressHUD.showWait("请稍后...")
         NetWorkRequest(.periodStatus(params: params), completion: { [weak self](result) -> (Void) in
             let code = result.object(forKey: "code") as! Int
             if code == 0{
@@ -82,7 +82,7 @@ class PeriodPartViewController: BaseViewController {
                 self?.present(trainingStatusVC, animated: true, completion: nil)
             case 13:
                 //查看学时记录
-                print("查看学时记录")
+//                print("查看学时记录")
                 let periodRecordVC = PeriodRecordViewController()
                 periodRecordVC.isHistory = self?.dicInfo?.object(forKey: "history") as? Bool ?? false
                 periodRecordVC.part = self?.part ?? 0
@@ -93,6 +93,13 @@ class PeriodPartViewController: BaseViewController {
                 //刷新并推送
                 print("刷新并推送")
                 self?.pushData()
+                let insuranceVC = InsuranceViewController()
+                self?.navigationController?.pushViewController(insuranceVC, animated: true)
+            case 103:
+                //投保说明
+//                print("投保说明")
+                let insuranceVC = InsuranceViewController()
+                self?.navigationController?.pushViewController(insuranceVC, animated: true)
             default:
                 print("Error: not found")
             }
@@ -102,11 +109,12 @@ class PeriodPartViewController: BaseViewController {
     func pushData() {
         var params = [String : Any]()
         params["subject"] = part+1
+        MBProgressHUD.showWait("推送中，请稍后...")
         NetWorkRequest(.push(params: params), completion: { [weak self](result) -> (Void) in
             let code = result.object(forKey: "code") as! Int
             if code == 0{
                 //提示推送成功
-                
+                MBProgressHUD.showSuccess("推送成功")
             }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)

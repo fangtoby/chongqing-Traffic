@@ -82,6 +82,20 @@ class InsuranceUserInfoView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    func setData(dicInfo:NSDictionary?) {
+        nameLabel.text = dicInfo?.valueAsString(forKey: "name")
+        
+        var codeStr = dicInfo?.valueAsString(forKey: "idcard")
+        codeStr = codeStr?.cardnumbersEncryption(cardString: codeStr ?? "")
+        codeLabel.text = codeStr
+        
+        trainTypeLabel.text = dicInfo?.valueAsString(forKey: "traintype")
+        
+        var phone = dicInfo?.valueAsString(forKey: "phone")
+        phone = phone?.phoneNumberEncryption(string: phone ?? "")
+        phoneNumberLabel.text = phone
+    }
 }
 
 extension InsuranceUserInfoView {

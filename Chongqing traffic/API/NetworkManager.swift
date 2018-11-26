@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import Alamofire
 import HandyJSON
-import SVProgressHUD
+import MBProgressHUD
 
 /// 超时时长
 private var requestTimeOut:Double = 20
@@ -19,7 +19,7 @@ typealias successCallback = ((NSDictionary) -> (Void))
 ///验证码接口成功专用****************
 typealias successCodeCallback = ((Data) -> (Void))
 ///失败的回调
-typealias failedCallback = ((NSDictionary) -> (Void))
+typealias failedCallback = ((Error) -> (Void))
 ///网络错误的回调
 typealias errorCallback = (() -> (Void))
 
@@ -67,10 +67,8 @@ private let networkPlugin = NetworkActivityPlugin.init { (changeType, targetType
     switch(changeType){
     case .began:
         print("开始请求网络")
-//        SVProgressHUD.show()
     case .ended:
         print("结束")
-//        SVProgressHUD.dismiss()
     }
 }
 
@@ -102,14 +100,12 @@ func NetWorkRequest(_ target: API, codeCompletion: @escaping successCodeCallback
     //先判断网络是否有链接 没有的话直接返回--代码略
     if !isNetworkConnect{
         print("提示用户网络似乎出现了问题")
-        SVProgressHUD.showProgress(3, status: "网络似乎出现了问题")
-        SVProgressHUD.dismiss(withDelay: 2.0)
+        MBProgressHUD.showInfo("网络似乎出现了问题")
         return
     }
     
-    //这里显示loading图
     Provider.request(target) { (result) in
-        SVProgressHUD.dismiss()
+        MBProgressHUD.hide()
         switch result {
         case let .success(response):
             print(response)
@@ -124,21 +120,33 @@ func NetWorkRequest(_ target: API, codeCompletion: @escaping successCodeCallback
             
             switch dic["code"] as? Int {
             case StatusCode.API_CODE_REGISTER_DEVICE_NO.rawValue:
-                print("注册设备")
+//                print("注册设备")
                 deviceRegistCode(target: target, completion: codeCompletion)
                 
             case StatusCode.API_CODE_FORCE_UPGRADE.rawValue:
                 print("强制升级")
+                let alertView = ZLAlertView()
+                alertView.titleLabel.text = "温馨提示"
+                alertView.messegeLabel.text = "应用已升级，请您下载最新版本！"
+                alertView.isHidenCancle()
+                alertView.sureButton.setTitle("去下载", for: .normal)
+                alertView.showView()
+                alertView.sureBtnClick = {
+                    
+                }
             case StatusCode.API_CODE_SERVER_ERROR.rawValue:
-                print("服务器忙,请稍后再试")
+                MBProgressHUD.showInfo("服务器忙,请稍后再试")
+//                print("服务器忙,请稍后再试")
             case StatusCode.API_CODE_LOGIN_NO.rawValue:
-                print("未登录")
-                
+//                print("未登录")
+                MBProgressHUD.showInfo("登陆信息已过期，请重新登录")
             default:
-                print("aaaaaa")
+                MBProgressHUD.showInfo("请求数据失败，请稍后重试")
             }
         case let .failure(error):
+            MBProgressHUD.hide()
             print("错误原因：\(error.errorDescription ?? "")")
+            MBProgressHUD.showInfo("服务器开小差,请稍后再试")
         }
     }
 }
@@ -182,15 +190,13 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
     //先判断网络是否有链接 没有的话直接返回--代码略
     if !isNetworkConnect{
         print("提示用户网络似乎出现了问题")
-        SVProgressHUD.showProgress(0, status: "网络似乎出现了问题")
-        SVProgressHUD.dismiss(withDelay: 2.0)
+        MBProgressHUD.showInfo("网络似乎出现了问题")
         return
     }
     
-    //这里显示loading图
     Provider.request(target) { (result) in
         //隐藏hud
-        SVProgressHUD.dismiss()
+        MBProgressHUD.hide()
         print(result)
         switch result {
         case let .success(response):
@@ -210,20 +216,28 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
             case StatusCode.API_CODE_LOGIN_NO.rawValue:
                 print("去登陆")
                 completion(dic)
+                MBProgressHUD.showInfo("登陆信息已过期，请重新登录")
             case StatusCode.API_CODE_REGISTER_DEVICE_NO.rawValue:
                 print("注册设备")
+                
                 deviceRegist(target: target, completion: completion)
 
             case StatusCode.API_CODE_FORCE_UPGRADE.rawValue:
                 print("强制升级")
+                
             case StatusCode.API_CODE_REQUEST_ERROR.rawValue:
                 print("服务器忙,请稍后再试")
-
+                MBProgressHUD.showInfo("登陆信息已过期，请重新登录")
             default:
                 print("请求失败，请稍后再试")
+                MBProgressHUD.showInfo("请求失败，请稍后再试")
             }
         case let .failure(error):
+            MBProgressHUD.hide()
             print("错误原因：\(error.errorDescription ?? "")")
+            MBProgressHUD.showInfo("服务器开小差,请稍后再试")
+            guard let failed = failed else { return }
+            failed(error)
         }
     }
 }

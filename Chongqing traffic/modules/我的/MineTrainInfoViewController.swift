@@ -49,10 +49,6 @@ class MineTrainInfoViewController: BaseViewController {
         reloadDataView()
     }
     
-    func loadTrainData() {
-        
-    }
-    
     func setUpUI() {
         self.view.addSubview(scrollView)
         self.scrollView.snp.makeConstraints { (make) in
@@ -85,23 +81,35 @@ class MineTrainInfoViewController: BaseViewController {
     }
     
     func reloadDataView() {
-        let logoImageUrl = userInfoDic?.valueAsString(forKey: "photourl")
-        let logoUrl = URL(string: logoImageUrl ?? "")
-        mineInfoView.userLogoImageView.kf.setImage(with: logoUrl, placeholder: UIImage.init(named: "pic1.jpeg"), options: nil, progressBlock: nil, completionHandler: nil)
-        mineInfoView.nameLabel.text = userInfoDic?.valueAsString(forKey: "name")
+        var placeholder:UIImage
+        
         let sexStr = userInfoDic?.valueAsString(forKey: "sex")
         let sex = Int(sexStr ?? "1")
-        
         if sex == 2{
+            placeholder = UIImage.init(named: "icon_default_woman")!
             mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_woman")
         }else {
+            placeholder = UIImage.init(named: "icon_default_man")!
             mineInfoView.sexImageView.image = UIImage.init(named: "icon_sex_man")
         }
+        
+        let logoImageUrl = userInfoDic?.valueAsString(forKey: "photourl")
+        let logoUrl = URL(string: logoImageUrl ?? "")
+        mineInfoView.userLogoImageView.kf.setImage(with: logoUrl, placeholder: placeholder, options: nil, progressBlock: nil, completionHandler: nil)
+        mineInfoView.nameLabel.text = userInfoDic?.valueAsString(forKey: "name")
+        
         mineInfoView.descLabel.text = "目前正在\(userInfoDic?.valueAsString(forKey: "schName") ?? "")"+"学习\(userInfoDic?.valueAsString(forKey: "traintype") ?? "")技能"
         
-        mineTrainInfoView.codeLabel.text = userInfoDic?.valueAsString(forKey: "idcard")
+        var codeStr = userInfoDic?.valueAsString(forKey: "idcard")
+        codeStr = codeStr?.cardnumbersEncryption(cardString: codeStr ?? "")
+        mineTrainInfoView.codeLabel.text = codeStr
+        
         mineTrainInfoView.schoolLabel.text = userInfoDic?.valueAsString(forKey: "schName")
-        mineTrainInfoView.phoneLabel.text = userInfoDic?.valueAsString(forKey: "phone")
+        
+        var phone = userInfoDic?.valueAsString(forKey: "phone")
+        phone = phone?.phoneNumberEncryption(string: phone ?? "")
+        mineTrainInfoView.phoneLabel.text = phone
+        
         mineTrainInfoView.platformLabel.text = userInfoDic?.valueAsString(forKey: "platName")
         
         let timeInterval = userInfoDic?.object(forKey: "applydate") as? Double

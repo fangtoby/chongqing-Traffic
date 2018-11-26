@@ -8,7 +8,7 @@
 
 import UIKit
 import ESTabBarController_swift
-import SVProgressHUD
+import MBProgressHUD
 
 protocol ReLoginDelegate : class {
     func reLogin()
@@ -90,18 +90,38 @@ extension LoginViewController {
         }
         
         self.loginInfoView.loginBtnClick = {[weak self]() in
+            
+            if self?.loginInfoView.loginPhoneTextField.text == "" {
+                MBProgressHUD.showInfo("请输入手机号")
+                return
+            }else if self?.loginInfoView.loginPhoneTextField.text?.isTelNumber() == false {
+                MBProgressHUD.showInfo("请输入正确的手机号")
+                return
+            }else if self?.loginInfoView.loginNumberTextField.text == "" {
+                MBProgressHUD.showInfo("请输入身份证号")
+                return
+            }else if self?.loginInfoView.loginNumberTextField.text?.checkIsIdentityCard() == false {
+                MBProgressHUD.showInfo("请输入正确的身份证号")
+                return
+            }else if self?.loginInfoView.loginDrivingTypeLabel.text == "请选择培训车型" {
+                MBProgressHUD.showInfo("请输入身份证号")
+                return
+            }else if self?.loginInfoView.loginCodeTextField.text == "" {
+                MBProgressHUD.showInfo("请输入验证码")
+                return
+            }
+            
             UserDefaults.standard.set(self?.loginInfoView.loginPhoneTextField.text, forKey: "loginPhone")
             var loginParams = [String:Any]()
             loginParams["phone"] = self?.loginInfoView.loginPhoneTextField.text
             loginParams["cardCode"] = self?.loginInfoView.loginNumberTextField.text
             loginParams["drivingPermitted"] = self?.loginInfoView.loginDrivingTypeLabel.text
             loginParams["code"] = self?.loginInfoView.loginCodeTextField.text
-            SVProgressHUD.show()
+            MBProgressHUD.showWait("登陆中，请稍后...")
             NetWorkRequest(.login(params: loginParams), completion: { (result) -> (Void) in
-            
                 //登陆成功的信息
                 let loginInfoDic:NSDictionary = result.object(forKey: "data") as! NSDictionary
-//                print(loginInfoDic)
+                //                print(loginInfoDic)
                 for key in loginInfoDic.allKeys {
                     if loginInfoDic[key] is NSNull {
                         loginInfoDic.setValue("", forKey: key as! String)
@@ -110,9 +130,10 @@ extension LoginViewController {
                 UserDefaults.standard.set(loginInfoDic, forKey: loginInfo)
                 
                 let userInfoParams = [String:Any]()
-                NetWorkRequest(.studentInfo(params: userInfoParams), completion: { [weak self](result) -> (Void) in
+                NetWorkRequest(.studentInfo(params: userInfoParams), completion: { (result) -> (Void) in
                     let code = result.object(forKey: "code") as! Int
                     if code == 0 {
+                        MBProgressHUD.showSuccess("登陆成功")
                         UserDefaults.standard.set(true, forKey: isLogin)
                         //用户信息
                         let userInfoDic:NSDictionary = result.object(forKey: "data") as! NSDictionary
@@ -168,7 +189,12 @@ extension LoginViewController {
                             self?.dismiss(animated: true, completion: nil)
                         }
                     }
+                }, failed: { (error) -> (Void) in
+                    MBProgressHUD.showError("登陆失败")
                 })
+                
+            }, failed: { (error) -> (Void) in
+                MBProgressHUD.showError("登陆失败")
             })
         }
         
@@ -182,6 +208,13 @@ extension LoginViewController {
             pickerView.drivingTypePickerViewWithDrivingTypeBlock(drivingTypeBlock: { (drivingType) in
                 self?.loginInfoView.loginDrivingTypeLabel.text = drivingType
                 self?.loginInfoView.loginDrivingTypeLabel.textColor = MainTextColor
+                if (self?.loginInfoView.loginPhoneTextField.text != "" && self?.loginInfoView.loginPhoneTextField.text != nil) && self?.loginInfoView.loginNumberTextField.text != "" && self?.loginInfoView.loginNumberTextField.text != nil && self?.loginInfoView.loginCodeTextField.text != "" && self?.loginInfoView.loginCodeTextField.text != nil {
+                    self?.loginInfoView.loginButton.backgroundColor = MainTitleColor
+                    self?.loginInfoView.loginButton.isUserInteractionEnabled = true
+                }else {
+                    self?.loginInfoView.loginButton.backgroundColor = AssistTextColor
+                    self?.loginInfoView.loginButton.isUserInteractionEnabled = false
+                }
             })
             /// 设置pickerView字体颜色和大小
             pickerView.pickerLabelFont = UIFont.systemFont(ofSize: 20)

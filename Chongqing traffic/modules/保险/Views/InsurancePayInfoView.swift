@@ -58,22 +58,22 @@ class InsurancePayInfoView: UIView {
         return view
     }()
     
-    lazy var aliPayBtn: PayButton = {
-        let button = PayButton()
+    lazy var aliPayBtn: UIButton = {
+        let button = UIButton()
         button.tag = 11
         button.isSelected = true
-        button.selectImageView.image = UIImage.init(named: "btn_pay_select_yes")
-        button.payTypeImageView.image = UIImage.init(named: "pay_ali")
+        button.setImage(UIImage.init(named: "btn_payali_no"), for: .normal)
+        button.setImage(UIImage.init(named: "btn_payali_yes"), for: .selected)
         button.addTarget(self, action: #selector(selectPayTypeClicked(button:)), for: .touchUpInside)
         return button
     }()
     
-    lazy var wechatPayBtn: PayButton = {
-        let button = PayButton()
+    lazy var wechatPayBtn: UIButton = {
+        let button = UIButton()
         button.tag = 12
         button.isSelected = false
-        button.selectImageView.image = UIImage.init(named: "btn_pay_select_no")
-        button.payTypeImageView.image = UIImage.init(named: "pay_wechat")
+        button.setImage(UIImage.init(named: "btn_paywechat_no"), for: .normal)
+        button.setImage(UIImage.init(named: "btn_paywechat_yes"), for: .selected)
         button.addTarget(self, action: #selector(selectPayTypeClicked(button:)), for: .touchUpInside)
         return button
     }()
@@ -148,16 +148,12 @@ extension InsurancePayInfoView {
             }
             aliPayBtn.isSelected = true
             wechatPayBtn.isSelected = false
-            aliPayBtn.selectImageView.image = UIImage.init(named: "btn_pay_select_yes")
-            wechatPayBtn.selectImageView.image = UIImage.init(named: "btn_pay_select_no")
         }else if button.tag == 12 {
             if wechatPayBtn.isSelected == true {
                 return
             }
             wechatPayBtn.isSelected = true
             aliPayBtn.isSelected = false
-            aliPayBtn.selectImageView.image = UIImage.init(named: "btn_pay_select_no")
-            wechatPayBtn.selectImageView.image = UIImage.init(named: "btn_pay_select_yes")
         }
     }
 }

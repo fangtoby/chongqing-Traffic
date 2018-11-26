@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class ComplaintViewController: BaseViewController {
     
@@ -62,6 +63,14 @@ class ComplaintViewController: BaseViewController {
         self.complainView.complaintClick = { [weak self] in
             self?.isEditing = false
             
+            if self?.complainView.selectObjectLabel.text == "请选择投诉对象" {
+                MBProgressHUD.showInfo("请选择投诉对象")
+                return
+            }else if self?.complainView.textView.text == "" {
+                MBProgressHUD.showInfo("请输入投诉内容")
+                return
+            }
+            
             //一键投诉
             var params = [String : Any]()
     
@@ -79,12 +88,13 @@ class ComplaintViewController: BaseViewController {
             
             params["objenum"] = objectId
             params["content"] = self?.complainView.textView.text
-            
+            MBProgressHUD.showWait("提交中...")
             NetWorkRequest(.complaint(params: params), completion: { (result) -> (Void) in
                 
                 let code = result.object(forKey: "code") as! Int
                 if code == 0{
-                    print("投诉成功")
+//                    print("投诉成功")
+                    MBProgressHUD.showSuccess("投诉成功")
                     self?.navigationController?.popViewController(animated: true)
                 }else if code == 402 {
                     UserDefaults.standard.removeObject(forKey: isLogin)

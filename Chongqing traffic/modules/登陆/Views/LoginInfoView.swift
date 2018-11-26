@@ -13,7 +13,7 @@ typealias LoginBtnClick = () -> Void  //登陆
 typealias SelectDriving = () -> Void  //选择培训车型
 typealias GetLoginCode = () -> Void   //获取验证码
 
-class LoginInfoView: UIView, UITextFieldDelegate {
+class LoginInfoView: UIView {
     
     var loginBtnClick : LoginBtnClick?
     var selectDriving : SelectDriving?
@@ -31,6 +31,7 @@ class LoginInfoView: UIView, UITextFieldDelegate {
     //手机号
     lazy var loginPhoneTextField:UITextField = {
        let loginPhoneTextFeild = UITextField()
+        loginPhoneTextFeild.delegate = self
         loginPhoneTextFeild.textColor = MainTextColor
         loginPhoneTextFeild.font = KUIFont16
         loginPhoneTextFeild.placeholder = "请输入手机号"
@@ -65,6 +66,7 @@ class LoginInfoView: UIView, UITextFieldDelegate {
     //身份证号
     lazy var loginNumberTextField:UITextField = {
         let loginNumberTextField = UITextField()
+        loginNumberTextField.delegate = self
         loginNumberTextField.textColor = MainTextColor
         loginNumberTextField.font = KUIFont16
         loginNumberTextField.placeholder = "请输入身份证号"
@@ -125,6 +127,7 @@ class LoginInfoView: UIView, UITextFieldDelegate {
     //验证码
     lazy var loginCodeTextField:UITextField = {
         let loginCodeTextField = UITextField()
+        loginCodeTextField.delegate = self
         loginCodeTextField.textColor = MainTextColor
         loginCodeTextField.font = KUIFont16
         loginCodeTextField.placeholder = "请输入验证码"
@@ -171,7 +174,7 @@ class LoginInfoView: UIView, UITextFieldDelegate {
         loginButton.layer.masksToBounds = true
         loginButton.layer.cornerRadius = 4.0
         loginButton.addTarget(self, action: #selector(loginClicked), for: UIControl.Event.touchUpInside)
-        
+        loginButton.isUserInteractionEnabled = false
         return loginButton
     }()
     
@@ -306,5 +309,21 @@ class LoginInfoView: UIView, UITextFieldDelegate {
         guard let getLoginCode = getLoginCode else { return }
         getLoginCode()
     }
+}
+
+extension LoginInfoView:UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if (loginPhoneTextField.text != "" && loginPhoneTextField.text != nil) && loginNumberTextField.text != "" && loginNumberTextField.text != nil && loginCodeTextField.text != "" && loginCodeTextField.text != nil && loginDrivingTypeLabel.text != "请选择培训车型" {
+            loginButton.backgroundColor = MainTitleColor
+            loginButton.isUserInteractionEnabled = true
+        }else {
+            loginButton.backgroundColor = AssistTextColor
+            loginButton.isUserInteractionEnabled = false
+        }
+        
+        return true
+    }
+    
 }
 

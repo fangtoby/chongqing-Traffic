@@ -47,6 +47,7 @@ enum API {
     case push(params:[String:Any]) //推送接口
     case complaint(params:[String:Any]) //投诉接口
     case complaintStatus(params:[String:Any]) //是否可以投诉
+    
 }
 
 extension API: TargetType {

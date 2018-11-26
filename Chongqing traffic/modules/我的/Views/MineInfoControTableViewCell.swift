@@ -31,6 +31,7 @@ class MineInfoControTableViewCell: UITableViewCell {
         let logoImageView = UIImageView()
         logoImageView.layer.masksToBounds = true
         logoImageView.layer.cornerRadius = 20
+        logoImageView.contentMode = UIView.ContentMode.scaleAspectFill
         return logoImageView
     }()
     
