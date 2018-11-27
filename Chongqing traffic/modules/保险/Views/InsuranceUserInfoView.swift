@@ -22,7 +22,7 @@ class InsuranceUserInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "李某某"
+//        label.text = "李某某"
         return label
     }()
     
@@ -38,7 +38,7 @@ class InsuranceUserInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "350 103 **** **** 1399"
+//        label.text = "350 103 **** **** 1399"
         return label
     }()
     
@@ -54,7 +54,7 @@ class InsuranceUserInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "C1"
+//        label.text = "C1"
         return label
     }()
     
@@ -70,7 +70,7 @@ class InsuranceUserInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "135 **** 1399"
+//        label.text = "135 **** 1399"
         return label
     }()
     

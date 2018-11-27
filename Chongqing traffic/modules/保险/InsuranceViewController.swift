@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class InsuranceViewController: BaseViewController {
     
+    var insuranceId:Int = 0
+    
     var userInfoDic:NSDictionary?
+    var part:Int = 0
+    var products:Array<Any>? = nil
     
     lazy var sureBtn: BaseButton = {
         let button = BaseButton()
@@ -67,26 +72,84 @@ class InsuranceViewController: BaseViewController {
     }
     
     @objc func sureButtonClicked() {
+        let params = [String : Any]()
         
+        NetWorkRequest(.insuranceProduct(params:params), completion: { [weak self](result) -> (Void) in
+            let code = result.object(forKey: "code") as! Int
+            if code == 0{
+                self?.products = result.object(forKey: "data") as? Array
+                //确认信息
+                let insuranceBuyView = InsuranceBuyView()
+                insuranceBuyView.setInsuranceProducts(products: self?.products, from: (self?.part ?? 0) + 1)
+                
+                self?.view.addSubview(insuranceBuyView)
+                insuranceBuyView.snp.makeConstraints { (make) in
+                    make.left.right.bottom.equalToSuperview()
+                }
+            
+                insuranceBuyView.orderInfoView.closeBtnClick = {
+                    insuranceBuyView.removeFromSuperview()
+                }
+                
+                insuranceBuyView.sureOrderBtnClick = { [weak self] (id) in
+                    if insuranceBuyView.fillInfoView.codeTextField.text == "" {
+                        MBProgressHUD.showInfo("请输入银行卡号")
+                        return
+                    }else if insuranceBuyView.fillInfoView.bankTextField.text == "" {
+                        MBProgressHUD.showInfo("请输入开户行")
+                        return
+                    }
+                    var params = [String : Any]()
+                    params["productId"] = id
+                    params["bankCardNumber"] = insuranceBuyView.fillInfoView.codeTextField.text
+                    params["bankName"] = insuranceBuyView.fillInfoView.bankTextField.text
+                    MBProgressHUD.showWait("生成订单，请稍后...")
+                    NetWorkRequest(.insuranceOrder(params: params), completion: { (result) -> (Void) in
+                        insuranceBuyView.removeFromSuperview()
+                        let code = result.object(forKey: "code") as! Int
+                        if code == 0 {
+                            let dicInfo:NSDictionary = result.object(forKey: "data") as! NSDictionary
+                            
+                            let orderId = dicInfo.object(forKey: "orderId") as? Int
+                            
+                            let unpaid = dicInfo.object(forKey: "unpaid") as? Bool
+                            if unpaid == true {
+                                let alertView = ZLAlertView()
+                                alertView.titleLabel.text = "注意"
+                                alertView.messegeLabel.text = "系统检测到您有相同类型的未支付订单，您可以选择："
+                                alertView.sureButton.setTitle("去支付", for: .normal)
+                                alertView.showView()
+                                alertView.sureBtnClick = { [weak self] in
+                                    //跳转到支付页面
+                                    
+                                }
+                            }else {
+                                let insurancePayVC = InsurancePayViewController()
+                                insurancePayVC.orderId = orderId ?? 0
+                                self?.navigationController?.pushViewController(insurancePayVC, animated: true)
+                            }
+                        }else if code == 402 {
+                            UserDefaults.standard.removeObject(forKey: isLogin)
+                            UserDefaults.standard.removeObject(forKey: loginInfo)
+                            let loginVC = LoginViewController()
+                            loginVC.reLoginDelegate = self
+                            loginVC.isFirstLogin = false
+                            self?.present(loginVC, animated: true, completion: nil)
+                        }
+                    })
+                }
+            }else if code == 402 {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        })
+    }
+    
+    func sureOrderClicked(id:Int) {
         
-        
-        
-        
-        //确认信息
-        let insuranceBuyView = InsuranceBuyView()
-        self.view.addSubview(insuranceBuyView)
-        insuranceBuyView.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
-        }
-        
-        insuranceBuyView.orderInfoView.closeBtnClick = {
-            insuranceBuyView.removeFromSuperview()
-        }
-        
-        insuranceBuyView.sureOrderBtnClick = { [weak self] in
-            insuranceBuyView.removeFromSuperview()
-            let insurancePayVC = InsurancePayViewController()
-            self?.navigationController?.pushViewController(insurancePayVC, animated: true)
-        }
     }
 }

@@ -94,11 +94,13 @@ class PeriodPartViewController: BaseViewController {
                 print("刷新并推送")
                 self?.pushData()
                 let insuranceVC = InsuranceViewController()
+                insuranceVC.part = self?.part ?? 0
                 self?.navigationController?.pushViewController(insuranceVC, animated: true)
             case 103:
                 //投保说明
 //                print("投保说明")
                 let insuranceVC = InsuranceViewController()
+                insuranceVC.part = self?.part ?? 0
                 self?.navigationController?.pushViewController(insuranceVC, animated: true)
             default:
                 print("Error: not found")

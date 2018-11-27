@@ -219,18 +219,16 @@ func NetWorkRequest(_ target: API, completion: @escaping successCallback , faile
                 MBProgressHUD.showInfo("登陆信息已过期，请重新登录")
             case StatusCode.API_CODE_REGISTER_DEVICE_NO.rawValue:
                 print("注册设备")
-                
                 deviceRegist(target: target, completion: completion)
-
             case StatusCode.API_CODE_FORCE_UPGRADE.rawValue:
                 print("强制升级")
                 
             case StatusCode.API_CODE_REQUEST_ERROR.rawValue:
                 print("服务器忙,请稍后再试")
-                MBProgressHUD.showInfo("登陆信息已过期，请重新登录")
+                MBProgressHUD.showInfo(dic.object(forKey: "msg") as? String ?? "服务器忙,请稍后再试")
             default:
                 print("请求失败，请稍后再试")
-                MBProgressHUD.showInfo("请求失败，请稍后再试")
+                MBProgressHUD.showInfo(dic.object(forKey: "msg") as? String ?? "请求失败，请稍后再试")
             }
         case let .failure(error):
             MBProgressHUD.hide()

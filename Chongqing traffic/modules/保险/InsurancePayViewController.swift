@@ -10,6 +10,8 @@ import UIKit
 
 class InsurancePayViewController: BaseViewController {
     
+    var orderId:Int = 0
+    
     lazy var orderUserInfoView: MineApplyPaymentInfoView = {
         let view = MineApplyPaymentInfoView()
         return view
@@ -36,6 +38,24 @@ class InsurancePayViewController: BaseViewController {
         self.title = "订单详情"
         
         setUpUI()
+        loadData()
+    }
+    
+    func loadData() {
+        NetWorkRequest(.payOrderDetail(orderId: orderId), completion: { [weak self](result) -> (Void) in
+            let code = result.object(forKey: "code") as! Int
+            if code == 0 {
+                let dicInfo = result.object(forKey: "data") as? NSDictionary
+                self?.setData(dicInfo: dicInfo)
+            }else if code == 402 {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        })
     }
     
     func setUpUI() {
@@ -62,5 +82,25 @@ class InsurancePayViewController: BaseViewController {
     @objc func goPayBtnClicked() {
         //去支付
         
+    }
+}
+extension InsurancePayViewController {
+    func setData(dicInfo:NSDictionary?) {
+        orderUserInfoView.nameLabel.text = dicInfo?.object(forKey: "userName") as? String
+        
+        var cardNumberStr = dicInfo?.object(forKey: "cardCode") as? String
+        cardNumberStr = cardNumberStr?.cardnumbersEncryption(cardString: cardNumberStr ?? "")
+        orderUserInfoView.codeLabel.text = cardNumberStr
+        
+        orderUserInfoView.trainTypeLabel.text = dicInfo?.object(forKey: "drivingPermitted") as? String
+        
+        var phoneStr = dicInfo?.object(forKey: "phone") as? String
+        phoneStr = phoneStr?.phoneNumberEncryption(string: phoneStr ?? "")
+        orderUserInfoView.phoneNumberLabel.text = phoneStr
+        
+        orderUserInfoView.cardCodeLabel.text = dicInfo?.object(forKey: "bankDetail") as? String
+        
+        payView.insuranceLabel.text = "\(dicInfo?.object(forKey: "insuranceProductName") ?? "") 考试不通过赔付补考费用"
+        payView.orderMoneyLabel.text = "￥\(dicInfo?.object(forKey: "price") ?? 0)"
     }
 }

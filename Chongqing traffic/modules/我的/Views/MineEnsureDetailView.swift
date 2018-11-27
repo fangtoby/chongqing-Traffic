@@ -10,6 +10,8 @@ import UIKit
 
 class MineEnsureDetailView: UIView {
 
+    var dataSource = [String]()
+    
     //培训车型
     private lazy var trainTypeTipLabel: UILabel = {
         let tipLabel = UILabel()
@@ -22,7 +24,7 @@ class MineEnsureDetailView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "C1"
+//        label.text = "C1"
         return label
     }()
     
@@ -38,7 +40,7 @@ class MineEnsureDetailView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "招商银行  尾号1236"
+//        label.text = "招商银行  尾号1236"
         return label
     }()
     
@@ -54,7 +56,7 @@ class MineEnsureDetailView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "理赔中"
+//        label.text = "理赔中"
         return label
     }()
     
@@ -86,6 +88,11 @@ class MineEnsureDetailView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func setDataSource(dataSource:[String]) {
+        self.dataSource = dataSource
+        recordTableView.reloadData()
     }
 }
 
@@ -129,7 +136,7 @@ extension MineEnsureDetailView {
         
         self.addSubview(recordTipLabel)
         self.recordTipLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.statusLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.statusTipLabel.snp.bottom).offset(10)
             make.left.equalTo(self.trainTypeTipLabel.snp.left)
         }
         
@@ -149,7 +156,7 @@ extension MineEnsureDetailView : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -159,7 +166,7 @@ extension MineEnsureDetailView : UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.textLabel?.font = KUIFont14
         cell.textLabel?.textColor = .black
-        cell.textLabel?.text = "2018年10月31日  待保险公司确认"
+        cell.textLabel?.text = dataSource[indexPath.row]
         return cell
     }
     

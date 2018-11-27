@@ -113,6 +113,9 @@
 		8486143121ABCB31005A663B /* bg_default_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142E21ABCB31005A663B /* bg_default_img@2x.png */; };
 		8486143221ABCB31005A663B /* bg_default_img@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486142F21ABCB31005A663B /* bg_default_img@3x.png */; };
 		8486143421ABCFA0005A663B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486143321ABCFA0005A663B /* String+Extension.swift */; };
+		8486143821AD0A92005A663B /* bg_default_img169.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486143521AD0A91005A663B /* bg_default_img169.png */; };
+		8486143921AD0A92005A663B /* bg_default_img169@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486143621AD0A92005A663B /* bg_default_img169@3x.png */; };
+		8486143A21AD0A92005A663B /* bg_default_img169@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8486143721AD0A92005A663B /* bg_default_img169@2x.png */; };
 		84F9731221900EF400433E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731121900EF400433E65 /* AppDelegate.swift */; };
 		84F9731421900EF400433E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9731321900EF400433E65 /* ViewController.swift */; };
 		84F9731721900EF400433E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9731521900EF400433E65 /* Main.storyboard */; };
@@ -322,6 +325,9 @@
 		8486142E21ABCB31005A663B /* bg_default_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_default_img@2x.png"; sourceTree = "<group>"; };
 		8486142F21ABCB31005A663B /* bg_default_img@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_default_img@3x.png"; sourceTree = "<group>"; };
 		8486143321ABCFA0005A663B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		8486143521AD0A91005A663B /* bg_default_img169.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_default_img169.png; sourceTree = "<group>"; };
+		8486143621AD0A92005A663B /* bg_default_img169@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_default_img169@3x.png"; sourceTree = "<group>"; };
+		8486143721AD0A92005A663B /* bg_default_img169@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_default_img169@2x.png"; sourceTree = "<group>"; };
 		84F9730E21900EF400433E65 /* Chongqing traffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chongqing traffic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9731121900EF400433E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9731321900EF400433E65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -656,6 +662,9 @@
 		84F9734D21903AB700433E65 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8486143521AD0A91005A663B /* bg_default_img169.png */,
+				8486143721AD0A92005A663B /* bg_default_img169@2x.png */,
+				8486143621AD0A92005A663B /* bg_default_img169@3x.png */,
 				8486142D21ABCB31005A663B /* bg_default_img.png */,
 				8486142E21ABCB31005A663B /* bg_default_img@2x.png */,
 				8486142F21ABCB31005A663B /* bg_default_img@3x.png */,
@@ -909,9 +918,11 @@
 				84F973DF219D5F5000433E65 /* icon_link_web@2x.png in Resources */,
 				65854EDD21A16633004F72CC /* icon_sex_man@2x.png in Resources */,
 				84F9738F219AAF0D00433E65 /* icon_login_drivingType@3x.png in Resources */,
+				8486143921AD0A92005A663B /* bg_default_img169@3x.png in Resources */,
 				8486140E21AB878B005A663B /* btn_payali_no@2x.png in Resources */,
 				8467058321A5481600D55432 /* pay_wechat@2x.png in Resources */,
 				84F973E9219D5F5000433E65 /* home_usercenter_nomal.png in Resources */,
+				8486143A21AD0A92005A663B /* bg_default_img169@2x.png in Resources */,
 				8486143221ABCB31005A663B /* bg_default_img@3x.png in Resources */,
 				84F9740D219EAC6900433E65 /* icon_train_time@2x.png in Resources */,
 				8467058221A5481500D55432 /* btn_pay_select_no@2x.png in Resources */,
@@ -985,6 +996,7 @@
 				8486140D21AB878B005A663B /* btn_paywechat_no@2x.png in Resources */,
 				84F973D5219D5F5000433E65 /* icon_my_train@3x.png in Resources */,
 				848613E921A67156005A663B /* icon_my_ensure@2x.png in Resources */,
+				8486143821AD0A92005A663B /* bg_default_img169.png in Resources */,
 				8467058521A5481600D55432 /* pay_ali@2x.png in Resources */,
 				84F9738B219AA7F100433E65 /* icon_login_phone.png in Resources */,
 				65854ED821A165AC004F72CC /* icon_right_tip1@2x.png in Resources */,
@@ -1348,7 +1360,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "net.GJYW.Chongqing-traffic";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ctcnit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Chongqing traffic/Tools/Chongqing traffic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1371,7 +1383,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "net.GJYW.Chongqing-traffic";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ctcnit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Chongqing traffic/Tools/Chongqing traffic-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

@@ -20,7 +20,7 @@ class InsurancePayInfoView: UIView {
     lazy var insuranceLabel: UILabel = {
         let label = UILabel()
         label.font = KUIFont14
-        label.text = "科目一  考试不通过赔付补考费用"
+//        label.text = "科目一  考试不通过赔付补考费用"
         label.textColor = MainYellowColor
         label.numberOfLines = 0
         return label
@@ -37,7 +37,7 @@ class InsurancePayInfoView: UIView {
     lazy var orderMoneyLabel: UILabel = {
         let label = UILabel()
         label.font = KUIFont14
-        label.text = "￥30"
+//        label.text = "￥30"
         label.textColor = MainYellowColor
         return label
     }()

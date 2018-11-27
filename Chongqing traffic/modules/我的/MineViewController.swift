@@ -52,7 +52,6 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     var userInfoDic:NSDictionary?
     var currentPart:String?
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadData()
@@ -221,8 +220,6 @@ extension MineViewController {
                         cell.descLabel.text = "正在培训：第三部分"
                     }else if self.currentPart == "4" {
                         cell.descLabel.text = "正在培训：第四部分"
-                    }else {
-                        cell.descLabel.text = ""
                     }
                 }else {
                     cell.descLabel.text = ""

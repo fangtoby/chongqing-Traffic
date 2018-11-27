@@ -324,6 +324,5 @@ extension LoginInfoView:UITextFieldDelegate {
         
         return true
     }
-    
 }
 

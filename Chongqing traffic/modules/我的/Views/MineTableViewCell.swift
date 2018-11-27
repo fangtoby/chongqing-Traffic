@@ -98,7 +98,6 @@ class MineTableViewCell: UITableViewCell {
     func setDicInfo(dicInfo:NSDictionary?) {
         self.iconImageView.image = UIImage.init(named: dicInfo?["icon"] as! String)
         self.titleLabel.text = dicInfo?["title"] as? String
-        self.descLabel.text = dicInfo?["desc"] as? String
     }
 
     override func awakeFromNib() {

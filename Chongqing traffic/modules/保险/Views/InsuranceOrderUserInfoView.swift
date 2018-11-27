@@ -48,6 +48,7 @@ class InsuranceOrderUserInfoView: UIView {
         textFeild.font = KUIFont14
         textFeild.textColor = MainTextColor
         textFeild.clearButtonMode = UITextField.ViewMode.always
+        textFeild.keyboardType = UIKeyboardType.numberPad
         return textFeild
     }()
     
@@ -76,69 +77,6 @@ class InsuranceOrderUserInfoView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    @objc func partButtonClicked(button:UIButton) {
-        selected?.isSelected = false
-        selected?.layer.borderColor = KUIColorLine.cgColor
-        
-        button.isSelected = true
-        button.layer.borderColor = MainYellowColor.cgColor
-        selected = button as? PartButton
-    }
-    
-    func setInsuranceProduct(insurance:[String]) {
-        var orginX:CGFloat = 0
-        var orginY:CGFloat = 0
-        let buttonHeight:CGFloat = 24
-        let space:CGFloat = 10
-        
-        for i in 0..<insurance.count {
-            let str = insurance[i]
-            let button = PartButton()
-            
-            button.tag = 100 + i
-            if i == 0 {
-                button.isSelected = true
-                button.layer.borderColor = MainYellowColor.cgColor
-                selected = button
-            }
-            button.setTitle(str, for: .normal)
-            button.addTarget(self, action: #selector(partButtonClicked(button:)), for: .touchUpInside)
-            
-            var btnWidth = sizeWithText(text: str as NSString, font: KUIFont12, size: CGSize.init(width: KScreenWidth - 80, height: buttonHeight))
-            if btnWidth+20 > KScreenWidth - 80 {
-                btnWidth = KScreenWidth - 100
-            }
-            if orginX + btnWidth + 20 > KScreenWidth - 80 {
-                orginX = 0
-                orginY = orginY + buttonHeight + space
-            }
-            
-            insuranceBgView.addSubview(button)
-            button.snp.makeConstraints { (make) in
-                make.left.equalTo(orginX)
-                make.top.equalTo(orginY)
-                make.width.equalTo(btnWidth + 20)
-                make.height.equalTo(buttonHeight)
-                if i == insurance.count - 1 {
-                    make.bottom.equalToSuperview()
-                }
-            }
-            
-            orginX = orginX + btnWidth + 20 + space
-        }
-    }
-    
-    /**
-     * 计算字符串长度
-     */
-    func sizeWithText(text: NSString, font: UIFont, size: CGSize) -> CGFloat {
-        let attributes = [NSAttributedString.Key.font: font]
-        let option = NSStringDrawingOptions.usesLineFragmentOrigin
-        let rect:CGRect = text.boundingRect(with: size, options: option, attributes: attributes, context: nil)
-        return rect.size.width;
-    }
-    
 }
 
 extension InsuranceOrderUserInfoView {

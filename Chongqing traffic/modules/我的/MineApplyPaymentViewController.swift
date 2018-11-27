@@ -9,12 +9,14 @@
 import UIKit
 import Photos
 import CLImagePickerTool
+import MBProgressHUD
 
 class MineApplyPaymentViewController: BaseViewController {
     
     var assets:Array<PHAsset> = []
     var images:Array<UIImage> = []
     
+    var dicInfo:NSDictionary?
     
     // 如果是单独访问相机，一定要声明为全局变量
     let imagePickTool = CLImagePickerTool()
@@ -58,6 +60,24 @@ class MineApplyPaymentViewController: BaseViewController {
         self.title = "申请理赔"
         // Do any additional setup after loading the view.
         setUpUI()
+        
+        setData()
+    }
+    
+    func setData() {
+        applyPayInfoView.nameLabel.text = dicInfo?.object(forKey: "userName") as? String
+        
+        var cardNumberStr = dicInfo?.object(forKey: "cardCode") as? String
+        cardNumberStr = cardNumberStr?.cardnumbersEncryption(cardString: cardNumberStr ?? "")
+        applyPayInfoView.codeLabel.text = cardNumberStr
+        
+        applyPayInfoView.trainTypeLabel.text = dicInfo?.object(forKey: "drivingPermitted") as? String
+        
+        var phoneStr = dicInfo?.object(forKey: "phone") as? String
+        phoneStr = phoneStr?.phoneNumberEncryption(string: phoneStr ?? "")
+        applyPayInfoView.phoneNumberLabel.text = phoneStr
+        
+        applyPayInfoView.cardCodeLabel.text = dicInfo?.object(forKey: "bankDetail") as? String
     }
     
     func setUpUI() {
@@ -149,7 +169,31 @@ class MineApplyPaymentViewController: BaseViewController {
     
     @objc func commitButtonClicked() {
         //提交申请
-//        let applyPaymentVC = MineApplyPaymentViewController()
-//        self.navigationController?.pushViewController(applyPaymentVC, animated: true)
+//        if applyPaymentProveView.textField.text == "" {
+//            MBProgressHUD.showInfo("请输入122平台登录密码")
+//            return
+//        }else if applyPaymentProveView.images.count <= 0 {
+//            MBProgressHUD.showInfo("请上传证明文件")
+//            return
+//        }
+        let image = UIImage.init(named: "pic1.jpeg")
+        let fileArray = [["img":image!,"key":"file"]]
+        
+        NetWorkRequest(.uploadImage(type: "hotcity_claims", fileArray: fileArray), completion: { [weak self](result) -> (Void) in
+            let code = result.object(forKey: "code") as! Int
+            if code == 0 {
+                let imagePath = result.object(forKey: "data") as? String
+                print(imagePath ?? "")
+            }else if code == 402 {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        }) { (error) -> (Void) in
+            print("上传失败，请稍后重试")
+        }
     }
 }

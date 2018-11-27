@@ -15,8 +15,8 @@ class InsuranceOrderInfoView: UIView {
 
     var closeBtnClick : CloseBtnClick?
     
-    lazy var closeBtn: UIButton = {
-        let button = UIButton()
+    lazy var closeBtn: BaseButton = {
+        let button = BaseButton()
         button.setImage(UIImage.init(named: "btn_close"), for: .normal)
         button.addTarget(self, action: #selector(closeBtnClicked), for: .touchUpInside)
         return button
@@ -34,7 +34,7 @@ class InsuranceOrderInfoView: UIView {
         let label = UILabel()
         label.font = KBUIFont16
         label.textColor = MainTitleColor
-        label.text = "科目一无忧险"
+//        label.text = "科目一无忧险"
         return label
     }()
     
@@ -50,7 +50,7 @@ class InsuranceOrderInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "365天"
+//        label.text = "365天"
         return label
     }()
     
@@ -66,7 +66,7 @@ class InsuranceOrderInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = MainYellowColor
-        label.text = "￥30"
+//        label.text = "￥30"
         return label
     }()
     
@@ -82,7 +82,7 @@ class InsuranceOrderInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont12
         label.textColor = .black
-        label.text = "保险生效后如本考试科目不通过则赔付￥200"
+//        label.text = "保险生效后如本考试科目不通过则赔付￥200"
         label.numberOfLines = 0
         return label
     }()
@@ -106,9 +106,9 @@ extension InsuranceOrderInfoView {
     func setUpUI() {
         self.addSubview(closeBtn)
         self.closeBtn.snp.makeConstraints { (make) in
-            make.top.equalTo(20)
-            make.right.equalTo(-20)
-            make.width.height.equalTo(14)
+            make.top.equalTo(10)
+            make.right.equalTo(-10)
+            make.width.height.equalTo(34)
         }
         
         ///保险图片
@@ -166,6 +166,7 @@ extension InsuranceOrderInfoView {
         self.explainLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.explainTipLabel.snp.right).offset(8)
             make.top.equalTo(self.explainTipLabel.snp.top).offset(1)
+            make.right.lessThanOrEqualTo(-40)
             make.bottom.equalTo(-10)
         }
     }

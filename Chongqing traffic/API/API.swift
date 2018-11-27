@@ -47,7 +47,13 @@ enum API {
     case push(params:[String:Any]) //推送接口
     case complaint(params:[String:Any]) //投诉接口
     case complaintStatus(params:[String:Any]) //是否可以投诉
+    case insuranceProduct(params:[String : Any]) //保险产品列表
+    case insuranceOrder(params:[String : Any]) //投保下单
+    case payOrderDetail(orderId:Int) //支付页详情接口
+    case insuranceOrderList(params:[String : Any]) //保险订单列表
+    case insuranceOrderDetail(orderId:Int) //保险订单详情
     
+    case uploadImage(type:String,fileArray:Array<Any>) //上传照片
 }
 
 extension API: TargetType {
@@ -70,6 +76,13 @@ extension API: TargetType {
         case .push: return "push"
         case .complaint: return "complaint"
         case .complaintStatus: return "complaint/complaintStatusQuery"
+        case .insuranceProduct: return "InsuranceProduct/getAllInsuranceProduct"
+        case .insuranceOrder: return "policyOrder/insure"
+            
+        case .insuranceOrderList: return "policyOrder/list"
+        case .insuranceOrderDetail(let orderId): return "policyOrder/detail/\(orderId)"
+        case .payOrderDetail(let orderId): return "policyOrder/payDetail/\(orderId)"
+        case .uploadImage(let type, _): return "sys/upload/uploadImg/\(type)"
         }
     }
     
@@ -115,6 +128,58 @@ extension API: TargetType {
         case .complaintStatus(let params):
             parameters = params
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .insuranceProduct(let params):
+            parameters = params
+        case .insuranceOrder(let params):
+            parameters = params
+        case .insuranceOrderList(let params):
+            parameters = params
+        case .insuranceOrderDetail( _):
+            parameters = [String:Any]()
+        case .payOrderDetail( _):
+            parameters = [String:Any]()
+        case .uploadImage( _, let fileArray):
+            /*
+             fileDic数据字典说明：
+             img: UIImage对象
+             key: 参数名
+             imageType:图片类型
+             path:本地路径（暂时不用）
+             url:网络路径(暂时不用)
+             */
+            
+            var multipartData = [MultipartFormData]()
+            
+            //字符串
+            for i in 0..<fileArray.count {
+                let dic:NSDictionary = fileArray[i] as! NSDictionary
+                
+                let name = dic.object(forKey: "key") as? String
+                
+                let image:UIImage = dic.object(forKey: "img") as! UIImage
+                let imageType = dic.object(forKey: "imageType") as? String
+                var mimeType = "image/jpeg"
+                var data:Data?
+                if imageType != nil {
+                    if imageType == "PNG" {
+                        data = image.pngData()
+                        mimeType = "image/png"
+                    }else if imageType == "JPG" {
+                        data = image.jpegData(compressionQuality: 1.0)
+                    }
+                }else {
+                    data = image.jpegData(compressionQuality: 1.0)
+                }
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyyMMddHHmmss"
+                
+                let dateString = formatter.string(from: Date.init())
+                let fileName:String = "\(dateString).jpg"
+                
+                let formData = MultipartFormData.init(provider: .data(data!), name: name!, fileName: fileName, mimeType: mimeType)
+                multipartData.append(formData)
+            }
+            return .uploadMultipart(multipartData)
         }
         return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     }
