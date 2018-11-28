@@ -1,9 +1,10 @@
 PODS:
   - Alamofire (4.8.0)
+  - AlipaySDK-iOS (15.5.5)
   - Charts (3.2.1):
     - Charts/Core (= 3.2.1)
   - Charts/Core (3.2.1)
-  - CLImagePickerTool (2.3.1)
+  - CLImagePickerTool (2.3.2)
   - ESTabBarController-swift (2.6.4)
   - FSPagerView (0.8.1)
   - HandyJSON (4.2.1)
@@ -26,6 +27,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlipaySDK-iOS
   - Charts (~> 3.2.1)
   - CLImagePickerTool
   - ESTabBarController-swift
@@ -44,6 +46,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AlipaySDK-iOS
     - Charts
     - CLImagePickerTool
     - ESTabBarController-swift
@@ -62,8 +65,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  AlipaySDK-iOS: 7b700342e71cb3b626603ce96f9d2fb158acbcfb
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
-  CLImagePickerTool: cb3bda742d5125943190523edeb3d4751e84cde3
+  CLImagePickerTool: 9a7fcd71963a76534c273f62be5b5b56af70a251
   ESTabBarController-swift: 58cca4ab7de980657d99a02181c1ff310983e975
   FSPagerView: 4e865526acc0b0e3077e2abb29b8d10a9f395476
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
@@ -78,6 +82,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 849fb66f82f456ca05b8d84a4ca687738a4cabc3
+PODFILE CHECKSUM: 43d92f51f301f30310af07663b4b99b3c2ba0b12
 
 COCOAPODS: 1.5.3

@@ -191,7 +191,7 @@ class PeriodSearchView: UIView {
         insuranceLabel.font = KUIFont12
         insuranceLabel.textColor = MainTitleColor
         insuranceLabel.numberOfLines = 0
-        insuranceLabel.text = "花10元购买驾考无忧险，考试未通过文案"
+        insuranceLabel.text = "购买驾考无忧险"
         return insuranceLabel
     }()
     
@@ -212,6 +212,7 @@ class PeriodSearchView: UIView {
         freshBtn.setTitle("刷新并推送", for: .normal)
         freshBtn.setTitleColor(.white, for: .normal)
         freshBtn.backgroundColor = MainTitleColor
+        freshBtn.isUserInteractionEnabled = true
         freshBtn.tag = 14
         freshBtn.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)
         return freshBtn
@@ -390,6 +391,13 @@ class PeriodSearchView: UIView {
             }else {
                 button.isSelected = true
             }
+            if insuranceButton.isSelected == false && pushButton.isSelected == false {
+                freshAndPushButton.backgroundColor = AssistTextColor
+                freshAndPushButton.isUserInteractionEnabled = false
+            }else {
+                freshAndPushButton.backgroundColor = MainTitleColor
+                freshAndPushButton.isUserInteractionEnabled = true
+            }
         }else {
             guard let periodAllBtnClick = periodAllBtnClick else { return }
             periodAllBtnClick(button.tag)
@@ -472,7 +480,7 @@ extension PeriodSearchView {
         
         let unPassStr = NSMutableAttributedString.init(string: "本月有\(value2)%的学员\n无法一次性通过本科目考试")
         let mutipleAttr : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: MainRedColor]
-        unPassStr.addAttributes(mutipleAttr, range: NSRange.init(location: 2, length: String(value2).count+1))
+        unPassStr.addAttributes(mutipleAttr, range: NSRange.init(location: 3, length: String(value2).count+1))
         tipLabel.attributedText = unPassStr
         
         var allStudy = dicInfo?.object(forKey: "requireTime") as? Int
@@ -511,6 +519,5 @@ extension PeriodSearchView {
             trainStatusLabel.text = "未满足推送考试系统要求"
         }
         
-        insuranceLabel.text = dicInfo?.object(forKey: "copywriting") as? String
     }
 }

@@ -15,6 +15,7 @@ class MineApplyPaymentViewController: BaseViewController {
     
     var assets:Array<PHAsset> = []
     var images:Array<UIImage> = []
+    var imagePaths = [String]()
     
     var dicInfo:NSDictionary?
     
@@ -169,31 +170,70 @@ class MineApplyPaymentViewController: BaseViewController {
     
     @objc func commitButtonClicked() {
         //提交申请
-//        if applyPaymentProveView.textField.text == "" {
-//            MBProgressHUD.showInfo("请输入122平台登录密码")
-//            return
-//        }else if applyPaymentProveView.images.count <= 0 {
-//            MBProgressHUD.showInfo("请上传证明文件")
-//            return
-//        }
-        let image = UIImage.init(named: "pic1.jpeg")
-        let fileArray = [["img":image!,"key":"file"]]
+        if applyPaymentProveView.textField.text == "" {
+            MBProgressHUD.showInfo("请输入122平台登录密码")
+            return
+        }else if applyPaymentProveView.images.count <= 0 {
+            MBProgressHUD.showInfo("请上传证明文件")
+            return
+        }
+        MBProgressHUD.showWait("提交中，请稍后...")
+        imagePaths.removeAll()
+        for index in 0..<images.count {
+            let image = images[index]
+            let fileArray = [["img":image,"key":"file"]]
+            NetWorkRequest(.uploadImage(type: "hotcity_claims", fileArray: fileArray), completion: { [weak self](result) -> (Void) in
+                let code = result.object(forKey: "code") as! Int
+                if code == 0 {
+                    let imagePath = result.object(forKey: "data") as? String
+                    print(imagePath ?? "")
+                    if imagePath != nil {
+                        self?.imagePaths.append(imagePath!)
+                    }
+                    if self?.imagePaths.count == (self?.images.count)! {
+                        self?.commit()
+                    }
+                }else if code == 402 {
+                    MBProgressHUD.hide()
+                    UserDefaults.standard.removeObject(forKey: isLogin)
+                    UserDefaults.standard.removeObject(forKey: loginInfo)
+                    let loginVC = LoginViewController()
+                    loginVC.reLoginDelegate = self
+                    loginVC.isFirstLogin = false
+                    self?.present(loginVC, animated: true, completion: nil)
+                }
+            }) { (error) -> (Void) in
+                MBProgressHUD.hide()
+                MBProgressHUD.showInfo("提交失败，请稍后重试")
+            }
+        }
+    }
+    
+    func commit() {
+        var params = [String : Any]()
+        params["password"] = applyPaymentProveView.textField.text
         
-        NetWorkRequest(.uploadImage(type: "hotcity_claims", fileArray: fileArray), completion: { [weak self](result) -> (Void) in
+        let filePath = imagePaths.joined(separator: ",")
+        params["filePath"] = filePath
+        
+        let policyId = dicInfo?.object(forKey: "policyOrderId") as? Int
+        params["policyOrderId"] = policyId
+        
+        NetWorkRequest(.applyPay(params: params), completion: { [weak self](result) -> (Void) in
+            MBProgressHUD.hide()
             let code = result.object(forKey: "code") as! Int
             if code == 0 {
-                let imagePath = result.object(forKey: "data") as? String
-                print(imagePath ?? "")
+                MBProgressHUD.showSuccess("已提交")
             }else if code == 402 {
+                MBProgressHUD.hide()
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
                 let loginVC = LoginViewController()
                 loginVC.reLoginDelegate = self
                 loginVC.isFirstLogin = false
                 self?.present(loginVC, animated: true, completion: nil)
+                
             }
-        }) { (error) -> (Void) in
-            print("上传失败，请稍后重试")
-        }
+        })
     }
 }

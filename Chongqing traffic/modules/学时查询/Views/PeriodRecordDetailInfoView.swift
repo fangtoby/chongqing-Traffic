@@ -9,12 +9,14 @@
 import UIKit
 
 // 创建闭包
-typealias ComplaintBtnClick = () -> (Void)
+typealias ComplaintBtnClick = () -> (Void) //一键投诉
+typealias TrainFailReasonClick = () -> (Void) //培训学时不合格原因
 
 class PeriodRecordDetailInfoView: UIView {
     
     var complaintBtnClick : ComplaintBtnClick?
-
+    var trainFailReasonClick : TrainFailReasonClick?
+    
     //编号
     lazy var numberLabel: UILabel = {
         let label = UILabel()
@@ -120,14 +122,11 @@ class PeriodRecordDetailInfoView: UIView {
         label.font = KUIFont14
         label.textColor = .black
         label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(trainFailClick))
+        label.addGestureRecognizer(tap)
 //        label.text = "10：找不到对应的分钟学时\n11：找不到对应的学时"
         return label
-    }()
-    
-    lazy var trainFailResonImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage.init(named: "icon_link_web")
-        return imageView
     }()
     
     //培训机构
@@ -197,6 +196,11 @@ class PeriodRecordDetailInfoView: UIView {
         complaintBtnClick()
     }
     
+    @objc func trainFailClick() {
+        guard let trainFailReasonClick = trainFailReasonClick else { return }
+        trainFailReasonClick()
+    }
+    
     func isComplaint(complaint:Bool) {
         if complaint == true  {
             complaintButton.setTitle("已投诉", for: .normal)
@@ -258,7 +262,30 @@ class PeriodRecordDetailInfoView: UIView {
             }
             trainFailResonLabel.isHidden = false
             trainFailResonTipLabel.isHidden = false
-            trainFailResonLabel.text = faildStr
+            
+            let attrStr1 = NSAttributedString(string:faildStr)
+            let attrStr2 = NSAttributedString(string: "  ")
+            
+            //创建NSTextAttachment对象
+            let attachment = NSTextAttachment()
+            //给NSTextAttachment 对象设置图片
+            attachment.image = UIImage(named: "icon_link_web")
+            //设置NSTextAttachment对象的位置 目的是要图片和UILabel的高度一致
+            let font = trainFailResonLabel.font
+            attachment.bounds = CGRect(x: 0, y: -4, width: (font?.lineHeight)!, height: (font?.lineHeight)!)
+            //给富文本赋值
+            let attrImage = NSAttributedString(attachment: attachment)
+            let attrMub = NSMutableAttributedString()
+            //给可变的富文本对象赋值
+            attrMub.append(attrStr1)
+            attrMub.append(attrStr2)
+            attrMub.append(attrImage)
+            
+//            let range = NSRange.init(location: (attrMub.length - attrImage.length) , length: attrImage.length)
+//
+//            attrMub.addAttribute(NSAttributedString.Key.link, value: #selector(trainFailClick), range: range)
+            
+            trainFailResonLabel.attributedText = attrMub
             
             self.trainSchoolTipLabel.snp.remakeConstraints { (make) in
                 make.left.equalTo(40)

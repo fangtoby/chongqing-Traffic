@@ -76,10 +76,16 @@ class PeriodPartViewController: BaseViewController {
             case 11:
                 //有效时长
                 print("有效时长")
+                let insuranceVC = BaseWebViewController()
+                insuranceVC.title = "有效学时"
+                insuranceVC.urlStr = "http://59.110.155.214:10022/ValidTimeExplain.html"
+                self?.navigationController?.pushViewController(insuranceVC, animated: true)
             case 12:
                 //未推送考试系统
-                let trainingStatusVC = TrainningStatusIViewController()
-                self?.present(trainingStatusVC, animated: true, completion: nil)
+                let insuranceVC = BaseWebViewController()
+                insuranceVC.title = "培训状态"
+                insuranceVC.urlStr = "http://59.110.155.214:10022/TrainTypeExplain.html"
+                self?.navigationController?.pushViewController(insuranceVC, animated: true)
             case 13:
                 //查看学时记录
 //                print("查看学时记录")
@@ -92,15 +98,27 @@ class PeriodPartViewController: BaseViewController {
             case 14:
                 //刷新并推送
                 print("刷新并推送")
-                self?.pushData()
-                let insuranceVC = InsuranceViewController()
-                insuranceVC.part = self?.part ?? 0
-                self?.navigationController?.pushViewController(insuranceVC, animated: true)
+                if self?.periodSearchView.pushButton.isSelected == true {
+                    self?.pushData()
+                    if self?.periodSearchView.insuranceButton.isSelected == true {
+                        let insuranceVC = InsuranceViewController()
+                        insuranceVC.part = self?.part ?? 0
+                        self?.navigationController?.pushViewController(insuranceVC, animated: true)
+                    }
+                }else {
+                    if self?.periodSearchView.insuranceButton.isSelected == true {
+                        let insuranceVC = InsuranceViewController()
+                        insuranceVC.part = self?.part ?? 0
+                        self?.navigationController?.pushViewController(insuranceVC, animated: true)
+                    }
+                }
+                
             case 103:
                 //投保说明
 //                print("投保说明")
-                let insuranceVC = InsuranceViewController()
-                insuranceVC.part = self?.part ?? 0
+                let insuranceVC = BaseWebViewController()
+                insuranceVC.title = "投保说明"
+                insuranceVC.urlStr = "http://59.110.155.214:10022/InsureExplain.html"
                 self?.navigationController?.pushViewController(insuranceVC, animated: true)
             default:
                 print("Error: not found")

@@ -116,6 +116,13 @@ class PeriodRecordDetailViewController: BaseViewController {
             complainVC.dicInfo = self?.dicInfo
             self?.navigationController?.pushViewController(complainVC, animated: true)
         }
+        
+        self.recordDetailInfoView.trainFailReasonClick = { [weak self] in
+            let insuranceVC = BaseWebViewController()
+            insuranceVC.title = "不合格原因"
+            insuranceVC.urlStr = "http://59.110.155.214:10022/UnqualifiedExplain.html"
+            self?.navigationController?.pushViewController(insuranceVC, animated: true)
+        }
     }
     
     override func reLogin() {

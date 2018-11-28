@@ -35,9 +35,11 @@ class RefreshHeader: MJRefreshGifHeader {
     }
 }
 
+class DIYFreshHeader: MJRefreshNormalHeader {}
+
 class RefreshAutoHeader: MJRefreshHeader {}
 
-class RefreshFooter: MJRefreshBackNormalFooter {}
+class DIYRefreshFooter: MJRefreshAutoNormalFooter {}
 
 class RefreshAutoFooter: MJRefreshAutoFooter {}
 

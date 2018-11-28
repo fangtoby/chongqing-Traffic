@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import MJRefresh
 
 class PeriodRecordViewController: BaseViewController {
     var part : Int = 0 //当前部分
@@ -51,6 +52,8 @@ class PeriodRecordViewController: BaseViewController {
         } else {
             automaticallyAdjustsScrollViewInsets = false;
         }
+        tableView.MJ_Header = DIYFreshHeader { [weak self] in self?.reFreshData() }
+        tableView.MJ_Footer = DIYRefreshFooter { [weak self] in self?.loadMoreData() }
         tableView.register(PeriodRecordTableViewCell.self, forCellReuseIdentifier: CellIdentifier)
         return tableView
     }()
@@ -83,7 +86,10 @@ class PeriodRecordViewController: BaseViewController {
             make.bottom.equalTo(-2)
         }
         
-        let wait = allStudy - valid
+        var wait = allStudy - valid
+        if wait < 0 {
+            wait = 0
+        }
         periodRecordHeaderView.waitTrainLabel.text = "\(wait/45)学时\(wait%45)分"
         periodRecordHeaderView.qualifiedLabel.text = "\(valid/45)学时\(valid%45)分"
         
@@ -96,12 +102,25 @@ class PeriodRecordViewController: BaseViewController {
         params["subject"] = part+1
         params["page"] = page
         MBProgressHUD.showWait("请稍后...")
+        
         NetWorkRequest(.periodList(params: params), completion: { [weak self](result) -> (Void) in
+            self?.tableView.mj_header.endRefreshing()
+            self?.tableView.MJ_Footer.endRefreshing()
             let code = result.object(forKey: "code") as! Int
             if code == 0{
+                if self?.page == 1 {
+                    self?.dataSource.removeAll()
+                }
                 let dic = result.object(forKey: "data") as! NSDictionary
-                self?.dataSource = dic.object(forKey: "list") as! [Any]
+                let list = dic.object(forKey: "list") as! [Any]
+                for data in list {
+                    self?.dataSource.append(data)
+                }
+                
                 self?.tableView.reloadData()
+                if list.count < 10 {
+                    self?.tableView.MJ_Footer.endRefreshingWithNoMoreData()
+                }
             }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
@@ -110,9 +129,10 @@ class PeriodRecordViewController: BaseViewController {
                 loginVC.isFirstLogin = false
                 self?.present(loginVC, animated: true, completion: nil)
             }
-        })
-        
-        self.tableView.reloadData()
+        }) { [weak self](error) -> (Void) in
+            self?.tableView.mj_header.endRefreshing()
+            self?.tableView.MJ_Footer.endRefreshing()
+        }
     }
     
     func loadHistoryData() {
@@ -121,11 +141,22 @@ class PeriodRecordViewController: BaseViewController {
         params["page"] = page
         MBProgressHUD.showWait("请稍后...")
         NetWorkRequest(.periodHistoryList(params: params), completion: { [weak self](result) -> (Void) in
+            self?.tableView.mj_header.endRefreshing()
+            self?.tableView.MJ_Footer.endRefreshing()
             let code = result.object(forKey: "code") as! Int
             if code == 0{
+                if self?.page == 1 {
+                    self?.dataSource.removeAll()
+                }
                 let dic = result.object(forKey: "data") as! NSDictionary
-                self?.dataSource = dic.object(forKey: "list") as! [Any]
+                let list = dic.object(forKey: "list") as! [Any]
+                for data in list {
+                    self?.dataSource.append(data)
+                }
                 self?.tableView.reloadData()
+                if list.count < 10 {
+                    self?.tableView.MJ_Footer.endRefreshingWithNoMoreData()
+                }
             }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
                 UserDefaults.standard.removeObject(forKey: loginInfo)
@@ -134,16 +165,28 @@ class PeriodRecordViewController: BaseViewController {
                 loginVC.isFirstLogin = false
                 self?.present(loginVC, animated: true, completion: nil)
             }
-        })
-        self.tableView.reloadData()
+        }) { [weak self](error) -> (Void) in
+            self?.tableView.mj_header.endRefreshing()
+            self?.tableView.MJ_Footer.endRefreshing()
+        }
     }
     
     func reFreshData() {
-        
+        page = 1
+        if isHistory == true {
+            self.loadHistoryData()
+        }else {
+            self.loadData()
+        }
     }
     
     func loadMoreData() {
-        
+        page += 1
+        if isHistory == true {
+            self.loadHistoryData()
+        }else {
+            self.loadData()
+        }
     }
 }
 

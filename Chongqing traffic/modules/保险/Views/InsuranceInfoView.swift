@@ -19,10 +19,10 @@ class InsuranceInfoView: UIView {
         return label
     }()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .cyan
-        return tableView
+    lazy var webView: UIWebView = {
+        let webView = UIWebView()
+        webView.backgroundColor = KUIColorBG
+        return webView
     }()
     
     lazy var agreeButton: UIButton = {
@@ -45,6 +45,8 @@ class InsuranceInfoView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpUI()
+        
+        webView.loadRequest(URLRequest.init(url: URL(string: "http://59.110.155.214:10022/TermsOfService.html")!))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,6 +59,10 @@ class InsuranceInfoView: UIView {
         }else {
             button.isSelected = true
         }
+    }
+    
+    func loadWebUrl(url:String) {
+        
     }
 }
 
@@ -82,8 +88,8 @@ extension InsuranceInfoView {
             make.centerY.equalTo(self.agreeButton.snp.centerY)
         }
         
-        self.addSubview(tableView)
-        self.tableView.snp.makeConstraints { (make) in
+        self.addSubview(webView)
+        self.webView.snp.makeConstraints { (make) in
             make.left.equalTo(40)
             make.right.equalTo(-40)
             make.top.equalTo(self.tipLabel.snp.bottom).offset(7)

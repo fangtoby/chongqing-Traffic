@@ -45,8 +45,8 @@ class MineViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private lazy var dataSource: Array = {
         return [[ ],
-                ["icon":"icon_my_train", "title": "我的培训信息", "desc":""],
-                ["icon":"icon_my_ensure", "title": "我的保障信息", "desc":"保障中"]]
+                ["icon":"icon_my_train", "title": "我的培训信息"],
+                ["icon":"icon_my_ensure", "title": "我的保障信息"]]
     }()
     
     var userInfoDic:NSDictionary?
@@ -226,7 +226,12 @@ extension MineViewController {
                 }
             }else {
                 cell.topLineView.isHidden = false
-                cell.descLabel.text = "保障中"
+                let guarantee = userInfoDic?.object(forKey: "guarantee") as? Bool
+                if guarantee == true {
+                    cell.descLabel.text = "保障中"
+                }else {
+                    cell.descLabel.text = "未保障"
+                }
             }
             let dict: [String: String] = dataSource[indexPath.row] as! [String : String]
             cell.setDicInfo(dicInfo: dict as NSDictionary)

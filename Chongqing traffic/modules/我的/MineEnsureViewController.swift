@@ -126,7 +126,7 @@ extension MineEnsureViewController:UITableViewDelegate, UITableViewDataSource, Z
         let orderId = dicInfo?.object(forKey: "orderId") as? Int
         
         let payStatus = dicInfo?.object(forKey: "orderStatus") as? String
-        if payStatus == "REFUND" {
+        if payStatus == "UNPAID" {
             //去支付
             let insurancePayVC = InsurancePayViewController()
             insurancePayVC.orderId = orderId ?? 0

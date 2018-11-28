@@ -81,7 +81,29 @@ class InsurancePayViewController: BaseViewController {
     
     @objc func goPayBtnClicked() {
         //去支付
-        
+        var params = [String : Any]()
+        params["applicationCode"] = "CQJT_APP"
+        params["payType"] = "ZFB"
+        params["orderId"] = orderId
+        NetWorkRequest(.pay(params: params), completion: { [weak self](result) -> (Void) in
+            let code = result.object(forKey: "code") as! Int
+            if code == 0 {
+                print(result)
+                let order = result.object(forKey: "data") as! String
+                PayManager.instance.pay(order: order, callback: { (stateCode, string) -> (Void) in
+                    print(stateCode)
+                    print(string)
+                })
+                
+            }else if code == 402 {
+                UserDefaults.standard.removeObject(forKey: isLogin)
+                UserDefaults.standard.removeObject(forKey: loginInfo)
+                let loginVC = LoginViewController()
+                loginVC.reLoginDelegate = self
+                loginVC.isFirstLogin = false
+                self?.present(loginVC, animated: true, completion: nil)
+            }
+        })
     }
 }
 extension InsurancePayViewController {

@@ -52,8 +52,9 @@ enum API {
     case payOrderDetail(orderId:Int) //支付页详情接口
     case insuranceOrderList(params:[String : Any]) //保险订单列表
     case insuranceOrderDetail(orderId:Int) //保险订单详情
-    
-    case uploadImage(type:String,fileArray:Array<Any>) //上传照片
+    case applyPay(params:[String : Any]) //申请赔付
+    case uploadImage(type:String,fileArray:Array<Any>) //上传照片'
+    case pay(params:[String : Any])   //支付接口
 }
 
 extension API: TargetType {
@@ -83,6 +84,8 @@ extension API: TargetType {
         case .insuranceOrderDetail(let orderId): return "policyOrder/detail/\(orderId)"
         case .payOrderDetail(let orderId): return "policyOrder/payDetail/\(orderId)"
         case .uploadImage(let type, _): return "sys/upload/uploadImg/\(type)"
+        case .applyPay: return "compensation/applyClaims"
+        case .pay: return "oa/order/pay"
         }
     }
     
@@ -180,6 +183,10 @@ extension API: TargetType {
                 multipartData.append(formData)
             }
             return .uploadMultipart(multipartData)
+        case .applyPay(let params):
+            parameters = params
+        case .pay(let params):
+            parameters = params
         }
         return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     }
