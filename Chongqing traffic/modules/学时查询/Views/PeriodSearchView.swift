@@ -161,6 +161,7 @@ class PeriodSearchView: UIView {
     lazy var pushButton: UIButton = {
         let pushButton = UIButton()
         pushButton.tag = 101
+        pushButton.isSelected = true
         pushButton.setBackgroundImage(UIImage.init(named: "icon_select_no"), for: .normal)
         pushButton.setBackgroundImage(UIImage.init(named: "icon_select_yes"), for: .selected)
         pushButton.addTarget(self, action: #selector(buttonClicked(button:)), for: .touchUpInside)

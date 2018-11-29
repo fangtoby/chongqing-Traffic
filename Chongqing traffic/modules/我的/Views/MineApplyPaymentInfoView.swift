@@ -22,7 +22,7 @@ class MineApplyPaymentInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "李某某"
+//        label.text = "李某某"
         return label
     }()
     
@@ -38,7 +38,7 @@ class MineApplyPaymentInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "350 103 **** **** 1399"
+//        label.text = "350 103 **** **** 1399"
         return label
     }()
     
@@ -54,7 +54,7 @@ class MineApplyPaymentInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "C1"
+//        label.text = "C1"
         return label
     }()
     
@@ -70,7 +70,7 @@ class MineApplyPaymentInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "135 **** 1399"
+//        label.text = "135 **** 1399"
         return label
     }()
     
@@ -86,7 +86,7 @@ class MineApplyPaymentInfoView: UIView {
         let label = UILabel()
         label.font = KUIFont14
         label.textColor = .black
-        label.text = "招商银行  尾号1236"
+//        label.text = "招商银行  尾号1236"
         return label
     }()
 
@@ -116,7 +116,7 @@ extension MineApplyPaymentInfoView {
         
         self.addSubview(codeTipLabel)
         self.codeTipLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.nameTipLabel.snp.bottom).offset(10)
             make.left.equalTo(self.nameTipLabel.snp.left)
         }
         
@@ -128,7 +128,7 @@ extension MineApplyPaymentInfoView {
         
         self.addSubview(trainTypeTipLabel)
         self.trainTypeTipLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.codeLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.codeTipLabel.snp.bottom).offset(10)
             make.left.equalTo(self.nameTipLabel.snp.left)
         }
         
@@ -140,7 +140,7 @@ extension MineApplyPaymentInfoView {
         
         self.addSubview(phoneNumberTipLabel)
         self.phoneNumberTipLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.trainTypeLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.trainTypeTipLabel.snp.bottom).offset(10)
             make.left.equalTo(self.nameTipLabel.snp.left)
         }
         
@@ -152,7 +152,7 @@ extension MineApplyPaymentInfoView {
         
         self.addSubview(cardCodeTipLabel)
         self.cardCodeTipLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.phoneNumberLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.phoneNumberTipLabel.snp.bottom).offset(10)
             make.left.equalTo(self.nameTipLabel.snp.left)
         }
         

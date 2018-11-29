@@ -8,7 +8,7 @@
 
 import UIKit
 import MBProgressHUD
-import MJRefresh
+import Alamofire
 
 class PeriodRecordViewController: BaseViewController {
     var part : Int = 0 //当前部分
@@ -120,6 +120,11 @@ class PeriodRecordViewController: BaseViewController {
                 self?.tableView.reloadData()
                 if list.count < 10 {
                     self?.tableView.MJ_Footer.endRefreshingWithNoMoreData()
+                    if self?.page == 1 {
+                        self?.tableView.mj_footer.isHidden = true
+                    }else {
+                        self?.tableView.mj_footer.isHidden = false
+                    }
                 }
             }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
@@ -156,6 +161,11 @@ class PeriodRecordViewController: BaseViewController {
                 self?.tableView.reloadData()
                 if list.count < 10 {
                     self?.tableView.MJ_Footer.endRefreshingWithNoMoreData()
+                    if self?.part == 1 {
+                        self?.tableView.mj_footer.isHidden = true
+                    }else {
+                        self?.tableView.mj_footer.isHidden = false
+                    }
                 }
             }else if code == 402 {
                 UserDefaults.standard.removeObject(forKey: isLogin)
@@ -172,6 +182,13 @@ class PeriodRecordViewController: BaseViewController {
     }
     
     func reFreshData() {
+        //先判断网络是否有链接 没有的话直接返回--代码略
+        if !isNetworkConnect{
+            print("提示用户网络似乎出现了问题")
+            MBProgressHUD.showInfo("网络似乎出现了问题")
+            tableView.mj_header.endRefreshing()
+            return
+        }
         page = 1
         if isHistory == true {
             self.loadHistoryData()

@@ -41,7 +41,7 @@ class RefreshAutoHeader: MJRefreshHeader {}
 
 class DIYRefreshFooter: MJRefreshAutoNormalFooter {}
 
-class RefreshAutoFooter: MJRefreshAutoFooter {}
+class DIYRefreshAutoFooter: MJRefreshAutoFooter {}
 
 
 class RefreshDiscoverFooter: MJRefreshBackGifFooter {

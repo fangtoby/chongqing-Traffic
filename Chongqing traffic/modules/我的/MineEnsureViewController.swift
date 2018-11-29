@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Alamofire
+import MBProgressHUD
 
 class MineEnsureViewController: BaseViewController {
     
     var dataSource = [Any]()
-    
+    var isFromPay = false
     
     lazy var buyBtn: BaseButton = {
         let button = BaseButton()
@@ -38,24 +40,53 @@ class MineEnsureViewController: BaseViewController {
         } else {
             automaticallyAdjustsScrollViewInsets = false;
         }
+        tableView.MJ_Header = DIYFreshHeader { [weak self] in self?.reFreshData() }
         tableView.register(MineEnsureOrderTableViewCell.self, forCellReuseIdentifier: CellIdentifier)
         return tableView
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if isFromPay == true {
+            navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.title = "我的保障信息"
-        setUpUI()
+        if isFromPay == true {
+            let backBtn = UIButton()
+            backBtn.setTitle(" 返回", for: .normal)
+            backBtn.setImage(UIImage(named: "btn_back"), for: .normal)
+            backBtn.setTitleColor(MainTitleColor, for: .normal)
+            backBtn.titleLabel?.font = KUIFont16
+            backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
+            
+            let leftBtnItem = UIBarButtonItem.init(customView: backBtn)
+            self.navigationItem.leftBarButtonItem = leftBtnItem
+        }
         
-        loadData()
+        setUpUI()
     }
     
     func loadData() {
         let params = [String : Any]()
         
         NetWorkRequest(.insuranceOrderList(params: params), completion: { [weak self](result) -> (Void) in
+            self?.tableView.mj_header.endRefreshing()
             let code = result.object(forKey: "code") as! Int
             if code == 0 {
                 
@@ -69,7 +100,20 @@ class MineEnsureViewController: BaseViewController {
                 loginVC.isFirstLogin = false
                 self?.present(loginVC, animated: true, completion: nil)
             }
-        })
+        }) { [weak self](error) -> (Void) in
+            self?.tableView.mj_header.endRefreshing()
+        }
+    }
+    
+    func reFreshData() {
+        //先判断网络是否有链接 没有的话直接返回--代码略
+        if !isNetworkConnect{
+            print("提示用户网络似乎出现了问题")
+            MBProgressHUD.showInfo("网络似乎出现了问题")
+            tableView.mj_header.endRefreshing()
+            return
+        }
+        self.loadData()
     }
     
     func setUpUI() {
@@ -90,12 +134,18 @@ class MineEnsureViewController: BaseViewController {
     }
     
     @objc func buyInsuranceClicked () {
+        //购买保险
         let insuranceVC = InsuranceViewController()
+        insuranceVC.isBuyFromList = true
         self.navigationController?.pushViewController(insuranceVC, animated: true)
     }
     
     override func reLogin() {
         loadData()
+    }
+    
+    @objc func back() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
@@ -130,6 +180,7 @@ extension MineEnsureViewController:UITableViewDelegate, UITableViewDataSource, Z
             //去支付
             let insurancePayVC = InsurancePayViewController()
             insurancePayVC.orderId = orderId ?? 0
+            insurancePayVC.isFromList = true
             self.navigationController?.pushViewController(insurancePayVC, animated: true)
         }else {
             //订单详情

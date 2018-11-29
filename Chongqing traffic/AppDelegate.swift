@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.enable = true;
         
-        PayManager.instance.registerApplication()
+        PayManager.shareInstance.registerApplication()
         
         let isLoginStatus = UserDefaults.standard.object(forKey: isLogin)
         if (isLoginStatus != nil) {
@@ -83,17 +83,17 @@ extension AppDelegate {
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         
-        return PayManager.instance.handleOpenURL(url: url)
+        return PayManager.shareInstance.handleOpenURL(url: url)
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
-        return PayManager.instance.handleOpenURL(url: url)
+        return PayManager.shareInstance.handleOpenURL(url: url)
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        return PayManager.instance.handleOpenURL(url: url)
+        return PayManager.shareInstance.handleOpenURL(url: url)
     }
 }
 

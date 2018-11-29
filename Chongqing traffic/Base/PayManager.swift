@@ -22,7 +22,7 @@ class PayManager: NSObject {
     
     var appSchemeDict:NSMutableDictionary = NSMutableDictionary.init()
     
-    static let instance = PayManager()
+    static let shareInstance = PayManager()
     
     /// 注册到APP
     func registerApplication() {
@@ -35,7 +35,7 @@ class PayManager: NSObject {
             let urlScheme = urlSchemes.last
             if urlName == "weixin" {
                 self.appSchemeDict.setValue(urlScheme, forKey: "weixin")
-//                [WXApi registerApp:urlScheme]
+                WXApi.registerApp(urlScheme)
             }else if urlName == "alipay" {
                 // 保存支付宝scheme，以便发起支付使用
                 self.appSchemeDict.setValue(urlScheme, forKey: "alipay")
@@ -50,7 +50,7 @@ class PayManager: NSObject {
      */
     func handleOpenURL(url:URL) -> Bool {
         if url.host == "pay" {
-//            return [WXApi handleOpenURL:url delegate:self]
+            return WXApi .handleOpen(url, delegate: self)
         }else if url.host == "safepay" {
             // 支付跳转支付宝钱包进行支付，处理支付结果(在app被杀模式下，通过这个方法获取支付结果）
             AlipaySDK.defaultService()?.processOrder(withPaymentResult: url, standbyCallback: { (result) in
@@ -67,8 +67,8 @@ class PayManager: NSObject {
                 default:
                 errorCode = PayStateCode.PayStateCodeFailure
                 }
-                if PayManager.instance.callback != nil {
-                    PayManager.instance.callback!(errorCode, errStr ?? "支付成功")
+                if PayManager.shareInstance.callback != nil {
+                    PayManager.shareInstance.callback!(errorCode, errStr ?? "支付成功")
                 }
                 
             })
@@ -110,28 +110,27 @@ class PayManager: NSObject {
         
         if order is NSDictionary {
             //验证是否安装微信
-//            if (![WXApi isWXAppInstalled]) {
-//                if ([PayManager shareManager].callBack) {
-//                    [PayManager shareManager].callBack(PayStateCodeFailure,@"您还没有安装微信！");
-//                }
-//                return;
-//            }
-//
-//            // 微信
-//            NSMutableDictionary *dict = order;//[payReq sendPayWithDic:payParams];
-//            NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
-//
-//            //调起微信支付
-//            PayReq* req             = [[PayReq alloc] init];
-//            req.openID              = [dict objectForKey:@"appid"];
-//            req.partnerId           = [dict objectForKey:@"partnerid"];
-//            req.prepayId            = [dict objectForKey:@"prepayid"];
-//            req.nonceStr            = [dict objectForKey:@"noncestr"];
-//            req.timeStamp           = stamp.intValue;
-//            req.package             = [dict objectForKey:@"package"];
-//            req.sign                = [dict objectForKey:@"sign"];
-//
-//            [WXApi sendReq:req]
+            if WXApi.isWXAppInstalled() == false {
+                if PayManager.shareInstance.callback != nil {
+                    PayManager.shareInstance.callback!(PayStateCode.PayStateCodeFailure, "您还没有安装微信！")
+                }
+                return
+            }
+            // 微信
+            let dict = order as! NSDictionary
+            let stamp = dict.object(forKey: "timestamp")
+            //调起微信支付
+            let req:PayReq = PayReq()
+            req.openID = dict.object(forKey: "appid") as? String
+            req.partnerId = dict.object(forKey: "partnerid") as? String
+            req.prepayId = dict.object(forKey: "prepayid") as? String
+            req.nonceStr = dict.object(forKey: "noncestr") as? String
+            req.timeStamp = stamp as! UInt32
+            req.package = dict.object(forKey: "package") as? String
+            req.sign = dict.object(forKey: "sign") as? String
+            
+            WXApi.send(req)
+            
         }else if order is String {
             // 支付宝
             AlipaySDK.defaultService()?.payOrder(order as? String, fromScheme: self.appSchemeDict.object(forKey: "alipay") as? String, callback: { (result) in
@@ -151,11 +150,51 @@ class PayManager: NSObject {
                     errorCode = PayStateCode.PayStateCodeFailure;
                     errStr = "支付失败！"
                 }
-                if PayManager.instance.callback != nil {
+                if PayManager.shareInstance.callback != nil {
                     callback(errorCode,errStr!)
                 }
             })
         }
         
     }
+}
+
+extension PayManager:WXApiDelegate {
+    
+    func onResp(_ resp: BaseResp!) {
+        if resp is PayResp {
+            var errorCode = PayStateCode.PayStateCodeSuccess
+            var message:String = ""
+            switch resp.errCode {
+            case WXSuccess.rawValue:
+                errorCode = PayStateCode.PayStateCodeSuccess
+                message = "您已支付成功！"
+            case WXErrCodeUserCancel.rawValue:
+                errorCode = PayStateCode.PayStateCodeCancel
+                message = "您已取消支付！！"
+            case WXErrCodeCommon.rawValue:
+                errorCode = PayStateCode.PayStateCodeFailure
+                message = "普通错误类型！"
+            case WXErrCodeSentFail.rawValue:
+                errorCode = PayStateCode.PayStateCodeFailure
+                message = "发送失败！"
+            case WXErrCodeAuthDeny.rawValue:
+                errorCode = PayStateCode.PayStateCodeFailure
+                message = "授权失败！"
+            case WXErrCodeUnsupport.rawValue:
+                errorCode = PayStateCode.PayStateCodeFailure
+                message = "微信不支持！"
+            default:
+                errorCode = PayStateCode.PayStateCodeFailure
+                message = "支付结果：失败！retcode = \(resp.errCode), retstr = \(resp.errStr ?? "支付失败")"
+                print("错误，retcode = \(resp.errCode), retstr = \(resp.errStr ?? "支付失败")")
+            }
+            
+            if self.callback != nil {
+                self.callback!(errorCode,message)
+            }
+        }
+    }
+    
+    func onReq(_ req: BaseReq!) { }
 }

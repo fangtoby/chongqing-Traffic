@@ -11,6 +11,8 @@ import UIKit
 class InsurancePayViewController: BaseViewController {
     
     var orderId:Int = 0
+    var isFromList:Bool = false
+    var isBuyFromList = false
     
     lazy var orderUserInfoView: MineApplyPaymentInfoView = {
         let view = MineApplyPaymentInfoView()
@@ -83,16 +85,64 @@ class InsurancePayViewController: BaseViewController {
         //去支付
         var params = [String : Any]()
         params["applicationCode"] = "CQJT_APP"
-        params["payType"] = "ZFB"
+        if payView.aliPayBtn.isSelected == true {
+            params["payType"] = "ZFB"
+        }else {
+            params["payType"] = "WX"
+        }
         params["orderId"] = orderId
         NetWorkRequest(.pay(params: params), completion: { [weak self](result) -> (Void) in
             let code = result.object(forKey: "code") as! Int
             if code == 0 {
                 print(result)
                 let order = result.object(forKey: "data") as! String
-                PayManager.instance.pay(order: order, callback: { (stateCode, string) -> (Void) in
+                PayManager.shareInstance.pay(order: order, callback: { (stateCode, message) -> (Void) in
                     print(stateCode)
-                    print(string)
+                    print(message)
+                    if (stateCode == PayStateCode.PayStateCodeSuccess) {
+                        let alertView = ZLAlertView()
+                        alertView.titleLabel.text = "支付成功"
+                        alertView.messegeLabel.text = "即将跳转到我的保障信息界面可查看本次购买的学车无忧险"
+                        alertView.isHidenCancle()
+                        alertView.sureButton.setTitle("关闭", for: .normal)
+                        alertView.showView()
+                        alertView.sureBtnClick = {
+                            if self?.isFromList == true {
+                                self?.navigationController?.popViewController(animated: true)
+                            }else {
+                                if self?.isBuyFromList == true {
+                                    let index = self?.navigationController?.viewControllers.count
+                                    self?.navigationController?.popToViewController((self?.navigationController?.viewControllers[index! - 3])!, animated: true)
+                                }else {
+                                    let ensureVC = MineEnsureViewController()
+                                    ensureVC.isFromPay = true
+                                    self?.navigationController?.pushViewController(ensureVC, animated: true)
+                                }
+                            }
+                        }
+                    }else {
+                        let alertView = ZLAlertView()
+                        alertView.titleLabel.text = "支付失败"
+                        alertView.messegeLabel.text = "即将跳转到我的保障信息界面可查看学车无忧险订单并进行支付"
+                        alertView.sureButton.setTitle("关闭", for: .normal)
+                        alertView.isHidenCancle()
+                        alertView.showView()
+                        alertView.sureBtnClick = {
+                            if self?.isFromList == true {
+                                self?.navigationController?.popViewController(animated: true)
+                            }else {
+                                if self?.isBuyFromList == true {
+                                    let index = self?.navigationController?.viewControllers.count
+                                    self?.navigationController?.popToViewController((self?.navigationController?.viewControllers[index! - 3])!, animated: true)
+                                }else {
+                                    let ensureVC = MineEnsureViewController()
+                                    ensureVC.isFromPay = true
+                                    self?.navigationController?.pushViewController(ensureVC, animated: true)
+                                }
+                            }
+                        }
+                    }
+                    
                 })
                 
             }else if code == 402 {

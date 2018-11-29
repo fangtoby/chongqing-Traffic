@@ -12,6 +12,7 @@ import MBProgressHUD
 class InsuranceViewController: BaseViewController {
     
     var insuranceId:Int = 0
+    var isBuyFromList = false
     
     var userInfoDic:NSDictionary?
     var part:Int = 0
@@ -121,7 +122,10 @@ class InsuranceViewController: BaseViewController {
                                 alertView.showView()
                                 alertView.sureBtnClick = { [weak self] in
                                     //跳转到支付页面
-                                    
+                                    let insurancePayVC = InsurancePayViewController()
+                                    insurancePayVC.orderId = orderId ?? 0
+                                    insurancePayVC.isBuyFromList = self?.isBuyFromList ?? false
+                                    self?.navigationController?.pushViewController(insurancePayVC, animated: true)
                                 }
                             }else {
                                 let insurancePayVC = InsurancePayViewController()

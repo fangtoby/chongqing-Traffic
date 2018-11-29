@@ -105,7 +105,7 @@ extension InsurancePayInfoView {
         self.addSubview(orderMoneyTipLabel)
         self.orderMoneyTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(40)
-            make.top.equalTo(self.insuranceLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.insuranceTipLabel.snp.bottom).offset(10)
         }
         self.addSubview(orderMoneyLabel)
         self.orderMoneyLabel.snp.makeConstraints { (make) in
@@ -116,7 +116,7 @@ extension InsurancePayInfoView {
         self.addSubview(payTypeTipLabel)
         self.payTypeTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(40)
-            make.top.equalTo(self.orderMoneyLabel.snp.bottom).offset(20)
+            make.top.equalTo(self.orderMoneyTipLabel.snp.bottom).offset(20)
         }
         
         self.addSubview(payTypeBgView)
