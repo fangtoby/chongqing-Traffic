@@ -71,7 +71,7 @@ extension MineEnsureOrderTableViewCell {
         orderInfoView.nameLabel.text = dicInfo?.object(forKey: "insuranceProductName") as? String
         orderInfoView.userLabel.text = dicInfo?.object(forKey: "userName") as? String
         orderInfoView.validDateLabel.text = "\(dicInfo?.object(forKey: "validTime") ?? 0)天"
-        orderInfoView.codeLabel.text = "\(dicInfo?.object(forKey: "policyOrderId") ?? "")"
+        orderInfoView.codeLabel.text = "\(dicInfo?.object(forKey: "policyNum") ?? "")"
         
         var starDataStr = dicInfo?.object(forKey: "startTime") as? String
         var endDateStr = dicInfo?.object(forKey: "endTime") as? String

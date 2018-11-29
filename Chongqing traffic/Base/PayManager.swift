@@ -72,6 +72,7 @@ class PayManager: NSObject {
                 }
                 
             })
+            
             AlipaySDK.defaultService()?.processAuth_V2Result(url, standbyCallback: { (result) in
                 let resultDic = result as NSDictionary?
                 print("result = \(String(describing: resultDic))")

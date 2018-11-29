@@ -30,6 +30,8 @@ target 'Chongqing traffic' do
   pod 'CLImagePickerTool'
 #  pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePickerTool.git'
 
+# 支付相关
   pod 'AlipaySDK-iOS'
-
+  pod 'WechatOpenSDK'
+  
 end

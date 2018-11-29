@@ -125,7 +125,7 @@ extension MineEnsureDetailViewController {
         ensureInfoView.nameLabel.text = dicInfo?.object(forKey: "insuranceProductName") as? String
         ensureInfoView.userLabel.text = dicInfo?.object(forKey: "userName") as? String
         ensureInfoView.validDateLabel.text = "\(dicInfo?.object(forKey: "validTime") ?? 0)天"
-        ensureInfoView.codeLabel.text = "\(dicInfo?.object(forKey: "policyOrderId") ?? "")"
+        ensureInfoView.codeLabel.text = "\(dicInfo?.object(forKey: "policyNum") ?? "")"
         
         var starDataStr = dicInfo?.object(forKey: "startTime") as? String
         var endDateStr = dicInfo?.object(forKey: "endTime") as? String

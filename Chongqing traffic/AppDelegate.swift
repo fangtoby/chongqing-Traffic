@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.enable = true;
         
+        PayManager.instance.registerApplication()
+        
         let isLoginStatus = UserDefaults.standard.object(forKey: isLogin)
         if (isLoginStatus != nil) {
             let tabbarController = ESTabBarController()
@@ -70,6 +72,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+}
+
+extension AppDelegate {
+    
+   ///第三方应用跳转回调
+    
+    //最老的版本，最好也写上
+    
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        
+        return PayManager.instance.handleOpenURL(url: url)
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        return PayManager.instance.handleOpenURL(url: url)
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        return PayManager.instance.handleOpenURL(url: url)
     }
 }
 
