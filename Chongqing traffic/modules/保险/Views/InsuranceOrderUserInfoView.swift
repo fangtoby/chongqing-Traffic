@@ -34,6 +34,15 @@ class InsuranceOrderUserInfoView: UIView {
         return label
     }()
     
+    ///银行卡提示(仅限本人银行卡号)
+    private lazy var bankTipLabel: UILabel = {
+        let label = UILabel()
+        label.font = KUIFont14
+        label.text = "(仅限本人银行卡号)"
+        label.textColor = MainRedColor
+        return label
+    }()
+    
     //银行卡号
     lazy var codeBgView: UIView = {
         let view = UIView()
@@ -98,6 +107,12 @@ extension InsuranceOrderUserInfoView {
         self.compensateLabel.snp.makeConstraints { (make) in
             make.left.equalTo(40)
             make.top.equalTo(self.insuranceBgView.snp.bottom).offset(10)
+        }
+        
+        self.addSubview(bankTipLabel)
+        self.bankTipLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.compensateLabel.snp.right)
+            make.centerY.equalTo(self.compensateLabel.snp.centerY)
         }
         
         self.addSubview(codeBgView)
