@@ -147,42 +147,46 @@ extension LoginViewController {
                         
                         if self?.isFirstLogin == true{
                             let newUser:Bool = loginInfoDic.object(forKey: "newUser") as! Bool
-                            if newUser == true {
-                                let alertView = ZLAlertView()
-                                alertView.titleLabel.text = "查询说明"
-                                alertView.messegeLabel.text = "系统检测到您为2018年7月10日之前报名学员，即将跳转专属查询结果页。"
-                                alertView.isHidenCancle()
-                                alertView.showView()
-                                alertView.sureBtnClick = { [weak self] in
-                                    let tabbarController = ESTabBarController()
-                                    let v1 = PeriodSearchViewController()
-                                    let v2 = MineViewController()
-                                    
-                                    v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
-                                    v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
-                                    
-                                    let nav1 = BaseNavigationViewController.init(rootViewController: v1)
-                                    let nav2 = BaseNavigationViewController.init(rootViewController: v2)
-                                    
-                                    tabbarController.viewControllers = [nav1,nav2]
-                                    tabbarController.tabBar.barTintColor = UIColor.white
-                                    self?.present(tabbarController, animated: true, completion: nil)
-                                }
-                            }else {
-                                let tabbarController = ESTabBarController()
-                                let v1 = PeriodSearchViewController()
-                                let v2 = MineViewController()
-                                
-                                v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
-                                v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
-                                
-                                let nav1 = BaseNavigationViewController.init(rootViewController: v1)
-                                let nav2 = BaseNavigationViewController.init(rootViewController: v2)
-                                
-                                tabbarController.viewControllers = [nav1,nav2]
-                                tabbarController.tabBar.barTintColor = UIColor.white
-                                self?.present(tabbarController, animated: true, completion: nil)
-                            }
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+                                self?.setMainUI(isNewUser: newUser)
+                            })
+                            
+//                            if newUser == true {
+//                                let alertView = ZLAlertView()
+//                                alertView.titleLabel.text = "查询说明"
+//                                alertView.messegeLabel.text = "系统检测到您为2018年7月10日之前报名学员，即将跳转专属查询结果页。"
+//                                alertView.isHidenCancle()
+//                                alertView.showView()
+//                                alertView.sureBtnClick = { [weak self] in
+//                                    let tabbarController = ESTabBarController()
+//                                    let v1 = PeriodSearchViewController()
+//                                    let v2 = MineViewController()
+//
+//                                    v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
+//                                    v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
+//
+//                                    let nav1 = BaseNavigationViewController.init(rootViewController: v1)
+//                                    let nav2 = BaseNavigationViewController.init(rootViewController: v2)
+//
+//                                    tabbarController.viewControllers = [nav1,nav2]
+//                                    tabbarController.tabBar.barTintColor = UIColor.white
+//                                    self?.present(tabbarController, animated: true, completion: nil)
+//                                }
+//                            }else {
+//                                let tabbarController = ESTabBarController()
+//                                let v1 = PeriodSearchViewController()
+//                                let v2 = MineViewController()
+//
+//                                v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
+//                                v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
+//
+//                                let nav1 = BaseNavigationViewController.init(rootViewController: v1)
+//                                let nav2 = BaseNavigationViewController.init(rootViewController: v2)
+//
+//                                tabbarController.viewControllers = [nav1,nav2]
+//                                tabbarController.tabBar.barTintColor = UIColor.white
+//                                self?.present(tabbarController, animated: true, completion: nil)
+//                            }
                         }else {
                             
                             self?.reLoginDelegate?.reLogin()
@@ -224,6 +228,45 @@ extension LoginViewController {
         self.loginInfoView.getLoginCode = { [weak self] in
             
             self?.loadCodeData()
+        }
+    }
+    
+    @objc func setMainUI(isNewUser:Bool) {
+        if isNewUser == true {
+            let alertView = ZLAlertView()
+            alertView.titleLabel.text = "查询说明"
+            alertView.messegeLabel.text = "系统检测到您为2018年7月10日之前报名学员，即将跳转专属查询结果页。"
+            alertView.isHidenCancle()
+            alertView.showView()
+            alertView.sureBtnClick = { [weak self] in
+                let tabbarController = ESTabBarController()
+                let v1 = PeriodSearchViewController()
+                let v2 = MineViewController()
+                
+                v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
+                v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
+                
+                let nav1 = BaseNavigationViewController.init(rootViewController: v1)
+                let nav2 = BaseNavigationViewController.init(rootViewController: v2)
+                
+                tabbarController.viewControllers = [nav1,nav2]
+                tabbarController.tabBar.barTintColor = UIColor.white
+                self?.present(tabbarController, animated: true, completion: nil)
+            }
+        }else {
+            let tabbarController = ESTabBarController()
+            let v1 = PeriodSearchViewController()
+            let v2 = MineViewController()
+            
+            v1.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "培训学时", image: UIImage(named: "home_search_normal"), selectedImage: UIImage(named: "home_search_select"), tag: 0)
+            v2.tabBarItem = ESTabBarItem.init(BasicContentView(), title: "个人中心", image: UIImage(named: "home_usercenter_nomal"), selectedImage: UIImage(named: "home_usercenter_select"), tag: 1)
+            
+            let nav1 = BaseNavigationViewController.init(rootViewController: v1)
+            let nav2 = BaseNavigationViewController.init(rootViewController: v2)
+            
+            tabbarController.viewControllers = [nav1,nav2]
+            tabbarController.tabBar.barTintColor = UIColor.white
+            self.present(tabbarController, animated: true, completion: nil)
         }
     }
 }
